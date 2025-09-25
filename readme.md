@@ -6,6 +6,7 @@
 - User Experience (UX)
   - [Strategy (Site Goals)](#strategy-site-goals)
   - [Scope (User Stories)](#scope-user-stories)
+  - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
   - [Structure (Design Choices)](#structure-design-choices)
   - [Skeleton (Wireframes)](#skeleton-wireframes)
   - [Surface (Visual Design)](#surface-visual-design)
@@ -72,6 +73,17 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 | Delete Products        | As an admin, I want to Delete products (CRUD) so that I can remove unavailable products from the store.                                 |
 | View Orders            | As an admin, I want to View orders so that I can manage and process customer purchases.                                                 |
 | Manage Users           | As an admin, I want to Manage users so that I can deactivate or reactivate user accounts if needed.                                     |
+
+[Back to the top](#table-of-contents)
+
+## Entity Relationship Diagram (ERD)
+
+- `User Profile` extends the built-in Django User model to store default delivery information.
+- `Category` and `Product` have a one-to-many relationship.
+- `Order` and `Order Line Item` represent the checkout system, with each order linked to multiple products.
+- `Contact` stores messages submitted through the contact form.
+
+![ERD](readme/erd.png)
 
 [Back to the top](#table-of-contents)
 
