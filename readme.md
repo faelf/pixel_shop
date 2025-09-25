@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
-- [User Experience (UX)](#user-experience-ux)
+- User Experience (UX)
   - [Strategy (Site Goals)](#strategy-site-goals)
   - [Scope (User Stories)](#scope-user-stories)
   - [Structure (Design Choices)](#structure-design-choices)
@@ -24,9 +24,9 @@
 
 ## Overview
 
-[Back to the top](#table-of-contents)
+PixelShop is a fictitious gaming store created for my Code Institute Milestone 4 project. Built to demonstrate the key skills I have learnt including user login and registration, adding, editing and deleting products from the frontend, Stripe payments, and storing images with AWS.
 
-## User Experience (UX)
+The store isn't real, it is purely educational to show what I have managed to build while learning new technologies.
 
 [Back to the top](#table-of-contents)
 
