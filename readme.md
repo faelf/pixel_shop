@@ -1,4 +1,4 @@
-# Pixel Store
+# Pixel Shop
 
 ## Table of Contents
 
