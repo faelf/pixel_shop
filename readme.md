@@ -107,6 +107,28 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 
 ## Surface (Visual Design)
 
+- **Colour palette:** A modern, gaming-inspired palette with a dark navbar,
+  light background for readability.
+
+![Colour Palette](readme/pixel_shop_colour_palette.png)
+
+- **Typography:** Google Fonts are used to create hierarchy and readability:
+
+  - **Audiowide** for main headings.
+  - **Bebas Neue** for subheadings and section titles.
+  - **Roboto** for body text and product descriptions.
+
+- **Icons:** Font Awesome icons provide clear visual cues for navigation, cart,
+  and user actions.
+
+- **Imagery:** High-quality product images.
+
+- **Layout:** Grid-based product cards allow easy browsing, with consistent
+  spacing and alignment.
+
+- **Responsiveness:** All pages adapt seamlessly to different screen sizes,
+  ensuring a consistent experience on desktop, tablet, and mobile.
+
 [Back to the top](#table-of-contents)
 
 ## Technologies Used
