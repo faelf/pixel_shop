@@ -32,6 +32,19 @@ The store isn't real, it is purely educational to show what I have managed to bu
 
 ## Strategy (Site Goals)
 
+**Primary Goal:** Build an e-commerce Django application that demonstrates full-stack development skills, focusing on user authentication, payment processing, and cloud-based media storage.
+
+**Target Audience:** Gaming enthusiasts seeking merchandise and accessories.
+
+**Objectives & Goals:**
+
+- Provide a functional online store where users can browse and purchase gaming merchandise.
+- Enable secure customer registration and login.
+- Provide CRUD functionality for admin users to manage products through the frontend.
+- Integrate Stripe for safe payment.
+- Store product images securely using AWS S3.
+- Responsive design across desktop, tablet, and mobile devices.
+
 [Back to the top](#table-of-contents)
 
 ## Scope (User Stories)
