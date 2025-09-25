@@ -89,9 +89,15 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 
 ## Structure (Design Choices)
 
-### Colour Palette
-
-### Typography
+- **Navigation bar:** Responsive across different screen sizes, with links to Home, Products, Cart, and Account pages.
+- **Home page:** Highlights featured products and includes a short introduction about the shop.
+- **Products:** Can be searched, and filtered by category.
+- **Product detail pages:** Show full product information and allow adding items to the cart.
+- **Cart & Checkout:** Available to all users, so anyone can shop at the shop.
+- **User Account Pages:** For registered users to store default delivery information.
+- **Admin User:** CRUD functionality to manage products.
+- **Contact Form:** For users to submit inquiries.
+- **Footer:** Visible on all pages with information about contact details and store location.
 
 [Back to the top](#table-of-contents)
 
