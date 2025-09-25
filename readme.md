@@ -49,6 +49,30 @@ The store isn't real, it is purely educational to show what I have managed to bu
 
 ## Scope (User Stories)
 
+The MoSCoW prioritisation method was used to organise the user stories.
+
+You can view the GitHub Project [here](https://github.com/users/faelf/projects/5).
+
+| Feature                | User Story                                                                                                                              |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Navigation Bar         | As a non-registered user, I want to use the navigation bar so that I can easily access different sections of the page.                  |
+| Store Information      | As a non-registered user, I want to find information about the store so that I can quickly find the store location and contact details. |
+| Browse Products        | As a non-registered user, I want to browse products so that I can see what items are available in the store.                            |
+| View Product Details   | As a non-registered user, I want to view product details so that I can decide if I want to purchase a product.                          |
+| Search Products        | As a non-registered user, I want to search products so that I can find items are available in the store.                                |
+| View Cart Summary      | As a non-registered user, I want to view cart summary so that I can edit and review my selected items.                                  |
+| Checkout & Pay         | As a non-registered user, I want to checkout and pay so that I can complete purchases.                                                  |
+| Register Account       | As a non-registered user, I want to to register so that my information can be saved.                                                    |
+| Login/Logout           | As a registered user, I want to login/logout so that I can securely access my account.                                                  |
+| Update Account Details | As a registered user, I want to edit account details so that my personal information stays up to date.                                  |
+| View Order History     | As a registered user, I want to view order history so that I can track my past purchases.                                               |
+| Admin Login            | As an admin, I want to login to admin panel so that I can access admin functionality.                                                   |
+| Create Products        | As an admin, I want to Create products (CRUD) so that new products are available for customers to buy.                                  |
+| Edit Products          | As an admin, I want to Edit products (CRUD) so that I can update product details as needed.                                             |
+| Delete Products        | As an admin, I want to Delete products (CRUD) so that I can remove unavailable products from the store.                                 |
+| View Orders            | As an admin, I want to View orders so that I can manage and process customer purchases.                                                 |
+| Manage Users           | As an admin, I want to Manage users so that I can deactivate or reactivate user accounts if needed.                                     |
+
 [Back to the top](#table-of-contents)
 
 ## Structure (Design Choices)
