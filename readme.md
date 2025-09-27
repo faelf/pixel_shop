@@ -103,6 +103,20 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 
 ## Skeleton (Wireframes)
 
+The wireframes provide a rough visual outline of how I imagine the webpage to look. They are not final designs, but rather a guide to illustrate the planned layout, structure, and key features of each page. The goal is to give a clear idea of content placement and user flow before moving into the detailed design and development stages.
+
+### Desktop
+
+![desktop](readme/wireframes/desktop.png)
+
+### Tablet
+
+![tablet](readme/wireframes/tablet.png)
+
+### Mobile
+
+![mobile](readme/wireframes/mobile.png)
+
 [Back to the top](#table-of-contents)
 
 ## Surface (Visual Design)
