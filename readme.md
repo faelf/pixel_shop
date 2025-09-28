@@ -171,6 +171,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[Google Fonts](https://fonts.google.com/)** – For typography.
 - **[Lucidchart](https://www.lucidchart.com/)** – For designing the ERD.
 - **[Balsamiq](https://balsamiq.com/)** – For creating wireframes.
+- **[Font Awesome](https://fontawesome.com/)** – Icons used for UI elements.
 
 [Back to the top](#table-of-contents)
 
