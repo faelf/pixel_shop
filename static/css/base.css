@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  /* Colour Palette */
+  --color-primary: hsl(230, 13%, 21%);
+  --color-secondary: hsl(123, 39%, 49%);
+  --color-secondary-hover: hsl(123, 39%, 69%);
+  --color-accent: hsl(30, 100%, 50%);
+  --color-secondary-accent: hsl(207, 90%, 54%);
+  --color-page-background: hsl(0, 0%, 86%);
+  --color-background: hsl(0, 0%, 100%);
+
+  /* Font Families */
+  --font-logo: "Audiowide", sans-serif;
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+/* General Styling */
+
+body {
+  background-color: var(--color-page-background);
+  font-family: var(--font-body);
+}
+
+.logo {
+  font-family: var(--font-logo);
+}
+
+.btn-primary {
+  background-color: var(--color-secondary);
+  border: none;
+  &:hover {
+    background-color: var(--color-secondary-hover);
+    color: var(--color-primary);
+  }
+}
+
+/* Navbar */
+
+nav {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+.navbar-toggler {
+  color: var(--color-background);
+}
+
+.navbar i {
+  width: 20px;
+  text-align: center;
+}
+.nav-link {
+  color: var(--color-background);
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.active {
+  color: var(--color-secondary) !important;
+}
+
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}

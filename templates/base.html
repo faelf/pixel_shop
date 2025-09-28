@@ -1,22 +1,35 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Page Metadata -->
+    <title>Pixel Shop
+      {% block page_title %}
+      {% endblock page_title %}
+    </title>
     <meta name="description"
           content="Pixel Shop - a fictional online store for gaming merchandise, created as part of a Code Institute project.">
     <meta name="keywords" content="gaming, consoles, accessories">
-    <title>Pixel Shop</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
           crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
   </head>
   <body>
+    {% include "navigationbar.html" %}
     {% block content %}
     {% endblock content %}
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/8fd7781574.js"
             crossorigin="anonymous"></script>
   </body>
 </html>
