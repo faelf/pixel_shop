@@ -156,6 +156,13 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 ### Libraries & Frameworks
 
+- [Django](https://www.djangoproject.com/) – Python web framework
+- [dj-database-url](https://pypi.org/project/dj-database-url/) – Parses database URLs into Django `DATABASES` settings
+- [psycopg2](https://pypi.org/project/psycopg2/) – PostgreSQL database adapter
+- [gunicorn](https://pypi.org/project/gunicorn/) – WSGI HTTP server for running Django in production
+- [whitenoise](http://whitenoise.evans.io/en/stable/) – Serves static files in production
+- [Bootstrap](https://getbootstrap.com/) – Frontend CSS framework for responsive design
+
 ### Tools
 
 - **[GitHub](https://github.com/)** – For project hosting.
@@ -168,6 +175,226 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 [Back to the top](#table-of-contents)
 
 ## Deployment
+
+### Create & Clone a Repo via GitHub Desktop
+
+1. Open **GitHub Desktop** and log in.
+2. Click **File → New Repository**.
+3. Enter a **name**, **description** (optional), and choose **local path**.
+4. Click **Create Repository** → the repo is created locally.
+5. Go to **Repository → Publish Repository** to upload it to GitHub.
+
+### In VS Code
+
+1. Open the cloned repository in VS Code.
+2. Create a virtual environment.
+3. Install Django:
+   ```bash
+   pip install django
+   ```
+4. Create the Django project, ensuring you include the trailing dot to create it in the current directory:
+   ```bash
+   django-admin startproject (Project name) .
+   ```
+5. Create a Django app:
+   ```bash
+   python manage.py startapp (App name)
+   ```
+6. Add the app to `settings.py`
+
+   ```Python
+   INSTALLED_APPS = [
+       "django.contrib.admin",
+       ...
+       "django.contrib.staticfiles",
+
+       # Page Apps
+       "home",
+   ]
+   ```
+
+7. In the apps template folder, create a folder with the app name, and create a html file to be rendered.
+8. Create a simple view to render a template in the app's `views.py`
+
+   ```Python
+   from django.views.generic import TemplateView
+
+   class HomeView(TemplateView):
+       template_name = "home/home.html"
+   ```
+
+9. Create a `urls.py` file within the app folder, and connect to `views.py`.
+
+   ```Python
+   from django.urls import path
+   from .views import HomeView
+
+   urlpatterns = [
+       path("", HomeView.as_view(), name="home"),
+   ]
+   ```
+
+10. In the project's `urls.py`, we need to include the app's `urls.py`.
+
+    ```Python
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+    	path('admin/', admin.site.urls),
+    	path('', include('home.urls')),
+    ]
+    ```
+
+11. Create a database.
+12. Install `psycopg2`, the PostgreSQL adapter:
+    ```bash
+    pip install psycopg2
+    ```
+13. Install `dj-database-url` for parsing database URLs:
+    ```bash
+    pip install dj-database_url
+    ```
+14. In `settings.py` add the `dj-database_url to the top`
+    ```Python
+    import dj_database_url
+    ```
+15. Create a `env.py` in the root dir. And add it to `.gitignore`.
+16. In the `env.py` create the keys that are not meant to be committed.
+
+    ```Python
+    import os
+
+    # Django Settings
+
+    # Secret key
+    os.environ["SECRET_KEY"] = (
+        "Get the secret key from settings.py"
+    )
+
+    # Debug mode
+    os.environ["DJANGO_DEBUG"] = "True"
+
+
+    # Allowed hosts
+    os.environ["DJANGO_ALLOWED_HOSTS"] = "127.0.0.1,localhost,.herokuapp.com"
+
+    # Database
+
+    # SQLite (Django default)
+    # os.environ["DATABASE_URL"] = "sqlite:///db.sqlite3"
+
+    # Postgres (Created)
+    os.environ["DATABASE_URL"] = (
+    	"This will be the database URL"
+    )
+    ```
+
+17. In `settings.py` add this to the top.
+    ```Python
+    import os
+    if os.path.isfile("env.py"):
+    	import env  # noqa
+    ```
+18. Still in `settings.py`, set the variables values for the `env.py`.
+    ```Python
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+    ```
+19. Connect the Postgres database in `settings.py`
+
+    ```Python
+    # Use dj-database-url to parse the database URL from environment variable
+    DATABASE_URL = os.environ.get("DATABASE_URL")
+
+    if DATABASE_URL and DATABASE_URL.startswith("postgres"):
+        # Use Postgres
+        import dj_database_url
+        DATABASES = {
+            "default": dj_database_url.parse(DATABASE_URL)
+    	}
+    else:
+        # Use SQLite (Django Default)
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": BASE_DIR / "db.sqlite3",
+            }
+        }
+    ```
+
+20. Run your first database migration:
+    ```bash
+    python manage.py migrate
+    ```
+21. Create a superuser:
+    ```bash
+    python manage.py createsuperuser
+    ```
+22. Install Gunicorn to handle web requests.
+    ```bash
+    pip install gunicorn
+    ```
+23. Create a `Procfile` in the root of your project with the following command:
+    ```bash
+    web: gunicorn (Project name).wsgi
+    ```
+24. In your `settings.py` ensure `WSGI_APPLICATION` is set correctly:
+    ```python
+    WSGI_APPLICATION = '(Project name).wsgi.application'
+    ```
+25. Specify the Python version for your development environment using a `.python-version` file.
+26. Install `whitenoise` for serving static files in production:
+    ```bash
+    pip install whitenoise
+    ```
+27. Edit your `settings.py` file and add `WhiteNoise` to the `MIDDLEWARE` list, placing it just below `SecurityMiddleware`:
+    ```python
+    MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+    ]
+    ```
+28. Add the following to the bottom of your `settings.py` file to configure static file collection:
+
+    ```python
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/5.2/howto/static-files/
+    STATIC_URL = "static/"
+
+    # Additional locations to look for static files (optional)
+    STATICFILES_DIRS = [BASE_DIR / "static"]
+
+    # This is where Django will collect all static files for production
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+    ```
+
+29. Run `collectstatic` to gather all static files into the `staticfiles` directory:
+    ```bash
+    python manage.py collectstatic
+    ```
+30. Add the `staticfiles` folder to the `.gitignore`.
+31. Create a `requirements.txt` file with all installed dependencies:
+    ```bash
+    pip freeze > requirements.txt
+    ```
+32. Commit all changes and push your code to your GitHub repository.
+
+### Heroku Deployment
+
+1. Log in to the Heroku dashboard.
+2. Click **New** and select **Create new app**.
+3. Enter a unique app name.
+4. Choose the deployment region.
+5. In the **Settings** tab, navigate to **Config Vars** and add all necessary environment variables, including:
+   - `DATABASE_URL`
+   - `SECRET_KEY`
+6. Under the **Deployment method** section, connect the app to your GitHub repository.
+7. Press **Deploy Branch**.
+8. After deployment is complete, test the deployed page.
 
 [Back to the top](#table-of-contents)
 
