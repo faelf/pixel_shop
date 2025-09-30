@@ -417,4 +417,8 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 ## Credits
 
+### Images
+
+- [Hero Image](https://www.pexels.com/photo/a-close-up-shot-of-a-nintendo-switch-6993182/)
+
 [Back to the top](#table-of-contents)

@@ -6,7 +6,8 @@
   --color-secondary: hsl(123, 39%, 49%);
   --color-secondary-hover: hsl(123, 39%, 69%);
   --color-accent: hsl(30, 100%, 50%);
-  --color-secondary-accent: hsl(207, 90%, 54%);
+  --color-accent-hover: hsl(30, 100%, 70%);
+  --color-accent-secondary: hsl(207, 90%, 54%);
   --color-page-background: hsl(0, 0%, 86%);
   --color-background: hsl(0, 0%, 100%);
 
@@ -27,16 +28,36 @@ body {
   font-family: var(--font-logo);
 }
 
-.h4 {
+.heading {
   font-family: var(--font-heading);
   letter-spacing: 1px;
+}
+
+input[type="search"] {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 
 .btn-primary {
   background-color: var(--color-secondary);
   border: none;
+  border-radius: 50px;
+  padding-left: 1rem;
+  padding-right: 1rem;
   &:hover {
     background-color: var(--color-secondary-hover);
+    color: var(--color-primary);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 50px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  &:hover {
+    background-color: var(--color-accent-hover);
     color: var(--color-primary);
   }
 }
@@ -76,6 +97,28 @@ i {
 .navbar-toggler:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+/* Hero Section */
+.hero {
+  height: 50vh;
+  background: url("/static/images/hero-bg.jpeg") center/cover no-repeat;
+  position: relative;
+  color: var(--color-background);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* Footer */

@@ -3,7 +3,18 @@
     - Home
 {% endblock page_title %}
 {% block content %}
-    <div class="container">
-        <h1>Hello World,</h1>
+    <div class="hero d-flex align-items-center text-center">
+        <div class="container">
+            <p class="display-3 heading fw-bold">Welcome to Pixel Shop</p>
+            <p class="mb-4">
+                From consoles to collectibles, discover everything you need to power up your gaming experience, all in one place.
+            </p>
+            <a href="#" class="btn btn-primary btn-lg me-2">Shop Now</a>
+            {% if user.is_authenticated %}
+                <a href="#" class="btn btn-secondary btn-lg me-2">Login</a>
+            {% else %}
+                <a href="#" class="btn btn-secondary btn-lg me-2">Register</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock content %}
