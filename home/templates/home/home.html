@@ -1,20 +1,47 @@
 {% extends "base.html" %}
+{% load static %}
 {% block page_title %}
-    - Home
+  - Home
 {% endblock page_title %}
 {% block content %}
-    <div class="hero d-flex align-items-center text-center">
-        <div class="container">
-            <p class="display-3 heading fw-bold">Welcome to Pixel Shop</p>
-            <p class="mb-4">
-                From consoles to collectibles, discover everything you need to power up your gaming experience, all in one place.
-            </p>
-            <a href="#" class="btn btn-primary btn-lg me-2">Shop Now</a>
-            {% if user.is_authenticated %}
-                <a href="#" class="btn btn-secondary btn-lg me-2">Login</a>
-            {% else %}
-                <a href="#" class="btn btn-secondary btn-lg me-2">Register</a>
-            {% endif %}
-        </div>
+  <!-- Hero Section -->
+  <div class="hero d-flex align-items-center text-center">
+    <div class="container">
+      <p class="display-3 heading fw-bold">Welcome to Pixel Shop</p>
+      <p class="mb-4">
+        From consoles to collectibles, discover everything you need to power up your gaming experience, all in one place.
+      </p>
+      <a href="#" class="btn btn-primary btn-lg me-2">Shop Now</a>
+      {% if user.is_authenticated %}
+        <a href="#" class="btn btn-secondary btn-lg me-2">Login</a>
+      {% else %}
+        <a href="#" class="btn btn-secondary btn-lg me-2">Register</a>
+      {% endif %}
     </div>
+  </div>
+  <!-- About -->
+  <div class="container py-5">
+    <div class="row">
+      <!-- Image -->
+      <div class="col-12 col-md-6 mb-4 d-flex justify-content-center">
+        <img src="{% static 'images/about-img.png' %}"
+             alt="About Pixel Shop"
+             class="img-fluid circle"
+             height="400"
+             width="400">
+      </div>
+      <!-- Text -->
+      <div class="col-12 col-md-6">
+        <h2 class="display-4 heading fw-bold mb-3">About Pixel Shop</h2>
+        <p class="lead">
+          At <span class="fw-bold">Pixel Shop</span>, we’re more than just a gaming store, we’re a hub for gamers and creators.
+          Whether you’re levelling up your setup or chasing the perfect pixel, we provide top-quality gear designed to keep you ahead of the game.
+        </p>
+        <p>
+          From keyboards that click just right to accessories that spark creativity, our mission is simple:
+          to make your gaming and creative journey smooth, stylish, and unforgettable.
+        </p>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
