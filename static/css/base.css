@@ -27,6 +27,11 @@ body {
   font-family: var(--font-logo);
 }
 
+.h4 {
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+}
+
 .btn-primary {
   background-color: var(--color-secondary);
   border: none;
@@ -47,9 +52,10 @@ nav {
   color: var(--color-background);
 }
 
-.navbar i {
+i {
   width: 20px;
   text-align: center;
+  line-height: 1;
 }
 .nav-link {
   color: var(--color-background);
@@ -70,4 +76,24 @@ nav {
 .navbar-toggler:focus {
   outline: none !important;
   box-shadow: none !important;
+}
+
+/* Footer */
+footer {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: 2rem 0;
+}
+
+footer .footer-list li,
+footer .footer-list li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-background);
+}
+
+footer .footer-list li {
+  margin-bottom: 0.5rem;
 }
