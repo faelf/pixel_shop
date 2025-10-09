@@ -1,14 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="container mt-5">
-    <h2 class="mb-4 text-center">Sign Up for Pixel Shop</h2>
-    <form method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-    </form>
-    <p class="mt-3 text-center">
-      Already have an account? <a href="{% url 'account_login' %}">Login here</a>
-    </p>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+        <p class="h2 mb-4">Sign Up for Pixel Shop</p>
+        <form method="post" action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.first_name.label_tag }}
+              {{ form.first_name }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.last_name.label_tag }}
+              {{ form.last_name }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.email.label_tag }}
+              {{ form.email }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.email2.label_tag }}
+              {{ form.email2 }}
+            </div>
+            <div class="mb-3">
+              {{ form.username.label_tag }}
+              {{ form.username }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.password1.label_tag }}
+              {{ form.password1 }}
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+              {{ form.password2.label_tag }}
+              {{ form.password2 }}
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </div>
+        </form>
+        <p class="mt-3 text-center">
+          Already have an account? <a href="{% url 'account_login' %}">Login here</a>
+        </p>
+      </div>
+    </div>
   </div>
 {% endblock content %}

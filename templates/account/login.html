@@ -1,32 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="container mt-5">
-    <h2 class="mb-4">Login to Pixel Shop</h2>
-    <form method="post" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      <div class="row">
-        <div class="col-6 mb-3">
-          {{ form.login.label_tag }}
-          {{ form.login }}
-        </div>
-        {% comment %} <div class="col-6 mb-3">
-          {{ form.username.label_tag }}
-          {{ form.username }}
-        </div>
-        <div class="col-6 mb-3">
-          {{ form.email.label_tag }}
-          {{ form.email }}
-          <div class="form-text">We'll never share your email with anyone else.</div>
-        </div> {% endcomment %}
-        <div class="col-6 mb-3">
-          {{ form.password.label_tag }}
-          {{ form.password }}
-        </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+        <p class="h2 mb-4">Login to Pixel Shop</p>
+        <form method="post" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12 mb-3">
+              {{ form.login.label_tag }}
+              {{ form.login }}
+            </div>
+            <div class="col-12 mb-3">
+              {{ form.password.label_tag }}
+              {{ form.password }}
+            </div>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+        <p class="mt-3">
+          Don't have an account? <a href="{% url 'account_signup' %}">Sign up here</a>
+        </p>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <p class="mt-3">
-      Don't have an account? <a href="{% url 'account_signup' %}">Sign up here</a>
-    </p>
+    </div>
   </div>
 {% endblock content %}

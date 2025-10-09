@@ -81,7 +81,10 @@ TEMPLATES = [
     },
 ]
 
-ACCOUNT_FORMS = {"login": "home.forms.CustomLoginForm"}
+ACCOUNT_FORMS = {
+    "login": "home.forms.CustomLoginForm",
+    "signup": "home.forms.CustomSignupForm",
+}
 
 WSGI_APPLICATION = "pixelshop.wsgi.application"
 
@@ -158,9 +161,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "email2*", "username*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"

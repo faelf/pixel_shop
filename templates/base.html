@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
   </head>
   <body class="d-flex flex-column min-vh-100">
+    {% include "messages.html" %}
     {% include "navigationbar.html" %}
     {% block content %}
     {% endblock content %}

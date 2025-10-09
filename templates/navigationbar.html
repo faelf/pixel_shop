@@ -48,22 +48,36 @@
                 <small class="nav-label ms-2 ms-lg-0">Account</small>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
+                 href="{% url 'account_logout' %}">
+                <i class="fa-solid fa-right-from-bracket mb-1"></i>
+                <small class="nav-label ms-2 ms-lg-0">Logout</small>
+              </a>
+            </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link d-flex flex-lg-column align-items-center p-2"
-                 href="#">
+              <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}"
+                 href="{% url 'account_login' %}">
                 <i class="fa-solid fa-right-to-bracket mb-1"></i>
                 <small class="nav-label ms-2 ms-lg-0">Login</small>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex flex-lg-column align-items-center p-2"
-                 href="#">
+              <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
+                 href="{% url 'account_signup' %}">
                 <i class="fa-solid fa-user-plus mb-1"></i>
                 <small class="nav-label ms-2 ms-lg-0">Register</small>
               </a>
             </li>
           {% endif %}
+          <li class="nav-item">
+            <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+               href="{% url 'contact' %}">
+              <i class="fas fa-envelope mb-1"></i>
+              <small class="nav-label ms-2 ms-lg-0">Contact</small>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link d-flex flex-lg-column align-items-center p-2"
                href="#">
