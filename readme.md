@@ -29,6 +29,8 @@ PixelShop is a fictitious gaming store created for my Code Institute Milestone 4
 
 The store isn't real, it is purely educational to show what I have managed to build while learning new technologies.
 
+You can vist the live page [here](https://pixelshop-fdf6b277567f.herokuapp.com/)
+
 [Back to the top](#table-of-contents)
 
 ## Strategy (Site Goals)
@@ -161,6 +163,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - [psycopg2](https://pypi.org/project/psycopg2/) – PostgreSQL database adapter
 - [gunicorn](https://pypi.org/project/gunicorn/) – WSGI HTTP server for running Django in production
 - [whitenoise](http://whitenoise.evans.io/en/stable/) – Serves static files in production
+- [Django Allauth](https://django-allauth.readthedocs.io/en/latest/) - Handles user authentication
 - [Bootstrap](https://getbootstrap.com/) – Frontend CSS framework for responsive design
 
 ### Tools
