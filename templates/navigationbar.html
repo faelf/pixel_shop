@@ -34,8 +34,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex flex-lg-column align-items-center p-2"
-               href="#">
+            <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'products_list' %}active{% endif %}"
+               href="{% url 'products_list' %}">
               <i class="fa-solid fa-store mb-1"></i>
               <small class="nav-label ms-2 ms-lg-0">Store</small>
             </a>
