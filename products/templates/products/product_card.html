@@ -1,0 +1,49 @@
+<p class="h2 my-3">All Products</p>
+{% for product in products %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      {% if product.image %}
+        <div class="col-lg-4">
+          <div class="product-img-wrapper">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
+        </div>
+      {% else %}
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+          <p class="my-5">No image available</p>
+        </div>
+      {% endif %}
+      <div class="col-lg-8">
+        <div class="card-body">
+          <p class="h5 card-title">{{ product.name }}</p>
+          <div class="d-block d-xl-none">
+            <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+          </div>
+          <div class="d-none d-xl-block d-xxl-none">
+            <p class="card-text">{{ product.description|truncatewords:40 }}</p>
+          </div>
+          <div class="d-none d-xxl-block">
+            <p class="card-text">{{ product.description|truncatewords:70 }}</p>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <p class="card-text">
+                {% for category in product.categories.all %}
+                  <span class="badge bg-secondary">{{ category.friendly_name }}</span>
+                {% empty %}
+                  <span class="badge bg-secondary">No category</span>
+                {% endfor %}
+              </p>
+            </div>
+            <div class="col-12 col-md-4 text-end">
+              <p class="card-text">£{{ product.price }}</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mt-2">
+            <button class="btn btn-success mb-3">Add to trolley</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}

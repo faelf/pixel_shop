@@ -155,3 +155,24 @@ footer .footer-list li a {
 footer .footer-list li {
   margin-bottom: 0.5rem;
 }
+
+/* Products CSS */
+.product-img-wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  aspect-ratio: 16 / 9;
+  @media (min-width: 992px) {
+    aspect-ratio: 1 / 1;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+  }
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
