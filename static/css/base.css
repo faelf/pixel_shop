@@ -116,7 +116,8 @@ i {
 /* Hero Section */
 .hero {
   height: 50vh;
-  background: url("/static/images/hero-bg.jpeg") center/cover no-repeat;
+  background: url("https://rafapixelshop.s3.eu-west-2.amazonaws.com/images/hero-bg.jpeg")
+    center/cover no-repeat;
   position: relative;
   color: var(--color-background);
 }
