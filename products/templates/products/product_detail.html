@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    <div class="row my-2">
+      <div class="col-12 col-lg-4">
+        <div class="shadow-sm">
+          {% if product.image %}
+            <img src="{{ product.image.url }}"
+                 class="img-fluid rounded"
+                 alt="{{ product.name }}">
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-12 col-lg-8">
+        <div class="card-body">
+          <p class="h2 card-title my-2">{{ product.name }}</p>
+          {% if product.categories.all %}
+            <p class="my-2">
+              <strong>Categories:</strong>
+              {% for category in product.categories.all %}
+                <span class="badge bg-secondary">{{ category.name }}</span>
+              {% empty %}
+                <span class="badge bg-secondary">No category</span>
+              {% endfor %}
+            </p>
+          {% endif %}
+          <p>{{ product.description|linebreaks }}</p>
+          <p class="display-6">£{{ product.price }}</p>
+          <div class="d-flex justify-content-end mt-2">
+            <button class="btn btn-primary mb-3">Add to trolley</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -5,7 +5,9 @@
       {% if product.image %}
         <div class="col-lg-4">
           <div class="product-img-wrapper">
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <a href="{% url 'product_detail' product.id %}">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
           </div>
         </div>
       {% else %}
@@ -15,15 +17,22 @@
       {% endif %}
       <div class="col-lg-8">
         <div class="card-body">
-          <p class="h5 card-title">{{ product.name }}</p>
+          <a href="{% url 'product_detail' product.id %}"
+             class="h5 link-underline link-underline-opacity-0">{{ product.name }}</a>
           <div class="d-block d-xl-none">
-            <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+            <p class="card-text">
+              {{ product.description|truncatewords:20 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+            </p>
           </div>
           <div class="d-none d-xl-block d-xxl-none">
-            <p class="card-text">{{ product.description|truncatewords:40 }}</p>
+            <p class="card-text">
+              {{ product.description|truncatewords:40 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+            </p>
           </div>
           <div class="d-none d-xxl-block">
-            <p class="card-text">{{ product.description|truncatewords:70 }}</p>
+            <p class="card-text">
+              {{ product.description|truncatewords:60 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+            </p>
           </div>
           <div class="row">
             <div class="col-12 col-md-8">
@@ -36,11 +45,11 @@
               </p>
             </div>
             <div class="col-12 col-md-4 text-end">
-              <p class="card-text">£{{ product.price }}</p>
+              <p class="display-6">£{{ product.price }}</p>
             </div>
           </div>
           <div class="d-flex justify-content-end mt-2">
-            <button class="btn btn-success mb-3">Add to trolley</button>
+            <button class="btn btn-primary mb-3">Add to trolley</button>
           </div>
         </div>
       </div>
