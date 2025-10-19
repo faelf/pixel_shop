@@ -178,6 +178,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[Lucidchart](https://www.lucidchart.com/)** – For designing the ERD.
 - **[Balsamiq](https://balsamiq.com/)** – For creating wireframes.
 - **[Font Awesome](https://fontawesome.com/)** – Icons used for UI elements.
+- **[AWS S3](https://aws.amazon.com/s3/)** – For storing images and static files.
 
 [Back to the top](#table-of-contents)
 
@@ -422,6 +423,10 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 [Back to the top](#table-of-contents)
 
 ## Credits
+
+### Code
+
+- [AWS S3 Tutorial](https://www.youtube.com/watch?v=JQVQcNN0cXE&t=404s)
 
 ### Images
 
