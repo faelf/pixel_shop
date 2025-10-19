@@ -164,6 +164,9 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - [gunicorn](https://pypi.org/project/gunicorn/) – WSGI HTTP server for running Django in production
 - [whitenoise](http://whitenoise.evans.io/en/stable/) – Serves static files in production
 - [Django Allauth](https://django-allauth.readthedocs.io/en/latest/) - Handles user authentication
+- [Pillow](https://pillow.readthedocs.io/en/stable/) – Image processing
+- [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) – AWS SDK for
+- [django-storates](https://django-storages.readthedocs.io/en/latest/) - Custom storage backends for Django.
 - [Bootstrap](https://getbootstrap.com/) – Frontend CSS framework for responsive design
 
 ### Tools
