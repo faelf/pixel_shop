@@ -4,31 +4,54 @@
   <div class="container">
     <div class="row my-2">
       <div class="col-12 col-lg-4">
-        <div class="shadow-sm">
-          {% if product.image %}
-            <img src="{{ product.image.url }}"
-                 class="img-fluid rounded"
-                 alt="{{ product.name }}">
-          {% endif %}
-        </div>
+        {% if product.image %}
+          <img src="{{ product.image.url }}"
+               class="img-fluid rounded shadow"
+               alt="{{ product.name }}">
+        {% endif %}
       </div>
       <div class="col-12 col-lg-8">
         <div class="card-body">
           <p class="h2 card-title my-2">{{ product.name }}</p>
-          {% if product.categories.all %}
-            <p class="my-2">
-              <strong>Categories:</strong>
-              {% for category in product.categories.all %}
-                <span class="badge bg-secondary">{{ category.name }}</span>
-              {% empty %}
-                <span class="badge bg-secondary">No category</span>
-              {% endfor %}
-            </p>
-          {% endif %}
           <p>{{ product.description|linebreaks }}</p>
-          <p class="display-6">£{{ product.price }}</p>
-          <div class="d-flex justify-content-end mt-2">
-            <button class="btn btn-primary mb-3">Add to trolley</button>
+          <p>
+            Do you have a question about this product? <a href="{% url 'contact' %}" class="text-decoration-none">Contact us</a>
+          </p>
+          <div class="row my-2">
+            <div class="col-6">
+              <p>
+                <strong>Categories:</strong>
+                {% for category in product.categories.all %}
+                  <span class="badge bg-secondary">{{ category.name }}</span>
+                {% empty %}
+                  <span class="badge bg-secondary">No category</span>
+                {% endfor %}
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-end">
+                <p class="display-6">£{{ product.price }}</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-start">
+                <a href="{% url 'products_list' %}"
+                   class="btn btn-secondary fw-bold mb-3">Back to Products</a>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary fw-bold mb-3">Add to Trolley</button>
+              </div>
+            </div>
+            {% if user.is_authenticated and user.is_staff %}
+              <div class="col-12">
+                <div class="d-flex justify-content-end">
+                  <a class="btn btn-outline-secondary fw-bold">Edit</a>
+                  <a class="btn btn-outline-danger fw-bold ms-2">Delete</a>
+                </div>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>

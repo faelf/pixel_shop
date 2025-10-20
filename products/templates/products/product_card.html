@@ -17,25 +17,33 @@
       {% endif %}
       <div class="col-lg-8">
         <div class="card-body">
-          <a href="{% url 'product_detail' product.id %}"
-             class="h5 link-underline link-underline-opacity-0">{{ product.name }}</a>
+          <div class="mb-2">
+            <a href="{% url 'product_detail' product.id %}"
+               class="h3 text-decoration-none">{{ product.name }}</a>
+          </div>
           <div class="d-block d-xl-none">
             <p class="card-text">
-              {{ product.description|truncatewords:20 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+              {{ product.description|truncatewords:20 }}
+              <a href="{% url 'product_detail' product.id %}"
+                 class="text-decoration-none">Read more</a>
             </p>
           </div>
           <div class="d-none d-xl-block d-xxl-none">
             <p class="card-text">
-              {{ product.description|truncatewords:40 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+              {{ product.description|truncatewords:40 }}
+              <a href="{% url 'product_detail' product.id %}"
+                 class="text-decoration-none">Read more</a>
             </p>
           </div>
           <div class="d-none d-xxl-block">
             <p class="card-text">
-              {{ product.description|truncatewords:60 }}<a href="{% url 'product_detail' product.id %}">Read more</a>
+              {{ product.description|truncatewords:60 }}
+              <a href="{% url 'product_detail' product.id %}"
+                 class="text-decoration-none">Read more</a>
             </p>
           </div>
           <div class="row">
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-7">
               <p class="card-text">
                 {% for category in product.categories.all %}
                   <span class="badge bg-secondary">{{ category.friendly_name }}</span>
@@ -44,12 +52,26 @@
                 {% endfor %}
               </p>
             </div>
-            <div class="col-12 col-md-4 text-end">
+            <div class="col-12 col-md-5 text-end">
               <p class="display-6">£{{ product.price }}</p>
             </div>
           </div>
-          <div class="d-flex justify-content-end mt-2">
-            <button class="btn btn-primary mb-3">Add to trolley</button>
+          <div class="row">
+            <div class="col-6">
+              {% if user.is_authenticated and user.is_staff %}
+                <div class="col-12">
+                  <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-secondary fw-bold">Edit</a>
+                    <a class="btn btn-outline-danger fw-bold ms-2">Delete</a>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-6">
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-primary fw-bold">Add to trolley</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
