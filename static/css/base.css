@@ -165,7 +165,7 @@ footer .footer-list li {
   border-top-right-radius: 0.25rem;
   aspect-ratio: 16 / 9;
   @media (min-width: 992px) {
-    aspect-ratio: 1 / 1.15;
+    aspect-ratio: 1 / 1.2;
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     border-top-right-radius: 0;

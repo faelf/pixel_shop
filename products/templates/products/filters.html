@@ -1,1 +1,90 @@
-<p class="h2 my-3">Filters</p>
+<div class="mt-3">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-6">
+        <p class="h3 d-lg-none mb-0">Filters</p>
+      </div>
+      <div class="col-6 text-end">
+        <a class="d-lg-none"
+           data-bs-toggle="collapse"
+           href="#filterSidebar"
+           role="button"
+           aria-expanded="false"
+           aria-controls="filterSidebar">
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+      </div>
+    </div>
+    <div class="collapse d-lg-block"
+         id="filterSidebar"
+         hx-target="#product_list"
+         hx-swap="outerHTML"
+         hx-include="#filter_form">
+      <form id="filter_form" method="post" action="" class="mt-3">
+        <p class="h4">Consoles</p>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="super_nintendo"
+                 name="category"
+                 value="super_nintendo"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="super_nintendo">Super Nintendo</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="nintendo_64"
+                 name="category"
+                 value="nintendo_64"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="nintendo_64">Nintendo 64</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="game_cube"
+                 name="category"
+                 value="game_cube"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="game_cube">GameCube</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="nintendo_switch"
+                 name="category"
+                 value="nintendo_switch"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="nintendo_switch">Nintendo Switch</label>
+        </div>
+        <hr>
+        <p class="h4">Others</p>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="game"
+                 name="category"
+                 value="game"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="game">Game</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="accessories"
+                 name="category"
+                 value="accessories"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="accessories">Accessories</label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

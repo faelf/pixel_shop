@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center"
+     hx-target="#product_list"
+     hx-swap="outerHTML"
+     show:top>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item fw-bold">
+        <a class="page-link" hx-get="?page=1">First</a>
+      </li>
+      <li class="page-item fw-bold">
+        <a class="page-link" hx-get="?page={{ page_obj.previous_page_number }}">Previous</a>
+      </li>
+    {% endif %}
+    <li class="page-item fw-bold">
+      <p class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+    </li>
+    {% if page_obj.has_next %}
+      <li class="page-item fw-bold">
+        <a class="page-link" hx-get="?page={{ page_obj.next_page_number }}">Next</a>
+      </li>
+      <li class="page-item fw-bold">
+        <a class="page-link" hx-get="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

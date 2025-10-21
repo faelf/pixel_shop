@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # Other Apps
     "storages",
+    "django_htmx",
     # Page Apps
     "home",
     "products",
