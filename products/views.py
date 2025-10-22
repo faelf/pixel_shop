@@ -1,11 +1,18 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 from .models import Product
 
 
 # Create your views here.
 def products_list(request):
     products = Product.objects.all()
+
+    search_query = request.GET.get("q", "")
+    if search_query:
+        products = products.filter(
+            Q(name__icontains=search_query) | Q(description__icontains=search_query)
+        )
 
     category_name = request.GET.getlist("category")
     if category_name:
@@ -18,6 +25,7 @@ def products_list(request):
     context = {
         "page_obj": page_obj,
         "category_name": category_name,
+        "search_query": search_query,
     }
 
     if request.htmx:

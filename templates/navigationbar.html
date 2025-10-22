@@ -12,12 +12,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="mx-auto">
-        <form class="d-flex" role="search">
+        <form class="d-flex"
+              role="search"
+              method="get"
+              action="{% url 'products_list' %}">
           <div class="input-group input-group-md">
             <input type="search"
+                   name="q"
                    class="form-control"
                    placeholder="Search"
-                   aria-label="Search">
+                   aria-label="Search"
+                   value="{{ search_query|default:'' }}">
             <button class="btn btn-primary" type="submit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
