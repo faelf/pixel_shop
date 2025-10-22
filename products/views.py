@@ -20,7 +20,7 @@ def products_list(request):
         "category_name": category_name,
     }
 
-    if "HX-Request" in request.headers:
+    if request.htmx:
         return render(request, "products/product_card.html", context)
 
     return render(request, "products/products_list.html", context)
