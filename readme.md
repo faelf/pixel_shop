@@ -167,6 +167,8 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - [Pillow](https://pillow.readthedocs.io/en/stable/) – Image processing
 - [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) – AWS SDK for
 - [django-storates](https://django-storages.readthedocs.io/en/latest/) - Custom storage backends for Django.
+- [Django HTMX](https://pypi.org/project/django-htmx/) -
+- [HTMX](https://htmx.org/) -
 - [Bootstrap](https://getbootstrap.com/) – Frontend CSS framework for responsive design
 
 ### Tools
@@ -427,6 +429,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 ### Code
 
 - [AWS S3 Tutorial](https://www.youtube.com/watch?v=JQVQcNN0cXE&t=404s)
+- [HTMX](https://www.youtube.com/watch?v=O0_ZyUsG7wo)
 
 ### Images
 
