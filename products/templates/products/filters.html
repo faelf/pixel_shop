@@ -20,8 +20,8 @@
          hx-target="#product_list"
          hx-swap="outerHTML"
          hx-include="#filter_form">
-      <form id="filter_form" method="post" action="" class="mt-3">
-        <p class="h4">Consoles</p>
+      <form id="filter_form" method="post" class="mt-3">
+        <p class="h4">Systems</p>
         <div class="mb-3 form-check">
           <input type="checkbox"
                  class="form-check-input"
@@ -55,12 +55,42 @@
         <div class="mb-3 form-check">
           <input type="checkbox"
                  class="form-check-input"
+                 id="wii"
+                 name="category"
+                 value="wii"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="wii">Wii</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="wii_u"
+                 name="category"
+                 value="wii-U"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="wii_u">Wii U</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
                  id="nintendo_switch"
                  name="category"
                  value="nintendo_switch"
                  hx-trigger="change"
                  hx-get="{% url 'products_list' %}">
           <label class="form-check-label" for="nintendo_switch">Nintendo Switch</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="nintendo_switch_2"
+                 name="category"
+                 value="nintendo_switch2"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="nintendo_switch_2">Nintendo Switch 2</label>
         </div>
         <hr>
         <p class="h4">Others</p>
@@ -77,12 +107,32 @@
         <div class="mb-3 form-check">
           <input type="checkbox"
                  class="form-check-input"
-                 id="accessories"
+                 id="accessory"
                  name="category"
-                 value="accessories"
+                 value="accessory"
                  hx-trigger="change"
                  hx-get="{% url 'products_list' %}">
-          <label class="form-check-label" for="accessories">Accessories</label>
+          <label class="form-check-label" for="accessory">Accessories</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="amiibo"
+                 name="category"
+                 value="amiibo"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="amiibo">Amiibo</label>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox"
+                 class="form-check-input"
+                 id="console"
+                 name="category"
+                 value="console"
+                 hx-trigger="change"
+                 hx-get="{% url 'products_list' %}">
+          <label class="form-check-label" for="console">Console</label>
         </div>
       </form>
     </div>

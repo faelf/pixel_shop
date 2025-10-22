@@ -1,83 +1,87 @@
 <div id="product_list">
-  {% include "products/pagination.html" %}
-  {% for product in page_obj %}
-    <div class="card mb-3">
-      <div class="row g-0">
-        {% if product.image %}
-          <div class="col-lg-4">
-            <div class="product-img-wrapper">
-              <a href="{% url 'product_detail' product.id %}">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-              </a>
+  {% if page_obj %}
+    {% include "products/pagination.html" %}
+    {% for product in page_obj %}
+      <div class="card mb-3">
+        <div class="row g-0">
+          {% if product.image %}
+            <div class="col-lg-4">
+              <div class="product-img-wrapper">
+                <a href="{% url 'product_detail' product.id %}">
+                  <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+              </div>
             </div>
-          </div>
-        {% else %}
-          <div class="col-lg-4 d-flex justify-content-center align-items-center">
-            <p class="my-5">No image available</p>
-          </div>
-        {% endif %}
-        <div class="col-lg-8">
-          <div class="card-body">
-            <div class="mb-2">
-              <a href="{% url 'product_detail' product.id %}"
-                 class="h3 text-decoration-none">{{ product.name }}</a>
+          {% else %}
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+              <p class="my-5">No image available</p>
             </div>
-            <div class="d-block d-xl-none">
-              <p class="card-text">
-                {{ product.description|truncatewords:20 }}
+          {% endif %}
+          <div class="col-lg-8">
+            <div class="card-body">
+              <div class="mb-2">
                 <a href="{% url 'product_detail' product.id %}"
-                   class="text-decoration-none">Read more</a>
-              </p>
-            </div>
-            <div class="d-none d-xl-block d-xxl-none">
-              <p class="card-text">
-                {{ product.description|truncatewords:40 }}
-                <a href="{% url 'product_detail' product.id %}"
-                   class="text-decoration-none">Read more</a>
-              </p>
-            </div>
-            <div class="d-none d-xxl-block">
-              <p class="card-text">
-                {{ product.description|truncatewords:60 }}
-                <a href="{% url 'product_detail' product.id %}"
-                   class="text-decoration-none">Read more</a>
-              </p>
-            </div>
-            <div class="row">
-              <div class="col-12 col-md-7">
+                   class="h3 text-decoration-none">{{ product.name }}</a>
+              </div>
+              <div class="d-block d-xl-none">
                 <p class="card-text">
-                  {% for category in product.categories.all %}
-                    <span class="badge bg-secondary">{{ category.friendly_name }}</span>
-                  {% empty %}
-                    <span class="badge bg-secondary">No category</span>
-                  {% endfor %}
+                  {{ product.description|truncatewords:20 }}
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="text-decoration-none">Read more</a>
                 </p>
               </div>
-              <div class="col-12 col-md-5 text-end">
-                <p class="display-6">£{{ product.price }}</p>
+              <div class="d-none d-xl-block d-xxl-none">
+                <p class="card-text">
+                  {{ product.description|truncatewords:40 }}
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="text-decoration-none">Read more</a>
+                </p>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                {% if user.is_authenticated and user.is_staff %}
-                  <div class="col-12">
-                    <div class="d-flex justify-content-start">
-                      <a class="btn btn-outline-secondary fw-bold">Edit</a>
-                      <a class="btn btn-outline-danger fw-bold ms-2">Delete</a>
+              <div class="d-none d-xxl-block">
+                <p class="card-text">
+                  {{ product.description|truncatewords:60 }}
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="text-decoration-none">Read more</a>
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-7">
+                  <p class="card-text">
+                    {% for category in product.categories.all %}
+                      <span class="badge bg-secondary">{{ category.friendly_name }}</span>
+                    {% empty %}
+                      <span class="badge bg-secondary">No category</span>
+                    {% endfor %}
+                  </p>
+                </div>
+                <div class="col-12 col-md-5 text-end">
+                  <p class="display-6">£{{ product.price }}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  {% if user.is_authenticated and user.is_staff %}
+                    <div class="col-12">
+                      <div class="d-flex justify-content-start">
+                        <a class="btn btn-outline-secondary fw-bold">Edit</a>
+                        <a class="btn btn-outline-danger fw-bold ms-2">Delete</a>
+                      </div>
                     </div>
+                  {% endif %}
+                </div>
+                <div class="col-6">
+                  <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary fw-bold">Add to trolley</button>
                   </div>
-                {% endif %}
-              </div>
-              <div class="col-6">
-                <div class="d-flex justify-content-end">
-                  <button class="btn btn-primary fw-bold">Add to trolley</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
-  {% include "products/pagination.html" %}
+    {% endfor %}
+    {% include "products/pagination.html" %}
+  {% else %}
+    <p class="h4">No products found</p>
+  {% endif %}
 </div>

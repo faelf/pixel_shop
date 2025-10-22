@@ -5,10 +5,12 @@
   <ul class="pagination">
     {% if page_obj.has_previous %}
       <li class="page-item fw-bold">
-        <a class="page-link" hx-get="?page=1">First</a>
+        <a class="page-link"
+           hx-get="?page=1{% for cat in category_name %}&category={{ cat }}{% endfor %}">First</a>
       </li>
       <li class="page-item fw-bold">
-        <a class="page-link" hx-get="?page={{ page_obj.previous_page_number }}">Previous</a>
+        <a class="page-link"
+           hx-get="?page={{ page_obj.previous_page_number }}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Previous</a>
       </li>
     {% endif %}
     <li class="page-item fw-bold">
@@ -16,10 +18,12 @@
     </li>
     {% if page_obj.has_next %}
       <li class="page-item fw-bold">
-        <a class="page-link" hx-get="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="page-link"
+           hx-get="?page={{ page_obj.next_page_number }}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Next</a>
       </li>
       <li class="page-item fw-bold">
-        <a class="page-link" hx-get="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="page-link"
+           hx-get="?page={{ page_obj.paginator.num_pages }}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Last</a>
       </li>
     {% endif %}
   </ul>

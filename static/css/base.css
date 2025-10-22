@@ -183,3 +183,12 @@ footer .footer-list li {
   height: 100%;
   object-fit: cover;
 }
+
+.page-item a {
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.page-link {
+  color: var(--color-primary);
+}
