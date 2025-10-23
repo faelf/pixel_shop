@@ -59,6 +59,10 @@ input[type="search"] {
     background-color: var(--color-secondary-hover);
     color: var(--color-primary);
   }
+  &:disabled {
+    background-color: var(--color-secondary);
+    opacity: 0.65;
+  }
 }
 
 .btn-secondary {

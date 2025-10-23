@@ -12,13 +12,15 @@ def trolley_contents(request):
 
     for item_id, quantity in trolley.items():
         product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
+        product_total = quantity * product.price
+        total += product_total
         product_count += quantity
         trolley_items.append(
             {
                 "item_id": item_id,
                 "quantity": quantity,
                 "product": product,
+                "product_total": product_total,
             }
         )
 

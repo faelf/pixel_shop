@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_javascript %}
+  <script src="{% static 'js/qty-btn.js' %}"></script>
+{% endblock extra_javascript %}
 {% block content %}
   <div class="container">
     <div class="row my-2">
@@ -39,16 +42,23 @@
                 <div class="row">
                   <div class="col-6 col-md-4 col-lg-6 col-xl-4">
                     <div class="input-group mb-3">
-                      <button class="btn btn-primary fw-bold" type="button" id="quantity_minus">-</button>
+                      <button class="qty_minus btn btn-primary fw-bold"
+                              type="button"
+                              data-item-id="{{ product.id }}"
+                              id="qty_minus">-</button>
                       <input class="form-control"
                              type="number"
                              name="quantity"
+                             placeholder="1"
                              value="1"
                              min="1"
                              max="99"
                              data-item-id="{{ product.id }}"
                              id="id_qty_{{ product.id }}">
-                      <button class="btn btn-primary fw-bold" type="button" id="quantity_plus">+</button>
+                      <button class="qty_plus btn btn-primary fw-bold"
+                              type="button"
+                              data-item-id="{{ product.id }}"
+                              id="qty_plus">+</button>
                     </div>
                   </div>
                   <div class="col-6 col-md-8 col-lg-6 col-xl-8">
