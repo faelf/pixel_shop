@@ -25,7 +25,7 @@
               <p>
                 <strong>Categories:</strong>
                 {% for category in product.categories.all %}
-                  <span class="badge bg-secondary">{{ category.name }}</span>
+                  <span class="badge bg-secondary">{{ category.friendly_name }}</span>
                 {% empty %}
                   <span class="badge bg-secondary">No category</span>
                 {% endfor %}
@@ -46,7 +46,7 @@
                               type="button"
                               data-item-id="{{ product.id }}"
                               id="qty_minus">-</button>
-                      <input class="form-control"
+                      <input class="form-control text-center"
                              type="number"
                              name="quantity"
                              placeholder="1"
@@ -63,7 +63,9 @@
                   </div>
                   <div class="col-6 col-md-8 col-lg-6 col-xl-8">
                     <div class="d-flex justify-content-end">
-                      <input type="submit" value="Add to trolley" class="btn btn-primary fw-bold">
+                      <button type="submit" class="btn btn-primary fw-bold">
+                        <i class="fas fa-cart-plus me-2"></i> Add to trolley
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -73,14 +75,14 @@
             <div class="col-12">
               <div class="d-flex justify-content-end">
                 <a href="{% url 'products_list' %}"
-                   class="btn btn-secondary fw-bold mb-3">Back to Products</a>
+                   class="btn btn-secondary fw-bold mb-3"><i class="fas fa-arrow-left me-2"></i>Back to Products</a>
               </div>
             </div>
             <div class="col-12">
               {% if user.is_authenticated and user.is_staff %}
                 <div class="d-flex justify-content-end">
-                  <a class="btn btn-outline-secondary fw-bold">Edit</a>
-                  <a class="btn btn-outline-danger fw-bold ms-2">Delete</a>
+                  <a class="btn btn-outline-secondary fw-bold"><i class="fas fa-edit me-1"></i>Edit</a>
+                  <a class="btn btn-outline-danger fw-bold ms-2"><i class="fa-solid fa-trash-alt me-1"></i>Delete</a>
                 </div>
               {% endif %}
             </div>
