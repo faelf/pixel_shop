@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+  - Your Trolley
+{% endblock page_title %}
+{% block content %}
+  <div class="container my-3">
+    <div class="row">
+      <div class="col-12 col-lg-3 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <p class="h2">Summary</p>
+            <p>Total items:</p>
+            <p>Subtotal:</p>
+            <a class="btn btn-primary" href="#">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-9">
+        <div class="card">
+          <div class="card-body">
+            <p class="h2">Your Trolley</p>
+            {% if trolley_items %}
+              <p>Items</p>
+            {% else %}
+              <p>Your trolley is currently empty.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
