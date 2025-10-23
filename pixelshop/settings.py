@@ -82,6 +82,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # Django Allauth
                 "django.template.context_processors.request",
+                # Custom context processors
+                "trolley.contexts.trolley_contents",
             ],
         },
     },
@@ -199,3 +201,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+# Trolley settings
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
