@@ -11,8 +11,10 @@
         <form method="post" action="{% url 'account_logout' %}">
           {% csrf_token %}
           <div class="text-end">
-            <button type="submit" class="btn btn-primary me-2">Sign Out</button>
-            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary me-2 fw-bold">
+              <i class="fa-solid fa-right-from-bracket me-2"></i>Sign Out
+            </button>
+            <a href="{% url 'home' %}" class="btn btn-secondary fw-bold"><i class="fas fa-times me-2"></i>Cancel</a>
           </div>
         </form>
       </div>

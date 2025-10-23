@@ -12,10 +12,14 @@
         From consoles to collectibles, discover everything you need to power up your gaming experience, all in one place.
       </p>
       <a href="{% url 'products_list' %}"
-         class="btn btn-primary btn-lg fw-bold me-2">Shop Now</a>
+         class="btn btn-primary btn-lg fw-bold me-2">
+        <i class="fas fa-store me-2"></i> Shop Now
+      </a>
       {% if not user.is_authenticated %}
         <a href="{% url 'account_login' %}"
-           class="btn btn-secondary btn-lg fw-bold me-2">Login</a>
+           class="btn btn-secondary btn-lg fw-bold me-2">
+          <i class="fas fa-sign-in-alt me-2"></i> Login
+        </a>
       {% endif %}
     </div>
   </div>
