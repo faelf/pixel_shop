@@ -3,31 +3,78 @@
   - Contact
 {% endblock page_title %}
 {% block content %}
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-8 col-xl-6">
-        <h2>Contact Us</h2>
-        <form method="post" action="{% url 'contact' %}">
-          {% csrf_token %}
-          <div class="row">
-            <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
-              {{ form.name.label_tag }}
-              {{ form.name }}
+  {% if user.is_staff %}
+    <div class="container">
+      <h2 class="my-3">Contact Messages</h2>
+      {% for message in user_messages %}
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 border-end">
+                <h6 class="card-title mb-1">
+                  <i class="fas fa-user me-2"></i>
+                  {{ message.name }}
+                </h6>
+                <p class="mb-1 small">
+                  <i class="fa-solid fa-envelope me-2"></i>
+                  <a class="text-decoration-none" href="mailto:{{ message.email }}">{{ message.email }}</a>
+                </p>
+                <p class="text-muted">
+                  <i class="far fa-clock me-1"></i>
+                  {{ message.created_at|date:"d F Y" }}
+                </p>
+              </div>
+              <div class="col-md-8 d-flex flex-column justify-content-between">
+                <p class="card-text mb-3 fst-italic flex-grow-1">{{ message.message }}</p>
+                <div class="text-end mt-2">
+                  <form action="{% url 'delete_message' message.id %}"
+                        method="post"
+                        class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to delete this message?');">
+                      <i class="fa-solid fa-trash-alt me-1"></i> Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
-            <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
-              {{ form.email.label_tag }}
-              {{ form.email }}
+          </div>
+        </div>
+      {% empty %}
+        <div class="alert alert-info text-center" role="alert">
+          <i class="fa-solid fa-inbox me-2"></i>No messages received yet.
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-8 col-xl-6">
+          <h2>Contact Us</h2>
+          <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+              </div>
+              <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+              </div>
             </div>
-          </div>
-          <div class="mb-3">
-            {{ form.message.label_tag }}
-            {{ form.message }}
-          </div>
-          <div class="text-end">
-            <button class="btn btn-primary">Send</button>
-          </div>
-        </form>
+            <div class="mb-3">
+              {{ form.message.label_tag }}
+              {{ form.message }}
+            </div>
+            <div class="text-end">
+              <button class="btn btn-primary">Send</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+  {% endif %}
 {% endblock content %}
