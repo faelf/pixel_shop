@@ -196,3 +196,7 @@ footer .footer-list li {
 .page-link {
   color: var(--color-primary);
 }
+
+.no-border-radius {
+  border-radius: 0 !important;
+}

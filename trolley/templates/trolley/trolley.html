@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_javascript %}
+  <script src="{% static 'js/qty-btn.js' %}"></script>
+{% endblock extra_javascript %}
 {% block page_title %}
   - Your Trolley
 {% endblock page_title %}
@@ -10,8 +13,24 @@
         <div class="card">
           <div class="card-body">
             <p class="h2">Summary</p>
-            <p>Total items: {{ product_count }}</p>
-            <p>Total: £{{ grand_total }}</p>
+            <p>
+              <span class="fw-bold">Total items:</span><span class="ms-2">
+                {% if product_count %}
+                  {{ product_count }}
+                {% else %}
+                  0
+                {% endif %}
+              </span>
+            </p>
+            <p>
+              <span class="fw-bold">Total:</span><span class="ms-2">
+                {% if grand_total %}
+                  £{{ grand_total|floatformat:2 }}
+                {% else %}
+                  £0.00
+                {% endif %}
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -20,44 +39,75 @@
           <div class="card-body">
             <p class="h2">Your Trolley</p>
             {% if trolley_items %}
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for item in trolley_items %}
-                    <tr>
-                      <td>{{ item.product.name }}</td>
-                      <td>{{ item.quantity }}</td>
-                      <td>£{{ item.product.price }}</td>
-                      <td>£{{ item.product_total }}</td>
-                    </tr>
-                  {% endfor %}
-                  <tr>
-                    <td colspan="3" class="text-end">
-                      <strong>Delivery:</strong>
-                    </td>
-                    <td>
-                      <strong>£{{ delivery }}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="text-end">
-                      <strong>Grand Total:</strong>
-                    </td>
-                    <td>
-                      <strong>£{{ grand_total }}</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              {% for item in trolley_items %}
+                <div class="row align-items-start py-3 border-bottom">
+                  <div class="col-3 col-md-2 text-center mb-2">
+                    <img src="{{ item.product.image.url }}"
+                         class="img-fluid rounded shadow-sm"
+                         alt="{{ item.product.name }}">
+                  </div>
+                  <div class="col-9 col-md-10">
+                    <h5 class="mb-2 fw-bold">{{ item.product.name }}</h5>
+                    <div class="row align-items-end">
+                      <div class="col-12 col-sm-6 col-md-3">
+                        <p class="mb-1 small fw-bold">Quantity:</p>
+                        <form action="{% url 'update_trolley' item.item_id %}"
+                              method="post"
+                              class="js-update-form">
+                          {% csrf_token %}
+                          <div class="input-group input-group-sm">
+                            <button class="qty_minus btn btn-primary no-border-radius fw-bold"
+                                    type="button"
+                                    data-item-id="{{ item.item_id }}">-</button>
+                            <input class="form-control text-center"
+                                   type="number"
+                                   name="quantity"
+                                   value="{{ item.quantity }}"
+                                   min="1"
+                                   max="99"
+                                   data-item-id="{{ item.item_id }}"
+                                   id="id_qty_{{ item.item_id }}">
+                            <button class="qty_plus btn btn-primary no-border-radius fw-bold"
+                                    type="button"
+                                    data-item-id="{{ item.item_id }}">+</button>
+                          </div>
+                          <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+                      </div>
+                      <div class="col-12 col-sm-6 col-md-3 text-sm-end mt-2 mt-md-0">
+                        <p class="mb-1 small fw-bold">Price:</p>
+                        <p class="mb-0">£{{ item.product.price }}</p>
+                      </div>
+                      <div class="col-12 col-md-3 text-end mt-2 mt-md-0">
+                        <p class="mb-1 small fw-bold">Item Total:</p>
+                        <p class="mb-0">£{{ item.product_total }}</p>
+                      </div>
+                      <div class="col-12 col-md-3 text-end mt-2 mt-md-0">
+                        <form action="{% url 'remove_from_trolley' item.item_id %}"
+                              method="post"
+                              class="d-inline">
+                          {% csrf_token %}
+                          <button type="submit"
+                                  class="btn btn-outline-danger btn-sm"
+                                  onclick="return confirm('Are you sure you want to remove this item?');">
+                            <i class="fas fa-trash-alt me-1"></i> Remove
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="text-end">
+                <p>
+                  <span class="fw-bold">Delivery:</span><span class="ms-2">£{{ delivery|floatformat:2 }}</span>
+                </p>
+                <p>
+                  <span class="fw-bold">Grand Total:</span><span class="ms-2">£{{ grand_total|floatformat:2 }}</span>
+                </p>
+              </div>
               <div class="d-flex justify-content-end">
-                <a class="btn btn-primary" href="#">Proceed to Checkout</a>
+                <a class="btn btn-primary fw-bold" href="#"><i class="fas fa-lock me-2"></i>Checkout</a>
               </div>
             {% else %}
               <p>Your trolley is currently empty.</p>
