@@ -6,24 +6,32 @@
     {% if page_obj.has_previous %}
       <li class="page-item fw-bold">
         <a class="page-link"
-           hx-get="?page=1{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">First</a>
+           hx-get="?page=1{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">
+          <i class="fas fa-angle-double-left"></i>
+        </a>
       </li>
       <li class="page-item fw-bold">
         <a class="page-link"
-           hx-get="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Previous</a>
+           hx-get="?page={{ page_obj.previous_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">
+          <i class="fas fa-angle-left"></i>
+        </a>
       </li>
     {% endif %}
     <li class="page-item fw-bold">
-      <p class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+      <span class="page-link text-dark">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
     </li>
     {% if page_obj.has_next %}
       <li class="page-item fw-bold">
         <a class="page-link"
-           hx-get="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Next</a>
+           hx-get="?page={{ page_obj.next_page_number }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">
+          <i class="fas fa-angle-right"></i>
+        </a>
       </li>
       <li class="page-item fw-bold">
         <a class="page-link"
-           hx-get="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">Last</a>
+           hx-get="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&q={{ search_query }}{% endif %}{% for cat in category_name %}&category={{ cat }}{% endfor %}">
+          <i class="fas fa-angle-double-right"></i>
+        </a>
       </li>
     {% endif %}
   </ul>
