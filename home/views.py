@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import ContactMessageForm
+from .models import ContactMessage
 
 
 def home(request):
@@ -17,4 +18,7 @@ def contact_page(request):
     else:
         form = ContactMessageForm()
 
-    return render(request, "home/contact.html", {"form": form})
+    user_messages = ContactMessage.objects.all().order_by("-created_at")
+    context = {"form": form, "user_messages": user_messages}
+
+    return render(request, "home/contact.html", context)
