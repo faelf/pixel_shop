@@ -11,7 +11,7 @@
           <div class="card-body">
             <p class="h2">Summary</p>
             <p>Total items:</p>
-            <p>Subtotal:</p>
+            <p>Subtotal: £{{ grand_total }}</p>
             <a class="btn btn-primary" href="#">Proceed to Checkout</a>
           </div>
         </div>
@@ -21,7 +21,7 @@
           <div class="card-body">
             <p class="h2">Your Trolley</p>
             {% if trolley_items %}
-              <p>Items</p>
+              {{ trolley_items }}
             {% else %}
               <p>Your trolley is currently empty.</p>
             {% endif %}
