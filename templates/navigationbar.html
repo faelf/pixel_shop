@@ -79,8 +79,13 @@
           <li class="nav-item">
             <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
                href="{% url 'contact' %}">
-              <i class="fas fa-envelope mb-1"></i>
-              <small class="nav-label ms-2 ms-lg-0">Contact</small>
+              {% if user.is_authenticated and user.is_staff %}
+                <i class="fas fa-envelope-open-text mb-1"></i>
+                <small class="nav-label ms-2 ms-lg-0">Messages</small>
+              {% else %}
+                <i class="fas fa-envelope mb-1"></i>
+                <small class="nav-label ms-2 ms-lg-0">Contact</small>
+              {% endif %}
             </a>
           </li>
           <li class="nav-item">
