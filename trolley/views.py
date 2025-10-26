@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
+from products.models import Product
 
 
 # Create your views here.
@@ -15,9 +16,12 @@ def add_to_trolley(request, item_id):
     """
     Add a quantity of the specified product to the shopping trolley
     """
+    product = get_object_or_404(Product, id=item_id)
     quantity = int(request.POST.get("quantity"))
     redirect_url = request.POST.get("redirect_url")
     trolley = request.session.get("trolley", {})
+
+    messages.success(request, f"{product.name} added to cart!")
 
     if item_id in list(trolley.keys()):
         trolley[item_id] += quantity
