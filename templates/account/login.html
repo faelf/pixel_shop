@@ -4,11 +4,11 @@
 {% endblock page_title %}
 {% block content %}
   <div class="container">
-    <div class="card my-2">
-      <div class="card-body">
-        <p class="h2">Login to Pixel Shop</p>
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+    <div class="row justify-content-center my-2">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="h2">Login to Pixel Shop</p>
             <form method="post" action="{% url 'account_login' %}">
               {% csrf_token %}
               <div class="row">
@@ -22,7 +22,7 @@
                 </div>
               </div>
               <div class="text-end">
-                <button type="submit" class="btn btn-primary fw-bold">
+                <button type="submit" class="btn btn-primary">
                   <i class="fa-solid fa-right-to-bracket me-2"></i>Login
                 </button>
               </div>
