@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg bg-dark text-white">
   <div class="container">
     <h1 class="logo">Pixel Shop</h1>
     <button class="navbar-toggler"
@@ -12,7 +12,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="mx-auto">
-        <form class="d-flex"
+        <form class="d-flex my-2 my-lg-0"
               role="search"
               method="get"
               action="{% url 'products_list' %}">
@@ -30,19 +30,19 @@
         </form>
       </div>
       <div class="justify-content-end">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto my-2 my-lg-0">
           <li class="nav-item">
             <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
                href="{% url 'home' %}">
               <i class="fa-solid fa-home mb-1"></i>
-              <small class="nav-label ms-2 ms-lg-0">Home</small>
+              <span class="nav-label ms-2 ms-lg-0">Home</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'products_list' %}active{% endif %}"
                href="{% url 'products_list' %}">
               <i class="fa-solid fa-store mb-1"></i>
-              <small class="nav-label ms-2 ms-lg-0">Store</small>
+              <span class="nav-label ms-2 ms-lg-0">Store</span>
             </a>
           </li>
           {% if user.is_authenticated %}
@@ -50,14 +50,14 @@
               <a class="nav-link d-flex flex-lg-column align-items-center p-2"
                  href="#">
                 <i class="fa-solid fa-user mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Account</small>
+                <span class="nav-label ms-2 ms-lg-0">Account</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
                  href="{% url 'account_logout' %}">
                 <i class="fa-solid fa-right-from-bracket mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Logout</small>
+                <span class="nav-label ms-2 ms-lg-0">Logout</span>
               </a>
             </li>
           {% else %}
@@ -65,14 +65,14 @@
               <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}"
                  href="{% url 'account_login' %}">
                 <i class="fa-solid fa-right-to-bracket mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Login</small>
+                <span class="nav-label ms-2 ms-lg-0">Login</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex flex-lg-column align-items-center p-2 {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}"
                  href="{% url 'account_signup' %}">
                 <i class="fa-solid fa-user-plus mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Register</small>
+                <span class="nav-label ms-2 ms-lg-0">Register</span>
               </a>
             </li>
           {% endif %}
@@ -81,10 +81,10 @@
                href="{% url 'contact' %}">
               {% if user.is_authenticated and user.is_staff %}
                 <i class="fas fa-envelope-open-text mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Messages</small>
+                <span class="nav-label ms-2 ms-lg-0">Messages</span>
               {% else %}
                 <i class="fas fa-envelope mb-1"></i>
-                <small class="nav-label ms-2 ms-lg-0">Contact</small>
+                <span class="nav-label ms-2 ms-lg-0">Contact</span>
               {% endif %}
             </a>
           </li>
@@ -93,9 +93,9 @@
                href="{% url 'trolley' %}">
               <i class="fa-solid fa-cart-shopping mb-1"></i>
               {% if grand_total %}
-                <small class="nav-label ms-2 ms-lg-0">£{{ grand_total|floatformat:2 }}</small>
+                <span class="nav-label ms-2 ms-lg-0">£{{ grand_total|floatformat:2 }}</span>
               {% else %}
-                <small class="nav-label ms-2 ms-lg-0">Trolley</small>
+                <span class="nav-label ms-2 ms-lg-0">Trolley</span>
               {% endif %}
             </a>
           </li>
