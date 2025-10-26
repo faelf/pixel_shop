@@ -152,35 +152,51 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 ### Languages
 
 - HTML
-- CSS
+- CSS/SCSS
 - Python
 - JavaScript
+- SCSS (Sass)
 
 ### Libraries & Frameworks
 
-- [Django](https://www.djangoproject.com/) – Python web framework
-- [dj-database-url](https://pypi.org/project/dj-database-url/) – Parses database URLs into Django `DATABASES` settings
-- [psycopg2](https://pypi.org/project/psycopg2/) – PostgreSQL database adapter
-- [gunicorn](https://pypi.org/project/gunicorn/) – WSGI HTTP server for running Django in production
-- [whitenoise](http://whitenoise.evans.io/en/stable/) – Serves static files in production
-- [Django Allauth](https://django-allauth.readthedocs.io/en/latest/) - Handles user authentication
-- [Pillow](https://pillow.readthedocs.io/en/stable/) – Image processing
-- [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) – AWS SDK for
-- [django-storates](https://django-storages.readthedocs.io/en/latest/) - Custom storage backends for Django.
-- [Django HTMX](https://pypi.org/project/django-htmx/) -
-- [HTMX](https://htmx.org/) -
-- [Bootstrap](https://getbootstrap.com/) – Frontend CSS framework for responsive design
+- **[Django](https://www.djangoproject.com/):** Python web framework
+- **[dj-database-url](https://pypi.org/project/dj-database-url/):** Parses database URLs into Django `DATABASES` settings
+- **[psycopg2](https://pypi.org/project/psycopg2/):** PostgreSQL database adapter
+- **[gunicorn](https://pypi.org/project/gunicorn/):** WSGI HTTP server for running Django in production
+- **[whitenoise](http://whitenoise.evans.io/en/stable/):** Serves static files in production
+- **[Django Allauth](https://django-allauth.readthedocs.io/en/latest/):** Handles user authentication
+- **[Pillow](https://pillow.readthedocs.io/en/stable/):** Image processing
+- **[boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html):** AWS SDK for Python
+- **[django-storages](https://django-storages.readthedocs.io/en/latest/):** Custom storage backends for Django
+- **[Django HTMX](https://pypi.org/project/django-htmx/):** Django integration for HTMX
+- **[HTMX](https://htmx.org/):** High-power tools for HTML
+- **[Bootstrap 5.3.8](https://getbootstrap.com/):** Frontend CSS framework for responsive design
 
-### Tools
+### Development Tools
 
-- **[GitHub](https://github.com/)** – For project hosting.
-- **[Git](https://git-scm.com/)** – For version control.
-- **[Coolors](https://coolors.co/)** – For generating the colour palette.
-- **[Google Fonts](https://fonts.google.com/)** – For typography.
-- **[Lucidchart](https://www.lucidchart.com/)** – For designing the ERD.
-- **[Balsamiq](https://balsamiq.com/)** – For creating wireframes.
-- **[Font Awesome](https://fontawesome.com/)** – Icons used for UI elements.
-- **[AWS S3](https://aws.amazon.com/s3/)** – For storing images and static files.
+- **[Git](https://git-scm.com/):** Version control system
+- **[GitHub](https://github.com/):** Code hosting and collaboration platform
+- **[Node.js & npm](https://nodejs.org/):** JavaScript runtime and package manager
+- **[Sass](https://sass-lang.com/):** CSS preprocessor
+- **[Gulp](https://gulpjs.com/):** Task runner for build automation
+- **[gulp-sass](https://www.npmjs.com/package/gulp-sass):** Compiles SCSS to CSS
+- **[gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css):** Minifies CSS files
+- **[gulp-rename](https://www.npmjs.com/package/gulp-rename):** Renames output files
+- **[del](https://www.npmjs.com/package/del):** Cleans build directories
+
+### Design & Resources
+
+- **[Coolors](https://coolors.co/):** Colour palette generator
+- **[Google Fonts](https://fonts.google.com/):** Typography
+- **[Lucidchart](https://www.lucidchart.com/):** ERD design
+- **[Balsamiq](https://balsamiq.com/):** Wireframing
+- **[Font Awesome](https://fontawesome.com/):** Icon library
+
+### Infrastructure & Services
+
+- **[Heroku](https://www.heroku.com/):** Cloud platform for application hosting
+- **[PostgreSQL (Code Institute)](https://codeinstitute.net/):** Relational database
+- **[AWS S3](https://aws.amazon.com/s3/):** Cloud storage for media and static files
 
 [Back to the top](#table-of-contents)
 
