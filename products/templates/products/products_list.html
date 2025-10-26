@@ -8,11 +8,45 @@
     <div>
       <div class="row">
         <div class="col-12 col-lg-3">
-          <p class="h2 my-3 d-lg-block d-none">Filters</p>
+          <div class="card mt-2">
+            <div class="card-body">
+              <p class="h2 d-lg-block d-none mb-0">Filters</p>
+              <div class="row align-items-center">
+                <div class="col-6">
+                  <p class="h2 d-lg-none mb-0">Filters</p>
+                </div>
+                <div class="col-6 text-end">
+                  <a class="btn btn-sm btn-secondary d-lg-none"
+                     data-bs-toggle="collapse"
+                     href="#filterSidebar"
+                     role="button"
+                     aria-expanded="false"
+                     aria-controls="filterSidebar">
+                    <i class="fa-solid fa-chevron-down"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
           {% include "products/filters.html" %}
         </div>
         <div class="col-12 col-lg-9">
-          <p class="h2 my-3">All Products</p>
+          <div class="card my-2">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <p class="h2 mb-0">All Products</p>
+                </div>
+                <div class="col-6 text-right">
+                  <div class="d-flex justify-content-end">
+                    <a href="#" class="btn btn-sm btn-outline-primary ">
+                      <i class="fas fa-plus me-2"></i>Add Product
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           {% include "products/product_card.html" %}
         </div>
       </div>
