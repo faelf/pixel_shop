@@ -4,3 +4,6 @@ env.py
 .djlintrc
 staticfiles/
 .DS_Store
+node_modules/
+package-lock.json
+package.json
