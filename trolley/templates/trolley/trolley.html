@@ -7,7 +7,7 @@
   - Your Trolley
 {% endblock page_title %}
 {% block content %}
-  <div class="container my-3">
+  <div class="container my-2">
     <div class="row">
       <div class="col-12 col-lg-3 mb-3">
         <div class="card">
@@ -42,23 +42,28 @@
               {% for item in trolley_items %}
                 <div class="row align-items-start py-3 border-bottom">
                   <div class="col-3 col-md-2 text-center mb-2">
+                    <!-- Product Image -->
                     <img src="{{ item.product.image.url }}"
                          class="img-fluid rounded shadow-sm"
                          alt="{{ item.product.name }}">
                   </div>
                   <div class="col-9 col-md-10">
+                    <!-- Product Details -->
                     <h5 class="mb-2 fw-bold">{{ item.product.name }}</h5>
                     <div class="row align-items-end">
                       <div class="col-12 col-sm-6 col-md-3">
+                        <!-- Quantity Form -->
                         <p class="mb-1 small fw-bold">Quantity:</p>
                         <form action="{% url 'update_trolley' item.item_id %}"
                               method="post"
                               class="js-update-form">
                           {% csrf_token %}
                           <div class="input-group input-group-sm">
-                            <button class="qty_minus btn btn-primary no-border-radius fw-bold"
+                            <button class="qty_minus btn btn-primary"
                                     type="button"
-                                    data-item-id="{{ item.item_id }}">-</button>
+                                    data-item-id="{{ item.item_id }}">
+                              <i class="fas fa-angle-left"></i>
+                            </button>
                             <input class="form-control text-center"
                                    type="number"
                                    name="quantity"
@@ -67,22 +72,27 @@
                                    max="99"
                                    data-item-id="{{ item.item_id }}"
                                    id="id_qty_{{ item.item_id }}">
-                            <button class="qty_plus btn btn-primary no-border-radius fw-bold"
+                            <button class="qty_plus btn btn-primary"
                                     type="button"
-                                    data-item-id="{{ item.item_id }}">+</button>
+                                    data-item-id="{{ item.item_id }}">
+                              <i class="fas fa-angle-right"></i>
+                            </button>
                           </div>
                           <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-3 text-sm-end mt-2 mt-md-0">
+                      <div class="col-6 col-sm-6 col-md-3 text-sm-end mt-2 mt-md-0">
+                        <!-- Price -->
                         <p class="mb-1 small fw-bold">Price:</p>
                         <p class="mb-0">£{{ item.product.price }}</p>
                       </div>
-                      <div class="col-12 col-md-3 text-end mt-2 mt-md-0">
+                      <div class="col-6 col-md-3 text-end mt-2 mt-md-0">
+                        <!-- Item Total -->
                         <p class="mb-1 small fw-bold">Item Total:</p>
                         <p class="mb-0">£{{ item.product_total }}</p>
                       </div>
                       <div class="col-12 col-md-3 text-end mt-2 mt-md-0">
+                        <!-- Remove Button -->
                         <form action="{% url 'remove_from_trolley' item.item_id %}"
                               method="post"
                               class="d-inline">
@@ -98,13 +108,17 @@
                   </div>
                 </div>
               {% endfor %}
-              <div class="text-end">
-                <p>
-                  <span class="fw-bold">Delivery:</span><span class="ms-2">£{{ delivery|floatformat:2 }}</span>
-                </p>
-                <p>
-                  <span class="fw-bold">Grand Total:</span><span class="ms-2">£{{ grand_total|floatformat:2 }}</span>
-                </p>
+              <div class="text-end my-2">
+                <dl class="row">
+                  <dt class="col-9">Delivery:</dt>
+                  <dd class="col-3">
+                    £{{ delivery|floatformat:2 }}
+                  </dd>
+                  <dt class="col-9">Grand Total:</dt>
+                  <dd class="col-3">
+                    £{{ grand_total|floatformat:2 }}
+                  </dd>
+                </dl>
               </div>
               <div class="d-flex justify-content-end">
                 <a class="btn btn-primary fw-bold" href="#"><i class="fas fa-lock me-2"></i>Checkout</a>
