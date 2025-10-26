@@ -5,7 +5,7 @@
 {% block content %}
   {% if user.is_staff %}
     <div class="container">
-      <h2 class="my-3">Contact Messages</h2>
+      <p class="h2">Contact Messages</p>
       {% for message in user_messages %}
         <div class="card shadow-sm mb-4">
           <div class="card-body">
@@ -49,28 +49,30 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="container mt-5">
+    <div class="container my-2">
       <div class="row justify-content-center">
         <div class="col-12 col-lg-8 col-xl-6">
-          <h2>Contact Us</h2>
+          <p class="h2">Contact Us</p>
           <form method="post" action="{% url 'contact' %}">
             {% csrf_token %}
             <div class="row">
               <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
-                {{ form.name.label_tag }}
+                <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}</label>
                 {{ form.name }}
               </div>
               <div class="col-12 col-sm-6 col-lg-12 col-xl-6 mb-3">
-                {{ form.email.label_tag }}
+                <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
                 {{ form.email }}
               </div>
             </div>
             <div class="mb-3">
-              {{ form.message.label_tag }}
+              <label for="{{ form.message.id_for_label }}" class="form-label">{{ form.message.label }}</label>
               {{ form.message }}
             </div>
             <div class="text-end">
-              <button class="btn btn-primary">Send</button>
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-paper-plane me-2"></i>Send
+              </button>
             </div>
           </form>
         </div>
