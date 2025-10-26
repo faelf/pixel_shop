@@ -1,0 +1,163 @@
+@use "sass:map";
+
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+// Custom Bootstrap Variables
+$primary:                   hsl(123, 39%, 49%);
+$secondary:                 hsl(230, 13%, 21%);
+$success:                   #28a745;
+$info:                      #17a2b8;
+$warning:                   #ffc107;
+$danger:                    #dc3545;
+$light:                     hsl(0, 0%, 86%);
+$dark:                      hsl(230, 13%, 21%);
+
+// Styling
+$enable-rounded:              true; // Default is true
+$border-radius:               1.2rem;
+
+// Button-specific border radius overrides
+$btn-border-radius:           2rem;
+$btn-border-radius-sm:        2rem;
+$btn-border-radius-lg:        2rem;
+$btn-padding-y:               0.5rem;
+$btn-padding-x:               1rem;
+$btn-padding-y-sm:            0.5rem;
+$btn-padding-x-sm:            1rem;
+$btn-padding-y-lg:            0.8rem;
+$btn-padding-x-lg:            1.5rem;
+$btn-font-weight:             900;
+
+// Form Controls
+$input-padding-y:             0.5rem;
+$input-padding-x:             1rem;
+$form-label-font-weight:      800;
+
+$input-group-addon-border-radius: 2rem;
+$input-border-radius-sm:      2rem;
+$input-border-radius-lg:      2rem;
+
+// Typography
+$font-family-base:            "Roboto", sans-serif;
+$display-font-family:         "Bebas Neue", sans-serif;
+
+// Navbar Customization
+$navbar-light-color:          $light;
+$navbar-light-active-color:   $primary;
+$navbar-light-hover-color:    $primary;
+
+// Navbrand Styles
+$navbar-brand-font-family:    "Audiowide", cursive;
+$navbar-brand-font-size:      1.8rem;
+$navbar-brand-font-weight:    900;
+
+
+// For Custom Colour Themes
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Custom Maps
+$custom-color-theme: (
+  "accent":                 hsl(30, 100%, 50%),
+  );
+  
+// Modern way to merge maps (no deprecation warning)
+$theme-colors: map.merge($theme-colors, $custom-color-theme);
+
+// Import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Global Styles
+a {
+  cursor: pointer;
+  text-decoration: none;
+
+}
+
+i {
+  width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+// Navbrand Styles
+.navbar-brand {
+  font-family:                $navbar-brand-font-family;
+  font-size:                  $navbar-brand-font-size;
+  font-weight:                $navbar-brand-font-weight;
+  color:                      $light;
+}
+
+.navbar-toggler {
+  border: none;
+  
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+// Hero Section Styles
+.hero {
+  height: 50vh;
+  background: url("https://rafapixelshop.s3.eu-west-2.amazonaws.com/images/hero-bg.jpeg")
+    center/cover no-repeat;
+  position: relative;
+  color: var(--color-background);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+// Product Image Styles
+.product-img-wrapper {
+  width:                      100%;
+  overflow:                   hidden;
+  border-top-left-radius:     $border-radius;
+  border-top-right-radius:    $border-radius;
+  aspect-ratio:               16 / 9;
+  @media (min-width: 992px) { 
+    aspect-ratio:             1 / 1.35;
+    border-top-left-radius:   $border-radius;
+    border-bottom-left-radius:$border-radius;
+    border-top-right-radius:  0;
+  }
+  @media (min-width: 1200px) {
+    aspect-ratio:             1 / 1.3;
+  }
+  @media (min-width: 1400px) {
+    aspect-ratio:             1 / 1.2;
+  }
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Footer Styles
+footer .footer-list li,
+footer .footer-list li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-background);
+}
+
+footer .footer-list li {
+  margin-bottom: 0.5rem;
+}
