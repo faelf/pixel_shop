@@ -1,18 +1,37 @@
 {% load static %}
-{% if messages %}
-  <div class="feedbackmessages">
-    <div class="container">
+<div class="container position-relative">
+  {% if messages %}
+    <div class="toast-container position-absolute top-0 end-0 p-3"
+         style="z-index: 9999">
       {% for message in messages %}
-        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center"
-             role="alert">
-          <i class="fa-solid fa-circle-check me-2"></i>
-          <span>{{ message }}</span>
-          <button type="button"
-                  class="btn-close"
-                  data-bs-dismiss="alert"
-                  aria-label="Close"></button>
+        <div role="alert"
+             aria-live="assertive"
+             aria-atomic="true"
+             class="toast"
+             data-bs-autohide="true"
+             data-bs-delay="5000">
+          <div class="toast-header bg-dark text-white">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            <strong class="me-auto">Notification</strong>
+            <button type="button"
+                    class="btn btn-primary btn-sm ms-2"
+                    data-bs-dismiss="toast"
+                    aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="toast-body">{{ message }}</div>
         </div>
       {% endfor %}
     </div>
-  </div>
-{% endif %}
+    <script>
+      (function() {
+        const toastElList = document.querySelectorAll('.toast');
+        toastElList.forEach(function(toastEl) {
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+        });
+      })();
+    </script>
+  {% endif %}
+</div>
