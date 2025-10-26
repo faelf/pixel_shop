@@ -13,24 +13,30 @@
         <div class="card">
           <div class="card-body">
             <p class="h2">Summary</p>
-            <p>
-              <span class="fw-bold">Total items:</span><span class="ms-2">
-                {% if product_count %}
-                  {{ product_count }}
-                {% else %}
-                  0
-                {% endif %}
-              </span>
-            </p>
-            <p>
-              <span class="fw-bold">Total:</span><span class="ms-2">
-                {% if grand_total %}
-                  £{{ grand_total|floatformat:2 }}
-                {% else %}
-                  £0.00
-                {% endif %}
-              </span>
-            </p>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Total items:</th>
+                  <td>
+                    {% if product_count %}
+                      {{ product_count }}
+                    {% else %}
+                      0
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Total:</th>
+                  <td>
+                    {% if grand_total %}
+                      £{{ grand_total|floatformat:2 }}
+                    {% else %}
+                      £0.00
+                    {% endif %}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
