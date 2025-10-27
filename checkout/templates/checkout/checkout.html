@@ -42,91 +42,98 @@
       <!-- Checkout Form -->
       <div class="col-12 col-lg-7 mb-4">
         <h2 class="mb-4">Checkout</h2>
-        <p>Please fill out the form below to complete your order.</p>
-        <form action="{% url "checkout" %}" method="post" id="payment-form">
-          {% csrf_token %}
-          <div class="row">
-            <!-- Full Name -->
-            <div class="col-12 mb-3">
-              <label for="{{ order_form.full_name.id_for_label }}" class="form-label">{{ order_form.full_name.label }}</label>
-              {{ order_form.full_name }}
-              {% if order_form.full_name.errors %}<div class="text-danger">{{ order_form.full_name.errors }}</div>{% endif %}
-            </div>
-            <!-- Email and Phone on same row -->
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.email.id_for_label }}" class="form-label">{{ order_form.email.label }}</label>
-              {{ order_form.email }}
-              {% if order_form.email.errors %}<div class="text-danger">{{ order_form.email.errors }}</div>{% endif %}
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.phone_number.id_for_label }}" class="form-label">{{ order_form.phone_number.label }}</label>
-              {{ order_form.phone_number }}
-              {% if order_form.phone_number.errors %}<div class="text-danger">{{ order_form.phone_number.errors }}</div>{% endif %}
-            </div>
-            <!-- Street Address 1 -->
-            <div class="col-12 mb-3">
-              <label for="{{ order_form.street_address1.id_for_label }}"
-                     class="form-label">{{ order_form.street_address1.label }}</label>
-              {{ order_form.street_address1 }}
-              {% if order_form.street_address1.errors %}
-                <div class="text-danger">{{ order_form.street_address1.errors }}</div>
-              {% endif %}
-            </div>
-            <!-- Street Address 2 -->
-            <div class="col-12 mb-3">
-              <label for="{{ order_form.street_address2.id_for_label }}"
-                     class="form-label">{{ order_form.street_address2.label }}</label>
-              {{ order_form.street_address2 }}
-              {% if order_form.street_address2.errors %}
-                <div class="text-danger">{{ order_form.street_address2.errors }}</div>
-              {% endif %}
-            </div>
-            <!-- Town/City and Postcode on same row -->
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.town_or_city.id_for_label }}" class="form-label">{{ order_form.town_or_city.label }}</label>
-              {{ order_form.town_or_city }}
-              {% if order_form.town_or_city.errors %}<div class="text-danger">{{ order_form.town_or_city.errors }}</div>{% endif %}
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.postcode.id_for_label }}" class="form-label">{{ order_form.postcode.label }}</label>
-              {{ order_form.postcode }}
-              {% if order_form.postcode.errors %}<div class="text-danger">{{ order_form.postcode.errors }}</div>{% endif %}
-            </div>
-            <!-- County and Country on same row -->
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.county.id_for_label }}" class="form-label">{{ order_form.county.label }}</label>
-              {{ order_form.county }}
-              {% if order_form.county.errors %}<div class="text-danger">{{ order_form.county.errors }}</div>{% endif %}
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label for="{{ order_form.country.id_for_label }}" class="form-label">{{ order_form.country.label }}</label>
-              {{ order_form.country }}
-              {% if order_form.country.errors %}<div class="text-danger">{{ order_form.country.errors }}</div>{% endif %}
-            </div>
+        <div class="card">
+          <div class="card-body">
+            <p>Please fill out the form below to complete your order.</p>
+            <form action="{% url "checkout" %}" method="post" id="payment-form">
+              {% csrf_token %}
+              <fieldset>
+                <legend>Delivery Details</legend>
+                <div class="row">
+                  <!-- Full Name -->
+                  <div class="col-12 mb-3">
+                    <label for="{{ order_form.full_name.id_for_label }}" class="form-label">{{ order_form.full_name.label }}</label>
+                    {{ order_form.full_name }}
+                    {% if order_form.full_name.errors %}<div class="text-danger">{{ order_form.full_name.errors }}</div>{% endif %}
+                  </div>
+                  <!-- Email and Phone on same row -->
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.email.id_for_label }}" class="form-label">{{ order_form.email.label }}</label>
+                    {{ order_form.email }}
+                    {% if order_form.email.errors %}<div class="text-danger">{{ order_form.email.errors }}</div>{% endif %}
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.phone_number.id_for_label }}" class="form-label">{{ order_form.phone_number.label }}</label>
+                    {{ order_form.phone_number }}
+                    {% if order_form.phone_number.errors %}<div class="text-danger">{{ order_form.phone_number.errors }}</div>{% endif %}
+                  </div>
+                  <!-- Street Address 1 -->
+                  <div class="col-12 mb-3">
+                    <label for="{{ order_form.street_address1.id_for_label }}"
+                           class="form-label">{{ order_form.street_address1.label }}</label>
+                    {{ order_form.street_address1 }}
+                    {% if order_form.street_address1.errors %}
+                      <div class="text-danger">{{ order_form.street_address1.errors }}</div>
+                    {% endif %}
+                  </div>
+                  <!-- Street Address 2 -->
+                  <div class="col-12 mb-3">
+                    <label for="{{ order_form.street_address2.id_for_label }}"
+                           class="form-label">{{ order_form.street_address2.label }}</label>
+                    {{ order_form.street_address2 }}
+                    {% if order_form.street_address2.errors %}
+                      <div class="text-danger">{{ order_form.street_address2.errors }}</div>
+                    {% endif %}
+                  </div>
+                  <!-- Town/City and Postcode on same row -->
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.town_or_city.id_for_label }}" class="form-label">{{ order_form.town_or_city.label }}</label>
+                    {{ order_form.town_or_city }}
+                    {% if order_form.town_or_city.errors %}<div class="text-danger">{{ order_form.town_or_city.errors }}</div>{% endif %}
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.postcode.id_for_label }}" class="form-label">{{ order_form.postcode.label }}</label>
+                    {{ order_form.postcode }}
+                    {% if order_form.postcode.errors %}<div class="text-danger">{{ order_form.postcode.errors }}</div>{% endif %}
+                  </div>
+                  <!-- County and Country on same row -->
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.county.id_for_label }}" class="form-label">{{ order_form.county.label }}</label>
+                    {{ order_form.county }}
+                    {% if order_form.county.errors %}<div class="text-danger">{{ order_form.county.errors }}</div>{% endif %}
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <label for="{{ order_form.country.id_for_label }}" class="form-label">{{ order_form.country.label }}</label>
+                    {{ order_form.country }}
+                    {% if order_form.country.errors %}<div class="text-danger">{{ order_form.country.errors }}</div>{% endif %}
+                  </div>
+                </div>
+              </fieldset>
+              <div class="form-check form-check-reverse my-3">
+                {% if user.is_authenticated %}
+                  <label class="form-check-label" for="id-save-info">Save this delivery information to my profile.</label>
+                  <input class="form-check-input"
+                         type="checkbox"
+                         id="id-save-info"
+                         name="save-info">
+                {% else %}
+                  <a href="{% url 'account_login' %}">Login</a> to save this information or
+                  <a href="{% url 'account_signup' %}">create an account.</a>
+                {% endif %}
+              </div>
+              <fieldset>
+                <legend>Payment Details</legend>
+                <!-- Stripe Payment Element -->
+                <div id="card-element" class="mb-3"></div>
+                <!-- Card Errors -->
+                <div id="card-errors" role="alert"></div>
+              </fieldset>
+              <button id="submit-button" type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-lock me-2"></i>Place Order
+              </button>
+            </form>
           </div>
-          <div class="form-check form-check-reverse my-3">
-            {% if user.is_authenticated %}
-              <label class="form-check-label" for="id-save-info">Save this delivery information to my profile.</label>
-              <input class="form-check-input"
-                     type="checkbox"
-                     id="id-save-info"
-                     name="save-info">
-            {% else %}
-              <a href="{% url 'account_login' %}">Login to save this information, or</a>
-              <a href="{% url 'account_signup' %}">Create an account.</a>
-            {% endif %}
-          </div>
-          <fieldset>
-            <legend>Payment Details</legend>
-            <!-- Stripe Payment Element -->
-            <div id="card-element" class="mb-3"></div>
-            <!-- Card Errors -->
-            <div id="card-errors" role="alert"></div>
-          </fieldset>
-          <button id="submit-button" type="submit" class="btn btn-primary w-100">
-            <i class="fas fa-lock me-2"></i>Place Order
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
