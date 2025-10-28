@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container my-2">
+    <div class="row justify-content-center">
+      <div class=" col-12">
+        <div class="card">
+          <div class="card-header">
+            <p class="h2 m-0">Edit Product</p>
+          </div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row g-3">
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label for="{{ form.name.id_for_label }}" class="form-label">Product Name</label>
+                  {{ form.name }}
+                </div>
+                <!-- Price -->
+                <div class="col-12 col-md-6">
+                  <label for="{{ form.price.id_for_label }}" class="form-label">Price (£)</label>
+                  {{ form.price }}
+                  {% if form.price.errors %}<div class="text-danger small mt-1">{{ form.price.errors }}</div>{% endif %}
+                </div>
+                <!-- Categories -->
+                <div class="col-12">
+                  <label class="form-label">Categories</label>
+                  <div class="d-flex flex-wrap gap-2">
+                    {% for category in form.categories.field.queryset %}
+                      <input type="checkbox"
+                             class="btn-check"
+                             name="categories"
+                             value="{{ category.id }}"
+                             id="category-{{ category.id }}"
+                             {% if category in product.categories.all %}checked{% endif %}
+                             autocomplete="off">
+                      <label class="btn btn-outline-secondary" for="category-{{ category.id }}">{{ category.friendly_name }}</label>
+                    {% endfor %}
+                  </div>
+                </div>
+                <!-- Product Image -->
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Product Image</label>
+                  {% if product.image %}
+                    <div class="mb-2">
+                      <img src="{{ product.image.url }}"
+                           alt="{{ product.name }}"
+                           class="img-thumbnail"
+                           width="200px">
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input"
+                             type="checkbox"
+                             name="remove_image"
+                             id="remove_image">
+                      <label class="form-check-label" for="remove_image">Remove current image</label>
+                    </div>
+                  {% else %}
+                    <p class="text-muted small mb-2">No image currently uploaded</p>
+                  {% endif %}
+                  <label for="{{ form.image.id_for_label }}" class="form-label">Upload Image</label>
+                  {{ form.image }}
+                </div>
+                <!-- Product Description -->
+                <div class="col-12 col-md-6">
+                  <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                  {{ form.description }}
+                </div>
+                <!-- Save and Cancel -->
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Save Changes
+                  </button>
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="btn btn-secondary">
+                    <i class="fas fa-times me-1"></i> Cancel
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
