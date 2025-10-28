@@ -3,6 +3,9 @@
 {% block page_title %}
   - Store
 {% endblock page_title %}
+{% block extra_javascript %}
+  <script src="{% static 'js/qty-btn.js' %}"></script>
+{% endblock extra_javascript %}
 {% block content %}
   <div class="container my-2">
     <div>
@@ -40,7 +43,7 @@
                 <div class="col-6 text-right">
                   <div class="d-flex justify-content-end">
                     {% if user.is_authenticated and user.is_staff %}
-                      <a href="#" class="btn btn-sm btn-outline-primary">
+                      <a href="{% url 'product_add' %}" class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-plus"></i>
                         <span>Add Product</span>
                       </a>
