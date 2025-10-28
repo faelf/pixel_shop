@@ -3,60 +3,70 @@
   {% if page_obj %}
     {% include "products/pagination.html" %}
     {% for product in page_obj %}
-      <div class="card mb-3">
+      <div class="card mb-2">
         <div class="row g-0">
-          {% if product.image %}
-            <div class="col-lg-4">
+          <!-- Product Image -->
+          <div class="col-md-3 col-xxl-3">
+            {% if product.image %}
               <div class="product-img-wrapper">
                 <a href="{% url 'product_detail' product.id %}">
                   <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 </a>
               </div>
-            </div>
-          {% else %}
-            <div class="col-lg-4 d-flex justify-content-center align-items-center">
-              <p class="my-5">No image available</p>
-            </div>
-          {% endif %}
-          <div class="col-lg-8">
+            {% else %}
+              <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <p class="my-5">No image available</p>
+              </div>
+            {% endif %}
+          </div>
+          <!-- Product Details -->
+          <div class="col-md-9 col-xxl-9">
             <div class="card-body">
-              <div class="mb-2">
-                <a href="{% url 'product_detail' product.id %}"
-                   class="h3 text-decoration-none">{{ product.name }}</a>
-              </div>
-              <div class="d-block d-xl-none">
-                <p class="card-text">{{ product.description|truncatewords:20 }}</p>
-              </div>
-              <div class="d-none d-xl-block d-xxl-none">
-                <p class="card-text">{{ product.description|truncatewords:40 }}</p>
-              </div>
-              <div class="d-none d-xxl-block">
-                <p class="card-text">{{ product.description|truncatewords:60 }}</p>
-              </div>
-              <div class="row my-1">
-                <div class="col-12 col-md-7">
-                  <p class="card-text">
+              <div class="row g-2">
+                <!-- Product Name -->
+                <div class="col-12 order-xxl-0">
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="h3 text-decoration-none">{{ product.name }}</a>
+                </div>
+                <!-- Product Description -->
+                <div class="col-12 col-xxl-10 order-xxl-1">
+                  <div class="d-block d-xl-none">
+                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                  </div>
+                  <div class="d-none d-xl-block d-xxl-none">
+                    <p class="card-text">{{ product.description|truncatewords:40 }}</p>
+                  </div>
+                  <div class="d-none d-xxl-block">
+                    <p class="card-text">{{ product.description|truncatewords:60 }}</p>
+                  </div>
+                </div>
+                <!-- Categories -->
+                <div class="col-12 col-md-7 order-xxl-3">
+                  <div>
                     {% for category in product.categories.all %}
                       <span class="badge bg-secondary">{{ category.friendly_name }}</span>
                     {% empty %}
                       <span class="badge bg-secondary">No category</span>
                     {% endfor %}
-                  </p>
+                  </div>
                 </div>
-                <div class="col-12 col-md-5 text-end">
-                  <p class="display-6">£{{ product.price }}</p>
+                <!-- Price -->
+                <div class="col-12 col-md-5 col-xxl-2 order-xxl-2 text-end">
+                  <p class="display-6 m-0">£{{ product.price }}</p>
+                </div>
+                {% if user.is_authenticated and user.is_staff %}
+                  <!-- Edit and Delete -->
+                  <div class="col-6  order-xxl-4">
+                    <a class="btn btn-outline-secondary fw-bold"><i class="fas fa-edit me-1"></i>Edit</a>
+                    <a class="btn btn-outline-danger fw-bold ms-2"><i class="fa-solid fa-trash-alt me-1"></i>Delete</a>
+                  </div>
+                {% endif %}
+                <!-- View Product -->
+                <div class="col-6 text-end order-xxl-5">
+                  <a href="{% url 'product_detail' product.id %}"
+                     class="btn btn-primary fw-bold"><i class="fas fa-eye me-2"></i>View Product</a>
                 </div>
               </div>
-              <div class="d-flex justify-content-end mb-2">
-                <a href="{% url 'product_detail' product.id %}"
-                   class="btn btn-primary fw-bold"><i class="fas fa-eye me-2"></i>View Product</a>
-              </div>
-              {% if user.is_authenticated and user.is_staff %}
-                <div class="d-flex justify-content-end">
-                  <a class="btn btn-outline-secondary fw-bold"><i class="fas fa-edit me-1"></i>Edit</a>
-                  <a class="btn btn-outline-danger fw-bold ms-2"><i class="fa-solid fa-trash-alt me-1"></i>Delete</a>
-                </div>
-              {% endif %}
             </div>
           </div>
         </div>
@@ -64,6 +74,14 @@
     {% endfor %}
     {% include "products/pagination.html" %}
   {% else %}
-    <p class="h4">No products found</p>
+    <div class="card mt-2">
+      <div class="card-body text-center py-5">
+        <i class="fas fa-sad-tear fa-4x text-muted mb-3"></i>
+        <h4 class="mb-2">No Products Found</h4>
+        <p class="text-muted mb-0">
+          We couldn't find any products matching your search. Try adjusting your filters or browse our full collection.
+        </p>
+      </div>
+    </div>
   {% endif %}
 </div>
