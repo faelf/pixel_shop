@@ -127,18 +127,32 @@ i {
   overflow:                   hidden;
   border-top-left-radius:     $border-radius;
   border-top-right-radius:    $border-radius;
-  aspect-ratio:               16 / 9;
-  @media (min-width: 992px) { 
-    aspect-ratio:             1 / 1.35;
+  aspect-ratio:               1 / 0.4;
+  // Bootstrap SM
+  @media (min-width: 576px) {
+    aspect-ratio:             1 / 0.5;
+  }
+  // Bootstrap MD
+  @media (min-width: 768px) {
+    aspect-ratio:             1 / 1.45;
     border-top-left-radius:   $border-radius;
     border-bottom-left-radius:$border-radius;
     border-top-right-radius:  0;
   }
-  @media (min-width: 1200px) {
-    aspect-ratio:             1 / 1.3;
+  // Bootstrap LG
+  @media (min-width: 992px) { 
+    aspect-ratio:             1 / 1.5;
+    border-top-left-radius:   $border-radius;
+    border-bottom-left-radius:$border-radius;
+    border-top-right-radius:  0;
   }
+  // Bootstrap XL
+  @media (min-width: 1200px) {
+    aspect-ratio:             1 / 1.35;
+  }
+  // Bootstrap XXL
   @media (min-width: 1400px) {
-    aspect-ratio:             1 / 1.2;
+    aspect-ratio:             1 / 1.15;
   }
 }
 
