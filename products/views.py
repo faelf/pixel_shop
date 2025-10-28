@@ -64,3 +64,30 @@ def product_edit(request, product_id):
     return render(
         request, "products/product_edit.html", {"form": form, "product": product}
     )
+
+
+@login_required
+def product_add(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, "Product added successfully!")
+            return redirect("product_detail", product_id=product.id)
+    else:
+        form = ProductForm()
+
+    return render(request, "products/product_add.html", {"form": form})
+
+
+@login_required
+def product_delete(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        product_name = product.name
+        product.delete()
+        messages.success(request, f'Product "{product_name}" deleted successfully!')
+        return redirect("products_list")
+
+    return redirect("product_detail", product_id=product_id)
