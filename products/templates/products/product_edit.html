@@ -2,7 +2,7 @@
 {% block content %}
   <div class="container my-2">
     <div class="row justify-content-center">
-      <div class=" col-12">
+      <div class="col-md-10 col-lg-8 col-xl-7 col-xxl-6">
         <div class="card">
           <div class="card-header">
             <p class="h2 m-0">Edit Product</p>
@@ -68,13 +68,14 @@
                 </div>
                 <!-- Save and Cancel -->
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save me-1"></i> Save Changes
-                  </button>
-                  <a href="{% url 'product_detail' product.id %}"
-                     class="btn btn-secondary">
-                    <i class="fas fa-times me-1"></i> Cancel
-                  </a>
+                  <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-2">
+                      <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-accent">
+                      <i class="fas fa-times"></i> Cancel
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
