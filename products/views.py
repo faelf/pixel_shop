@@ -1,6 +1,9 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Q
+from .forms import ProductForm
 from .models import Product
 
 
@@ -37,3 +40,27 @@ def products_list(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, "products/product_detail.html", {"product": product})
+
+
+@login_required
+def product_edit(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES, instance=product)
+
+        if request.POST.get("remove_image"):
+            if product.image:
+                product.image.delete(save=False)
+                product.image = None
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Product updated successfully!")
+            return redirect("product_detail", product_id=product_id)
+    else:
+        form = ProductForm(instance=product)
+
+    return render(
+        request, "products/product_edit.html", {"form": form, "product": product}
+    )
