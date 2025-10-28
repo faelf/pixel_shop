@@ -12067,3 +12067,13 @@ footer .footer-list li a {
 footer .footer-list li {
   margin-bottom: 0.5rem;
 }
+
+form textarea.form-control {
+  height: auto;
+  min-height: 144px;
+}
+@media (min-width: 768px) {
+  form textarea.form-control {
+    min-height: 316px;
+  }
+}
