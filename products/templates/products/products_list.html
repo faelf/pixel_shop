@@ -4,13 +4,13 @@
   - Store
 {% endblock page_title %}
 {% block content %}
-  <div class="container">
+  <div class="container my-2">
     <div>
-      <div class="row">
+      <div class="row g-2">
         <div class="col-12 col-lg-3">
-          <div class="card mt-2">
+          <div class="card">
             <div class="card-body">
-              <p class="h2 d-lg-block d-none mb-0">Filters</p>
+              <p class="h2 d-lg-block d-none m-0">Filters</p>
               <div class="row align-items-center">
                 <div class="col-6">
                   <p class="h2 d-lg-none mb-0">Filters</p>
@@ -31,17 +31,18 @@
           {% include "products/filters.html" %}
         </div>
         <div class="col-12 col-lg-9">
-          <div class="card my-2">
+          <div class="card">
             <div class="card-body">
-              <div class="row">
+              <div class="row g-2 align-items-center">
                 <div class="col-6">
-                  <p class="h2 mb-0">All Products</p>
+                  <p class="h2 m-0">All Products</p>
                 </div>
                 <div class="col-6 text-right">
                   <div class="d-flex justify-content-end">
                     {% if user.is_authenticated and user.is_staff %}
-                      <a href="#" class="btn btn-sm btn-outline-primary ">
-                        <i class="fas fa-plus me-2"></i>Add Product
+                      <a href="#" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Product</span>
                       </a>
                     {% endif %}
                   </div>
