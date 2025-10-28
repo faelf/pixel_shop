@@ -121,10 +121,11 @@
                 {% endif %}
               </span>
             </li>
-            <li class="list-group-item">
-              <a class="btn btn-primary fw-bold w-100" href="{% url 'checkout' %}"><i class="fas fa-lock me-2"></i>Checkout</a>
-            </li>
+            <li class="list-group-item"></li>
           </ul>
+          <div class="mt-2">
+            <a class="btn btn-primary fw-bold w-100" href="{% url 'checkout' %}"><i class="fas fa-lock me-2"></i>Checkout</a>
+          </div>
         </div>
       </div>
     {% else %}
