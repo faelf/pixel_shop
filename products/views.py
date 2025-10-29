@@ -2,12 +2,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Count
 from .forms import ProductForm
 from .models import Product
 
 
-# Create your views here.
 def products_list(request):
     """
     A view to show all products, including sorting and search queries
@@ -22,7 +21,16 @@ def products_list(request):
 
     category_name = request.GET.getlist("category")
     if category_name:
-        products = products.filter(categories__name__in=category_name)
+        products = (
+            products.filter(categories__name__in=category_name)
+            .annotate(
+                matching_categories=Count(
+                    "categories", filter=Q(categories__name__in=category_name)
+                )
+            )
+            .filter(matching_categories=len(category_name))
+            .distinct()
+        )
 
     paginator = Paginator(products, 5)
     page_number = request.GET.get("page", 1)
