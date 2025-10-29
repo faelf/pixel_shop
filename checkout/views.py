@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import OrderForm
@@ -18,5 +19,7 @@ def checkout_view(request):
     context = {
         "order_form": order_form,
         "trolley": trolley,
+        "stripe_public_key": settings.STRIPE_PUBLIC_KEY,
+        "client_secret": "test_secret",
     }
     return render(request, template, context)

@@ -42,9 +42,15 @@
             <!-- Font Awesome -->
             <script src="https://kit.fontawesome.com/8fd7781574.js"
                     crossorigin="anonymous"></script>
+            <!-- Stripe.js -->
+            <script src="https://js.stripe.com/v3/"></script>
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <!-- Custom JavaScript -->
             {% block extra_javascript %}
             {% endblock extra_javascript %}
+            {% block extra_css %}
+            {% endblock extra_css %}
       </head>
       <body class="d-flex flex-column min-vh-100 bg-light">
             {% include "navigationbar.html" %}
@@ -52,5 +58,7 @@
             {% block content %}
             {% endblock content %}
             {% include "footer.html" %}
+            {% block postloadjs %}
+            {% endblock postloadjs %}
       </body>
 </html>
