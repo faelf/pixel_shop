@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+  - Order Complete
+{% endblock page_title %}
+{% load static %}
+{% block content %}
+  <div class="container my-2">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+          <div class="card-body text-center">
+            <!-- Success Icon -->
+            <div class="mb-4 text-success">
+              <span class="fas fa-check-circle fa-5x"></span>
+            </div>
+            <!-- Thank You Message -->
+            <p class="h2 mb-3">Thank You!</p>
+            <p class="lead text-muted mb-4">Your order has been successfully placed.</p>
+            <!-- Order Details -->
+            <div class="my-4 text-start">
+              <p class="h5 mb-3">Order Details</p>
+              <div class="row mb-2">
+                <div class="col-5 text-muted">
+                  <strong>Order Number:</strong>
+                </div>
+                <div class="col-7">{{ order.order_number }}</div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-5 text-muted">
+                  <strong>Email:</strong>
+                </div>
+                <div class="col-7">{{ order.email }}</div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-5 text-muted">
+                  <strong>Order Date:</strong>
+                </div>
+                <div class="col-7">{{ order.date|date:"d F Y" }}</div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-5 text-muted">
+                  <strong>Order Total:</strong>
+                </div>
+                <div class="col-7">
+                  <strong>£{{ order.grand_total }}</strong>
+                </div>
+              </div>
+            </div>
+            <!-- Confirmation Message -->
+            <div class="alert alert-info">
+              <span class="fas fa-envelope me-2"></span>
+              A confirmation email has been sent to <strong>{{ order.email }}</strong>
+            </div>
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2 mt-4">
+              <a href="{% url 'products_list' %}" class="btn btn-primary btn-lg">
+                <span class="fas fa-shopping-bag me-2"></span>Continue Shopping
+              </a>
+              <a href="#" class="btn btn-accent">
+                <span class="fas fa-receipt me-2"></span>View Order Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
