@@ -57,7 +57,8 @@
               <a href="{% url 'products_list' %}" class="btn btn-primary btn-lg">
                 <span class="fas fa-shopping-bag me-2"></span>Continue Shopping
               </a>
-              <a href="#" class="btn btn-accent">
+              <a href="{% url 'order_detail' order.order_number %}"
+                 class="btn btn-accent">
                 <span class="fas fa-receipt me-2"></span>View Order Details
               </a>
             </div>
