@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container my-2">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8 col-xl-7 col-xxl-6">
+        <!-- Page Header -->
+        <div class="card mb-2">
+          <div class="card-body">
+            <p class="h2 mb-0">Order Details</p>
+          </div>
+        </div>
+        <!-- Order Details -->
+        <div class="row g-2 mb-2">
+          <!-- Shipping Address Card -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <span class="h6 fw-bold m-0">
+                  <span class="fas fa-shipping-fast me-2"></span>
+                  Shipping Address
+                </span>
+              </div>
+              <div class="card-body">
+                <address class="mb-2">
+                  <strong>{{ order.full_name }}</strong>
+                  <br>
+                  {{ order.street_address1 }}
+                  <br>
+                  {% if order.street_address2 %}
+                    {{ order.street_address2 }}
+                    <br>
+                  {% endif %}
+                  {{ order.town_or_city }}
+                  <br>
+                  {% if order.county %}
+                    {{ order.county }}
+                    <br>
+                  {% endif %}
+                  {{ order.postcode }}
+                  <br>
+                  {{ order.country }}
+                </address>
+              </div>
+            </div>
+          </div>
+          <!-- Contact Information Card -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <span class="h6 fw-bold m-0">
+                  <span class="fas fa-address-card me-2"></span>
+                  <span>Contact Information</span>
+                </span>
+              </div>
+              <div class="card-body">
+                <p class="mb-1">
+                  <span class="fas fa-envelope text-primary me-2"></span>
+                  <span>{{ order.email }}</span>
+                </p>
+                <p class="mb-1">
+                  <span class="fas fa-phone text-primary me-2"></span>
+                  <span>{{ order.phone_number }}</span>
+                </p>
+                <p class="mb-1">
+                  <span class="fas fa-calendar-alt text-primary me-2"></span>
+                  <span>{{ order.date|date:"d F Y" }}</span>
+                </p>
+                <p class="mb-1">
+                  <span class="fas fa-receipt text-primary me-2"></span>
+                  <span>{{ order.order_number }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Order Summary Card -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <span class="h6 fw-bold m-0">
+                  <i class="fas fa-calculator me-2"></i>Order Summary
+                </span>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Subtotal:</span>
+                  <span>£{{ order.order_total }}</span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span>Delivery:</span>
+                  <span>£{{ order.delivery_cost }}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span class="h5 mb-0">Total:</span>
+                  <span class="h5 mb-0">£{{ order.grand_total }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Payment Information Card -->
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body text-center">
+                <span class="fas fa-credit-card fa-2x text-primary mb-2"></span>
+                <p class="mb-0 text-muted small">
+                  <span class="fas fa-lock me-1"></span>
+                  Payment processed securely via Stripe
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Order Items  Card -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header bg-primary">
+                <span class="h6 fw-bold m-0">
+                  <span class="fas fa-shopping-bag me-2"></span>
+                  Order Items
+                </span>
+              </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="table-primary">
+                    <tr>
+                      <th>Product</th>
+                      <th class="text-center">Quantity</th>
+                      <th class="text-end">Price</th>
+                      <th class="text-end">Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in order.lineitems.all %}
+                      <tr>
+                        <td>
+                          <div class="align-middle">
+                            <strong>{{ item.product.name }}</strong>
+                          </div>
+                        </td>
+                        <td class="text-center align-middle">{{ item.quantity }}</td>
+                        <td class="text-end align-middle">£{{ item.product.price }}</td>
+                        <td class="text-end align-middle">
+                          <strong>£{{ item.lineitem_total }}</strong>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Back to Store Button -->
+        <div class="d-flex justify-content-end">
+          <a href="{% url 'products_list' %}" class="btn btn-accent">
+            <i class="fas fa-arrow-left me-2"></i>Back to Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
