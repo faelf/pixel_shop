@@ -1,7 +1,6 @@
 <div class="d-flex justify-content-center"
      hx-target="#product_list"
-     hx-swap="outerHTML"
-     show:top>
+     hx-swap="outerHTML transition:true show:window:top">
   <ul class="pagination my-2">
     {% if page_obj.has_previous %}
       <li class="page-item fw-bold">

@@ -6,12 +6,36 @@
       <div class="card mb-2">
         <div class="row g-0">
           <!-- Product Image -->
-          <div class="col-md-3 col-xxl-3">
+          <div class="col-sm-3 col-xxl-3">
             {% if product.image %}
               <div class="product-img-wrapper">
-                <a href="{% url 'product_detail' product.id %}">
-                  <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                </a>
+                <!-- Image that triggers modal -->
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     data-bs-toggle="modal"
+                     data-bs-target="#imageModal{{ product.id }}"
+                     style="cursor: pointer">
+                <!-- Modal for each product -->
+                <div class="modal fade" id="imageModal{{ product.id }}" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content bg-transparent border-0">
+                      <!-- Modal Header -->
+                      <div class="modal-header border-0 position-absolute top-0 end-0 p-3"
+                           style="z-index: 1">
+                        <button type="button"
+                                class="btn-close btn-close-dark rounded-circle p-2"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                      </div>
+                      <!-- Modal Body -->
+                      <div class="modal-body text-center p-0">
+                        <img src="{{ product.image.url }}"
+                             class="img-fluid rounded"
+                             alt="{{ product.name }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             {% else %}
               <div class="d-flex flex-column align-items-center justify-content-center py-5">
@@ -21,7 +45,7 @@
             {% endif %}
           </div>
           <!-- Product Details -->
-          <div class="col-md-9 col-xxl-9">
+          <div class="col-sm-9 col-xxl-9">
             <div class="card-body">
               <div class="row g-2">
                 <!-- Product Name -->
@@ -31,18 +55,29 @@
                 </div>
                 <!-- Product Description -->
                 <div class="col-12 col-xxl-10 order-xxl-1">
-                  <div class="d-block d-xl-none">
-                    <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                  <!-- Description on sm screens and smaller -->
+                  <div class="d-block d-sm-none">
+                    <p class="card-text">{{ product.description|truncatewords:50 }}</p>
                   </div>
-                  <div class="d-none d-xl-block d-xxl-none">
+                  <!-- Description on sm screens -->
+                  <div class="d-none d-sm-block d-md-none">
+                    <p class="card-text">{{ product.description|truncatewords:15 }}</p>
+                  </div>
+                  <!-- Description on md screens -->
+                  <div class="d-none d-md-block d-lg-none">
                     <p class="card-text">{{ product.description|truncatewords:40 }}</p>
                   </div>
-                  <div class="d-none d-xxl-block">
+                  <!-- Description on lg screens -->
+                  <div class="d-none d-lg-block d-xl-none">
                     <p class="card-text">{{ product.description|truncatewords:60 }}</p>
+                  </div>
+                  <!-- Description on xl screens -->
+                  <div class="d-none d-xl-block">
+                    <p class="card-text">{{ product.description|truncatewords:70 }}</p>
                   </div>
                 </div>
                 <!-- Categories -->
-                <div class="col-12 col-md-7 order-xxl-3">
+                <div class="col-12 col-sm-6 col-md-7 order-xxl-3">
                   <div>
                     {% for category in product.categories.all %}
                       <span class="badge bg-secondary">{{ category.friendly_name }}</span>
@@ -52,32 +87,37 @@
                   </div>
                 </div>
                 <!-- Price -->
-                <div class="col-12 col-md-5 col-xxl-2 order-xxl-2 text-end">
+                <div class="col-12 col-sm-6 col-md-5 col-xxl-2 order-xxl-2 text-end">
                   <p class="display-6 m-0">£{{ product.price }}</p>
                 </div>
-                {% if user.is_authenticated and user.is_staff %}
-                  <!-- Edit and Delete -->
-                  <div class="col-7  order-xxl-4">
-                    <a href="{% url 'product_edit' product.id %}"
-                       class="btn btn-outline-secondary me-2">
-                      <i class="fas fa-edit"></i>Edit
-                    </a>
-                    <form method="post"
-                          action="{% url 'product_delete' product.id %}"
-                          style="display: inline">
-                      {% csrf_token %}
-                      <button type="submit"
-                              class="btn btn-outline-danger fw-bold"
-                              onclick="return confirm('Are you sure you want to delete this product? This action cannot be undone.');">
-                        <i class="fas fa-trash me-1"></i>Delete
-                      </button>
-                    </form>
+                <!-- Buttons -->
+                <div class="col-12 order-xxl-4">
+                  <div class="d-flex">
+                    {% if user.is_authenticated and user.is_staff %}
+                      <!-- Edit and Delete -->
+                      <div class="flex-grow-1">
+                        <a href="{% url 'product_edit' product.id %}"
+                           class="btn btn-sm btn-outline-secondary me-2">
+                          <i class="fas fa-edit"></i>Edit
+                        </a>
+                        <form method="post"
+                              action="{% url 'product_delete' product.id %}"
+                              style="display: inline">
+                          {% csrf_token %}
+                          <button type="submit"
+                                  class="btn btn-sm btn-outline-danger fw-bold"
+                                  onclick="return confirm('Are you sure you want to delete this product? This action cannot be undone.');">
+                            <i class="fas fa-trash me-1"></i>Delete
+                          </button>
+                        </form>
+                      </div>
+                    {% endif %}
+                    <!-- View Product -->
+                    <div class="ms-auto">
+                      <a href="{% url 'product_detail' product.id %}"
+                         class="btn btn-sm btn-primary fw-bold"><i class="fas fa-eye me-2"></i>View Product</a>
+                    </div>
                   </div>
-                {% endif %}
-                <!-- View Product -->
-                <div class="col-5 text-end order-xxl-5">
-                  <a href="{% url 'product_detail' product.id %}"
-                     class="btn btn-primary fw-bold"><i class="fas fa-eye me-2"></i>View Product</a>
                 </div>
               </div>
             </div>

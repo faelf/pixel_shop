@@ -7,37 +7,39 @@
   <div class="container my-2">
     <div>
       <div class="row g-2">
-        <div class="col-12 col-lg-3">
+        <!-- Filters -->
+        <div class="col-12 col-lg-3 col-xl-2">
           <div class="card">
             <div class="card-body">
+              <!-- Filters on lg and larger screens -->
               <p class="h2 d-lg-block d-none m-0">Filters</p>
-              <div class="row align-items-center">
-                <div class="col-6">
+              <!-- Filters on md and smaller screens -->
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
                   <p class="h2 d-lg-none mb-0">Filters</p>
                 </div>
-                <div class="col-6 text-end">
-                  <a class="btn btn-sm btn-secondary d-lg-none"
-                     data-bs-toggle="collapse"
-                     href="#filterSidebar"
-                     role="button"
-                     aria-expanded="false"
-                     aria-controls="filterSidebar">
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </a>
-                </div>
+                <a class="btn btn-sm btn-secondary d-lg-none"
+                   data-bs-toggle="collapse"
+                   href="#filterSidebar"
+                   role="button"
+                   aria-expanded="false"
+                   aria-controls="filterSidebar">
+                  <span class="fa-solid fa-chevron-down fs-4"></span>
+                </a>
               </div>
             </div>
           </div>
           {% include "products/filters.html" %}
         </div>
-        <div class="col-12 col-lg-9">
+        <!-- Products -->
+        <div class="col-12 col-lg-9 col-xl-9">
           <div class="card">
             <div class="card-body">
-              <div class="row g-2 align-items-center">
-                <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1">
                   <p class="h2 m-0">All Products</p>
                 </div>
-                <div class="col-6 text-right">
+                <div class="text-right">
                   <div class="d-flex justify-content-end">
                     {% if user.is_authenticated and user.is_staff %}
                       <a href="{% url 'product_add' %}" class="btn btn-sm btn-outline-primary">

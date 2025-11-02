@@ -5,13 +5,50 @@
 {% endblock extra_javascript %}
 {% block content %}
   <div class="container">
-    <div class="row g-2 my-2">
-      <div class="col-12 col-lg-4 mb-2">
+    <div class="row justify-content-center g-2 my-2">
+      <!-- Product Image -->
+      <div class="col-8 col-sm-3 col-md-5 col-lg-4 mb-2">
         {% if product.image %}
+          <!-- Image that triggers modal -->
           <img src="{{ product.image.url }}"
                class="img-fluid rounded shadow"
-               alt="{{ product.name }}">
+               alt="{{ product.name }}"
+               data-bs-toggle="modal"
+               data-bs-target="#imageModal"
+               style="cursor: pointer">
+          <!-- Modal -->
+          <div class="modal fade"
+               id="imageModal"
+               tabindex="-1"
+               aria-labelledby="imageModalLabel"
+               aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content bg-transparent border-0">
+                <div class="modal-header border-0 position-absolute top-0 end-0 p-3"
+                     style="z-index: 1">
+                  <button type="button"
+                          class="btn-close btn-close-dark rounded-circle p-2"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-0">
+                  <img src="{{ product.image.url }}"
+                       class="img-fluid rounded"
+                       alt="{{ product.name }}">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Modal -->
+          <!-- Image Info-->
+          <div class="d-xxl-none">
+            <div class="d-flex align-items-center py-2 px-3">
+              <i class="fas fa-info-circle me-2"></i>
+              <small>Click on the picture to see the full image</small>
+            </div>
+          </div>
         {% else %}
+          <!-- No image -->
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center justify-content-center py-5">
@@ -22,9 +59,11 @@
           </div>
         {% endif %}
       </div>
-      <div class="col-12 col-lg-8 mb-2">
+      <!-- Product Details -->
+      <div class="col-12 col-sm-9 col-md-7 col-lg-8 mb-2">
         <div class="card">
           <div class="card-body">
+            <!-- Product Name -->
             <p class="h2 my-2">{{ product.name }}</p>
             <p>{{ product.description|linebreaks }}</p>
             <p>
@@ -49,8 +88,8 @@
               <div class="col-12">
                 <form action="{% url 'add_to_trolley' product.id %}" method="post">
                   {% csrf_token %}
-                  <div class="row">
-                    <div class="col-6 col-md-4 col-lg-6 col-xl-4">
+                  <div class="d-flex">
+                    <div>
                       <div class="input-group mb-3">
                         <button class="qty_minus btn btn-primary fw-bold"
                                 type="button"
@@ -75,12 +114,10 @@
                         </button>
                       </div>
                     </div>
-                    <div class="col-6 col-md-8 col-lg-6 col-xl-8">
-                      <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary fw-bold">
-                          <i class="fas fa-cart-plus me-2"></i> Add to trolley
-                        </button>
-                      </div>
+                    <div class="ms-auto">
+                      <button type="submit" class="btn btn-primary fw-bold">
+                        <i class="fas fa-cart-plus me-2"></i> Add to trolley
+                      </button>
                     </div>
                   </div>
                   <input type="hidden" name="redirect_url" value="{{ request.path }}">
