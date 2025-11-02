@@ -144,6 +144,12 @@
       </div>
     </div>
   </div>
+  <!-- Loading Overlay -->
+  <div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+      <span class="fas fa-3x fa-sync-alt fa-spin"></span>
+    </h1>
+  </div>
 {% endblock content %}
 {% block postloadjs %}
   {{ stripe_public_key|json_script:"id_stripe_public_key" }}
