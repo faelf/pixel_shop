@@ -19,6 +19,8 @@ class OderAdmin(admin.ModelAdmin):
         "delivery_cost",
         "order_total",
         "grand_total",
+        "original_trolley",
+        "stripe_pid",
     )
 
     fields = (
@@ -36,6 +38,8 @@ class OderAdmin(admin.ModelAdmin):
         "delivery_cost",
         "order_total",
         "grand_total",
+        "original_trolley",
+        "stripe_pid",
     )
 
     list_display = (
