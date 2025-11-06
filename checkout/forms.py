@@ -32,13 +32,20 @@ class OrderForm(forms.ModelForm):
             "postcode": "Post Code",
             "town_or_city": "Town or City",
             "county": "County, State or Locality",
-            "country": "Country",
         }
+
         self.fields["full_name"].widget.attrs["autofocus"] = True
+
         for field in self.fields:
-            if self.fields[field].required:
-                placeholder = f"{placeholders[field]} *"
+            if field == "country":
+                self.fields[field].widget.attrs["class"] = "form-control"
             else:
-                placeholder = placeholders[field]
-            self.fields[field].widget.attrs["placeholder"] = placeholder
-            self.fields[field].widget.attrs["class"] = "form-control"
+                if self.fields[field].required:
+                    placeholder = f"{placeholders[field]} *"
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs["placeholder"] = placeholder
+                self.fields[field].widget.attrs["class"] = "form-control"
+
+            # Remove labels
+            self.fields[field].label = False
