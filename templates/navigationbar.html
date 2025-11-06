@@ -48,7 +48,7 @@
           {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link d-flex flex-lg-column align-items-center p-2"
-                 href="#">
+                 href="{% url 'profile' %}">
                 <i class="fa-solid fa-user mb-1"></i>
                 <span class="nav-label ms-2 ms-lg-0">Account</span>
               </a>
