@@ -33,45 +33,66 @@ class CustomSignupForm(SignupForm):
             max_length=30,
             label="First Name",
             widget=forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter your first name"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your first name",
+                }
             ),
         )
         self.fields["last_name"] = forms.CharField(
             max_length=30,
             label="Last Name",
             widget=forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter your last name"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your last name",
+                }
             ),
         )
         self.fields["email"] = forms.EmailField(
             label="Email",
             widget=forms.EmailInput(
-                attrs={"class": "form-control", "placeholder": "Enter your email"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your email",
+                }
             ),
         )
         self.fields["email2"] = forms.EmailField(
             label="Confirm Email",
             widget=forms.EmailInput(
-                attrs={"class": "form-control", "placeholder": "Confirm your email"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Confirm your email",
+                }
             ),
         )
         self.fields["username"] = forms.CharField(
             max_length=150,
             label="Username",
             widget=forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Choose a username"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Choose a username",
+                }
             ),
         )
         self.fields["password1"] = forms.CharField(
             label="Password",
             widget=forms.PasswordInput(
-                attrs={"class": "form-control", "placeholder": "Enter your password"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter your password",
+                }
             ),
         )
         self.fields["password2"] = forms.CharField(
             label="Confirm Password",
             widget=forms.PasswordInput(
-                attrs={"class": "form-control", "placeholder": "Confirm your password"}
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Confirm your password",
+                }
             ),
         )
 

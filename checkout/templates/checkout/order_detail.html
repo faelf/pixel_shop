@@ -151,9 +151,15 @@
         </div>
         <!-- Back to Store Button -->
         <div class="d-flex justify-content-end">
-          <a href="{% url 'products_list' %}" class="btn btn-accent">
-            <i class="fas fa-arrow-left me-2"></i>Back to Store
-          </a>
+          {% if from_profile %}
+            <a href="{% url 'profile' %}" class="btn btn-primary">
+              <span class="fas fa-shopping-bag me-2"></span>Back to Profile
+            </a>
+          {% else %}
+            <a href="{% url 'products_list' %}" class="btn btn-accent">
+              <i class="fas fa-arrow-left me-2"></i>Back to Store
+            </a>
+          {% endif %}
         </div>
       </div>
     </div>

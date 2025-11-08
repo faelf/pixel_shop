@@ -46,6 +46,3 @@ class OrderForm(forms.ModelForm):
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs["placeholder"] = placeholder
                 self.fields[field].widget.attrs["class"] = "form-control"
-
-            # Remove labels
-            self.fields[field].label = False

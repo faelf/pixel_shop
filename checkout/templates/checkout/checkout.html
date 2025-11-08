@@ -86,7 +86,10 @@
               <div class="form-check my-4">
                 {% if user.is_authenticated %}
                   <div class="form-check my-4">
-                    <input type="checkbox" class="form-check-input" id="save-info" />
+                    <input type="checkbox"
+                           class="form-check-input"
+                           id="save-info"
+                           name="save-info" />
                     <label class="form-check-label" for="save-info">Save this information for next time</label>
                   </div>
                 {% else %}
