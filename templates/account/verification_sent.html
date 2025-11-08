@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load allauth %}
+{% block page_title %}
+  - Verify Your Email Address
+{% endblock page_title %}
+{% block content %}
+  <div class="container mt-2">
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4 p-md-5 text-center">
+        <p class="h2 card-title mb-4">
+          <span class="fas fa-envelope-open-text text-primary me-2"></span>
+          Verify Your Email Address
+        </p>
+        <hr class="mb-4">
+        <div class="alert alert-success d-flex align-items-center justify-content-center"
+             role="alert">
+          <span class="fas fa-check-circle me-3"></span>
+          <div>We have sent a verification email to the address you provided. Please check your inbox now to continue.</div>
+        </div>
+        <p class="text-muted">
+          <span class="fas fa-search me-1"></span>
+          If you cannot find it, please check your **spam/junk folder**.
+        </p>
+        <p class="text-muted">
+          <span class="fas fa-stopwatch me-1"></span>
+          The link is only valid for a limited time.
+        </p>
+        <form method="post" action="{% url 'account_email' %}" class="mt-4">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-accent btn-lg">
+            <i class="fas fa-sync-alt me-2"></i>
+            Resend Verification Email
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
