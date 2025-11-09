@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+  - Not authorised
+{% endblock page_title %}
+{% block content %}
+  <div class="container mt-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center mt-5">
+          <span class="fas fa-ban fa-5x text-danger mb-4"></span>
+          <p class="display-5 fw-bold">Permission Denied</p>
+          <p class="lead text-muted">Oops! You are not allowed to view this page.</p>
+          <a href="{% url 'home' %}" class="btn btn-lg btn-primary mt-3">
+            <span class="fas fa-home me-2"></span>Go back home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

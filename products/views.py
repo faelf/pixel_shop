@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -64,6 +65,9 @@ def product_edit(request, product_id):
     """
     A view to edit a product
     """
+    if not request.user.is_staff and not request.user.is_superuser:
+        raise PermissionDenied
+
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == "POST":
@@ -93,6 +97,9 @@ def product_add(request):
     """
     A view to add a product
     """
+    if not request.user.is_staff and not request.user.is_superuser:
+        raise PermissionDenied
+
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -110,6 +117,9 @@ def product_delete(request, product_id):
     """
     A view to delete a product
     """
+    if not request.user.is_staff and not request.user.is_superuser:
+        raise PermissionDenied
+
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == "POST":
