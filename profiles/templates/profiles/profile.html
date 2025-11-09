@@ -20,41 +20,38 @@
           <div class="card-body">
             <form action="{% url "profile" %}" method="post" id="profile-update-form">
               {% csrf_token %}
-              <fieldset>
-                <legend>Profile Details</legend>
+              <div class="mb-3">
+                <label for="{{ form.default_phone_number.id_for_label }}" class="form-label">Phone Number</label>
+                {{ form.default_phone_number }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.default_street_address1.id_for_label }}"
+                       class="form-label">Address Line 1</label>
+                {{ form.default_street_address1 }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.default_street_address2.id_for_label }}"
+                       class="form-label">Address Line 2</label>
+                {{ form.default_street_address2 }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.default_town_or_city.id_for_label }}" class="form-label">Town or City</label>
+                {{ form.default_town_or_city }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.default_county.id_for_label }}" class="form-label">County</label>
+                {{ form.default_county }}
+              </div>
+              <div class="mb-3">
+                <label for="{{ form.default_postcode.id_for_label }}" class="form-label">Postcode</label>
+                {{ form.default_postcode }}
+              </div>
+              {% if form.default_country %}
                 <div class="mb-3">
-                  <label for="{{ form.default_phone_number.id_for_label }}" class="form-label">Phone Number</label>
-                  {{ form.default_phone_number }}
+                  <label for="{{ form.default_country.id_for_label }}" class="form-label">Delivery Country</label>
+                  {{ form.default_country }}
                 </div>
-                <div class="mb-3">
-                  <label for="{{ form.default_street_address1.id_for_label }}"
-                         class="form-label">Address Line 1</label>
-                  {{ form.default_street_address1 }}
-                </div>
-                <div class="mb-3">
-                  <label for="{{ form.default_street_address2.id_for_label }}"
-                         class="form-label">Address Line 2</label>
-                  {{ form.default_street_address2 }}
-                </div>
-                <div class="mb-3">
-                  <label for="{{ form.default_town_or_city.id_for_label }}" class="form-label">Town or City</label>
-                  {{ form.default_town_or_city }}
-                </div>
-                <div class="mb-3">
-                  <label for="{{ form.default_county.id_for_label }}" class="form-label">County</label>
-                  {{ form.default_county }}
-                </div>
-                <div class="mb-3">
-                  <label for="{{ form.default_postcode.id_for_label }}" class="form-label">Postcode</label>
-                  {{ form.default_postcode }}
-                </div>
-                {% if form.default_country %}
-                  <div class="mb-3">
-                    <label for="{{ form.default_country.id_for_label }}" class="form-label">Delivery Country</label>
-                    {{ form.default_country }}
-                  </div>
-                {% endif %}
-              </fieldset>
+              {% endif %}
               <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">
                   <span class="fas fa-pen me-2"></span>Update Information
