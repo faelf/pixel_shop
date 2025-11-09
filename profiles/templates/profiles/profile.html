@@ -5,80 +5,94 @@
 {% endblock page_title %}
 {% block content %}
   <div class="container">
-    <div class="card mt-2 mb-2">
-      <div class="card-header bg-primary">
-        <p class="h2 m-0">
-          <span class="fas fa-user me-3"></span>{{ request.user.get_full_name }}
-        </p>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <!-- Profile Details -->
-          <div class="col-6">
+    <div class="card p-2 mt-2 mb-2">
+      <p class="h2 m-0">
+        <span class="fas fa-user me-3 ms-3"></span>{{ request.user.get_full_name }}
+      </p>
+    </div>
+    <div class="row">
+      <!-- Profile Details -->
+      <div class="col-12 col-md-6 mb-2">
+        <div class="card">
+          <div class="card-header bg-primary">
+            <p class="h3 m-0">Profile Details</p>
+          </div>
+          <div class="card-body">
             <form action="{% url "profile" %}" method="post" id="profile-update-form">
               {% csrf_token %}
-              <div class="mb-3">
-                <label for="{{ form.default_phone_number.id_for_label }}" class="form-label">Phone Number</label>
-                {{ form.default_phone_number }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ form.default_street_address1.id_for_label }}"
-                       class="form-label">Address Line 1</label>
-                {{ form.default_street_address1 }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ form.default_street_address2.id_for_label }}"
-                       class="form-label">Address Line 2</label>
-                {{ form.default_street_address2 }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ form.default_town_or_city.id_for_label }}" class="form-label">Town or City</label>
-                {{ form.default_town_or_city }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ form.default_county.id_for_label }}" class="form-label">County</label>
-                {{ form.default_county }}
-              </div>
-              <div class="mb-3">
-                <label for="{{ form.default_postcode.id_for_label }}" class="form-label">Postcode</label>
-                {{ form.default_postcode }}
-              </div>
-              {% if form.default_country %}
+              <fieldset>
+                <legend>Profile Details</legend>
                 <div class="mb-3">
-                  <label for="{{ form.default_country.id_for_label }}" class="form-label">Delivery Country</label>
-                  {{ form.default_country }}
+                  <label for="{{ form.default_phone_number.id_for_label }}" class="form-label">Phone Number</label>
+                  {{ form.default_phone_number }}
                 </div>
-              {% endif %}
-              <button type="submit" class="btn btn-primary">
-                <span class="fas fa-pen me-2"></span>Update Information
-              </button>
+                <div class="mb-3">
+                  <label for="{{ form.default_street_address1.id_for_label }}"
+                         class="form-label">Address Line 1</label>
+                  {{ form.default_street_address1 }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.default_street_address2.id_for_label }}"
+                         class="form-label">Address Line 2</label>
+                  {{ form.default_street_address2 }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.default_town_or_city.id_for_label }}" class="form-label">Town or City</label>
+                  {{ form.default_town_or_city }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.default_county.id_for_label }}" class="form-label">County</label>
+                  {{ form.default_county }}
+                </div>
+                <div class="mb-3">
+                  <label for="{{ form.default_postcode.id_for_label }}" class="form-label">Postcode</label>
+                  {{ form.default_postcode }}
+                </div>
+                {% if form.default_country %}
+                  <div class="mb-3">
+                    <label for="{{ form.default_country.id_for_label }}" class="form-label">Delivery Country</label>
+                    {{ form.default_country }}
+                  </div>
+                {% endif %}
+              </fieldset>
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">
+                  <span class="fas fa-pen me-2"></span>Update Information
+                </button>
+              </div>
             </form>
-          </div>
-          <!-- Order List -->
-          <div class="col-6">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Order Number</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for order in orders %}
-                  <tr>
-                    <td>
-                      <a href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:15 }}</a>
-                    </td>
-                    <td>{{ order.date|date:"d F Y" }}</td>
-                    <td>£{{ order.grand_total }}</td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
+      <!-- Order List -->
+      <div class="col-12 col-md-6 mb-2">
+        <div class="card">
+          <div class="card-header bg-primary">
+            <p class="h3 m-0">Order History</p>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Order Number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+                <tr>
+                  <td>
+                    <a href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:15 }}</a>
+                  </td>
+                  <td>{{ order.date|date:"d F Y" }}</td>
+                  <td>£{{ order.grand_total }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Order List End -->
     </div>
   </div>
 {% endblock content %}

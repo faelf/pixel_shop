@@ -9,47 +9,39 @@
       <div class="row g-2">
         <!-- Filters -->
         <div class="col-12 col-lg-3 col-xl-2">
-          <div class="card">
-            <div class="card-body">
-              <!-- Filters on lg and larger screens -->
-              <p class="h2 d-lg-block d-none m-0">Filters</p>
-              <!-- Filters on md and smaller screens -->
-              <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <p class="h2 d-lg-none mb-0">Filters</p>
-                </div>
-                <a class="btn btn-sm btn-secondary d-lg-none"
-                   data-bs-toggle="collapse"
-                   href="#filterSidebar"
-                   role="button"
-                   aria-expanded="false"
-                   aria-controls="filterSidebar">
-                  <span class="fa-solid fa-chevron-down fs-4"></span>
-                </a>
+          <div class="card p-2 mt-2 mb-2">
+            <!-- Filters on lg and larger screens -->
+            <p class="h2 d-lg-block d-none m-0 ms-2">Filters</p>
+            <!-- Filters on md and smaller screens -->
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1">
+                <p class="h2 d-lg-none mb-0 ms-2">Filters</p>
               </div>
+              <a class="btn btn-sm btn-secondary d-lg-none"
+                 data-bs-toggle="collapse"
+                 href="#filterSidebar"
+                 role="button"
+                 aria-expanded="false"
+                 aria-controls="filterSidebar">
+                <span class="fa-solid fa-chevron-down fs-5"></span>
+              </a>
             </div>
           </div>
           {% include "products/filters.html" %}
         </div>
         <!-- Products -->
         <div class="col-12 col-lg-9 col-xl-10">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex align-items-center">
-                <div class="flex-grow-1">
-                  <p class="h2 m-0">All Products</p>
-                </div>
-                <div class="text-right">
-                  <div class="d-flex justify-content-end">
-                    {% if user.is_authenticated and user.is_staff %}
-                      <a href="{% url 'product_add' %}" class="btn btn-sm btn-outline-primary">
-                        <i class="fas fa-plus"></i>
-                        <span>Add Product</span>
-                      </a>
-                    {% endif %}
-                  </div>
-                </div>
+          <div class="card p-2 mt-2 mb-2">
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1">
+                <p class="h2 m-0 ms-2">All Products</p>
               </div>
+              {% if user.is_authenticated and user.is_staff %}
+                <a href="{% url 'product_add' %}" class="btn btn-sm btn-outline-primary">
+                  <i class="fas fa-plus"></i>
+                  <span>Add Product</span>
+                </a>
+              {% endif %}
             </div>
           </div>
           {% include "products/product_card.html" %}
