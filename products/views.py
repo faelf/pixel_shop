@@ -11,12 +11,13 @@ def products_list(request):
     """
     A view to show all products, including sorting and search queries
     """
-    products = Product.objects.all()
+    products = Product.objects.all().order_by("name")
 
     search_query = request.GET.get("q", "")
     if search_query:
         products = products.filter(
-            Q(name__icontains=search_query) | Q(description__icontains=search_query)
+            Q(name__icontains=search_query)
+            | Q(description__icontains=search_query)
         )
 
     category_name = request.GET.getlist("category")
@@ -53,7 +54,9 @@ def product_detail(request, product_id):
     A view to show individual product details
     """
     product = get_object_or_404(Product, pk=product_id)
-    return render(request, "products/product_detail.html", {"product": product})
+    return render(
+        request, "products/product_detail.html", {"product": product}
+    )
 
 
 @login_required
@@ -79,7 +82,9 @@ def product_edit(request, product_id):
         form = ProductForm(instance=product)
 
     return render(
-        request, "products/product_edit.html", {"form": form, "product": product}
+        request,
+        "products/product_edit.html",
+        {"form": form, "product": product},
     )
 
 
@@ -110,7 +115,9 @@ def product_delete(request, product_id):
     if request.method == "POST":
         product_name = product.name
         product.delete()
-        messages.success(request, f'Product "{product_name}" deleted successfully!')
+        messages.success(
+            request, f'Product "{product_name}" deleted successfully!'
+        )
         return redirect("products_list")
 
     return redirect("product_detail", product_id=product_id)

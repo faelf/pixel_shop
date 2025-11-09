@@ -118,6 +118,13 @@ def checkout_view(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
+            metadata={
+                "trolley": json.dumps(trolley),
+                "save_info": request.POST.get("save-info", False),
+                "username": request.user.username
+                if request.user.is_authenticated
+                else "AnonymousUser",
+            },
         )
 
         if request.user.is_authenticated:
