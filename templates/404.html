@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+  - Page not found
+{% endblock page_title %}
+{% block content %}
+  <div class="container mt-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex flex-column justify-content-center align-items-center text-center">
+          <span class="fa-solid fa-triangle-exclamation display-1 text-warning mb-4"></span>
+          <p class="display-4 fw-bold text-dark mb-3">Oops! Page Not Found</p>
+          <p class="lead text-muted mb-4">
+            It seems this page wandered off somewhere...
+            <br>
+            Let’s get you back on track.
+          </p>
+          <a href="{% url 'home' %}" class="btn btn-primary btn-lg shadow-sm">
+            <span class="fa-solid fa-house me-2"></span>Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
