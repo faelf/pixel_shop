@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body text-center p-5">
+            <!-- Email Icon -->
+            <div class="mb-4">
+              <span class="text-primary">
+                <span class="fas fa-envelope-open-text fa-5x"></span>
+              </span>
+            </div>
+            <!-- Heading -->
+            <p class="h2 mb-3">Confirm Your Email</p>
+            {% if confirmation %}
+              {% if can_confirm %}
+                <p class="lead text-muted mb-4">
+                  Please confirm that <strong>{{ confirmation.email_address.email }}</strong> is your email address.
+                </p>
+                <form method="post"
+                      action="{% url 'account_confirm_email' confirmation.key %}">
+                  {% csrf_token %}
+                  {{ redirect_field }}
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <span class="fas fa-check me-2"></span>Confirm Email Address
+                  </button>
+                </form>
+              {% else %}
+                <div class="alert alert-warning">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  Unable to confirm {{ confirmation.email_address.email }} because it is already confirmed by a different account.
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                This email confirmation link expired or is invalid.
+              </div>
+              <a href="{% url 'account_email' %}" class="btn btn-primary">Request New Confirmation Email</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
