@@ -185,12 +185,15 @@ if os.environ.get("USE_AWS") == "True":
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/staticfiles/"
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
+    STATICFILES_LOCATION = "static"
+    MEDIAFILES_LOCATION = "media"
+
     STORAGES = {
         "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+            "BACKEND": "custom_storages.MediaStorage",
         },
         "staticfiles": {
-            "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
+            "BACKEND": "custom_storages.StaticStorage",
         },
     }
 
