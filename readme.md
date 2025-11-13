@@ -1,29 +1,33 @@
-# Pixel Shop
+<h1 id="title">Pixel Shop</h1>
 
-## Table of Contents
+<h2 id="table-of-contents">📚 Table of Contents</h2>
 
-- [Overview](#overview)
-- User Experience (UX)
-  - [Strategy (Site Goals)](#strategy-site-goals)
-  - [Scope (User Stories)](#scope-user-stories)
-  - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-  - [Structure (Design Choices)](#structure-design-choices)
-  - [Skeleton (Wireframes)](#skeleton-wireframes)
-  - [Surface (Visual Design)](#surface-visual-design)
-- [Technologies Used](#technologies-used)
-- [Languages](#languages)
-- [Libraries & Frameworks](#libraries--frameworks)
-- [Tools](#tools)
-- [Deployment](#deployment)
-- [Existing Features](#existing-features)
-- [Future Features](#future-features)
-- [Testing](#testing)
-- [Bugs](#bugs)
-- [Credits](#credits)
+- [🌍 Overview](#overview)
+- [🧭 User Experience (UX)](#user-experience)
+  - [🎯 Strategy (Site Goals)](#strategy-site-goals)
+  - [🧾 Scope (User Stories)](#scope-user-stories)
+  - [🧠 Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+  - [🏗️ Structure (Design Choices)](#structure-design-choices)
+  - [🩻 Skeleton (Wireframes)](#skeleton-wireframes)
+  - [🎨 Surface (Visual Design)](#surface-visual-design)
+- [⚙️ Technologies Used](#technologies-used)
+  - [💬 Languages](#languages)
+  - [🧩 Libraries & Frameworks](#libraries-and-frameworks)
+  - [🛠️ Development Tools](#development-tools)
+  - [📐 Design & Resources](#design-and-resources)
+  - [☁️ Infrastructure & Services](#infrastructure-and-services)
+- [🚀 Deployment](#deployment)
+- [✨ Existing Features](#existing-features)
+- [🔮 Future Features](#future-features)
+- [🧪 Testing](#testing)
+- [🐞 Bugs](#bugs)
+- [📜 Credits](#credits)
+  - [💡 Code](#code)
+  - [🖼️ Images](#images)
 
 ---
 
-## Overview
+<h2 id="overview">🌍 Overview</h2>
 
 PixelShop is a fictitious gaming store created for my Code Institute Milestone 4 project. Built to demonstrate the key skills I have learnt including user login and registration, adding, editing and deleting products from the frontend, Stripe payments, and storing images with AWS.
 
@@ -31,9 +35,11 @@ The store isn't real, it is purely educational to show what I have managed to bu
 
 You can vist the live page [here](https://pixelshop-fdf6b277567f.herokuapp.com/)
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Strategy (Site Goals)
+<h2 id="user-experience">🧭 User Experience (UX)</h2>
+
+<h3 id="strategy-site-goals">🎯 Strategy (Site Goals)</h3>
 
 **Primary Goal:** Build an e-commerce Django application that demonstrates full-stack development skills, focusing on user authentication, payment processing, and cloud-based media storage.
 
@@ -48,13 +54,11 @@ You can vist the live page [here](https://pixelshop-fdf6b277567f.herokuapp.com/)
 - Store product images securely using AWS S3.
 - Responsive design across desktop, tablet, and mobile devices.
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Scope (User Stories)
+<h3 id="scope-user-stories">🧾 Scope (User Stories)</h3>
 
-The MoSCoW prioritisation method was used to organise the user stories.
-
-You can view the GitHub Project [here](https://github.com/users/faelf/projects/5).
+The MoSCoW prioritisation method was used to organise the user stories. You can view the GitHub Project [here](https://github.com/users/faelf/projects/5).
 
 | Feature                | User Story                                                                                                                              |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -76,9 +80,9 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 | View Orders            | As an admin, I want to View orders so that I can manage and process customer purchases.                                                 |
 | Manage Users           | As an admin, I want to Manage users so that I can deactivate or reactivate user accounts if needed.                                     |
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Entity Relationship Diagram (ERD)
+<h3 id="entity-relationship-diagram-erd">🧠 Entity Relationship Diagram (ERD)</h3>
 
 - `User Profile` extends the built-in Django User model to store default delivery information.
 - `Category` and `Product` have a one-to-many relationship.
@@ -87,9 +91,9 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 
 ![ERD](readme/erd.png)
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Structure (Design Choices)
+<h3 id="structure-design-choices">🏗️ Structure (Design Choices)</h3>
 
 - **Navigation bar:** Responsive across different screen sizes, with links to Home, Products, Cart, and Account pages.
 - **Home page:** Highlights featured products and includes a short introduction about the shop.
@@ -101,27 +105,27 @@ You can view the GitHub Project [here](https://github.com/users/faelf/projects/5
 - **Contact Form:** For users to submit inquiries.
 - **Footer:** Visible on all pages with information about contact details and store location.
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Skeleton (Wireframes)
+<h3 id="skeleton-wireframes">🩻 Skeleton (Wireframes)</h3>
 
 The wireframes provide a rough visual outline of how I imagine the webpage to look. They are not final designs, but rather a guide to illustrate the planned layout, structure, and key features of each page. The goal is to give a clear idea of content placement and user flow before moving into the detailed design and development stages.
 
-### Desktop
+<h4>Desktop</h4>
 
 ![desktop](readme/wireframes/desktop.png)
 
-### Tablet
+<h4>Tablet</h4>
 
 ![tablet](readme/wireframes/tablet.png)
 
-### Mobile
+<h4>Mobile</h4>
 
 ![mobile](readme/wireframes/mobile.png)
 
 [Back to the top](#table-of-contents)
 
-## Surface (Visual Design)
+<h3 id="surface-visual-design">🎨 Surface (Visual Design)</h3>
 
 - **Colour palette:** A modern, gaming-inspired palette with a dark navbar,
   light background for readability.
@@ -134,22 +138,19 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
   - **Bebas Neue** for subheadings and section titles.
   - **Roboto** for body text and product descriptions.
 
-- **Icons:** Font Awesome icons provide clear visual cues for navigation, cart,
-  and user actions.
+- **Icons:** Font Awesome icons provide clear visual cues for navigation, cart, and user actions.
 
 - **Imagery:** High-quality product images.
 
-- **Layout:** Grid-based product cards allow easy browsing, with consistent
-  spacing and alignment.
+- **Layout:** Grid-based product cards allow easy browsing, with consistent spacing and alignment.
 
-- **Responsiveness:** All pages adapt seamlessly to different screen sizes,
-  ensuring a consistent experience on desktop, tablet, and mobile.
+- **Responsiveness:** All pages adapt seamlessly to different screen sizes, ensuring a consistent experience on desktop, tablet, and mobile.
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Technologies Used
+<h2 id="technologies-used">⚙️ Technologies Used</h2>
 
-### Languages
+<h3 id="languages">💬 Languages</h3>
 
 - HTML
 - CSS/SCSS
@@ -157,7 +158,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - JavaScript
 - SCSS (Sass)
 
-### Libraries & Frameworks
+<h3 id="libraries-and-frameworks">🧩 Libraries & Frameworks</h3>
 
 - **[Django](https://www.djangoproject.com/):** Python web framework
 - **[dj-database-url](https://pypi.org/project/dj-database-url/):** Parses database URLs into Django `DATABASES` settings
@@ -172,7 +173,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[HTMX](https://htmx.org/):** High-power tools for HTML
 - **[Bootstrap 5.3.8](https://getbootstrap.com/):** Frontend CSS framework for responsive design
 
-### Development Tools
+<h3 id="development-tools">🛠️ Development Tools</h3>
 
 - **[Git](https://git-scm.com/):** Version control system
 - **[GitHub](https://github.com/):** Code hosting and collaboration platform
@@ -184,7 +185,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[gulp-rename](https://www.npmjs.com/package/gulp-rename):** Renames output files
 - **[del](https://www.npmjs.com/package/del):** Cleans build directories
 
-### Design & Resources
+<h3 id="design-and-resources">📐 Design & Resources</h3>
 
 - **[Coolors](https://coolors.co/):** Colour palette generator
 - **[Google Fonts](https://fonts.google.com/):** Typography
@@ -192,17 +193,17 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[Balsamiq](https://balsamiq.com/):** Wireframing
 - **[Font Awesome](https://fontawesome.com/):** Icon library
 
-### Infrastructure & Services
+<h3 id="infrastructure-and-services">☁️ Infrastructure & Services</h3>
 
 - **[Heroku](https://www.heroku.com/):** Cloud platform for application hosting
 - **[PostgreSQL (Code Institute)](https://codeinstitute.net/):** Relational database
 - **[AWS S3](https://aws.amazon.com/s3/):** Cloud storage for media and static files
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Deployment
+<h2 id="deployment">🚀 Deployment</h2>
 
-### Create & Clone a Repo via GitHub Desktop
+<h4>Create & Clone a Repo via GitHub Desktop</h4>
 
 1. Open **GitHub Desktop** and log in.
 2. Click **File → New Repository**.
@@ -210,203 +211,238 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 4. Click **Create Repository** → the repo is created locally.
 5. Go to **Repository → Publish Repository** to upload it to GitHub.
 
-### In VS Code
+<h4>In VS Code</h4>
 
 1. Open the cloned repository in VS Code.
 2. Create a virtual environment.
 3. Install Django:
-   ```bash
-   pip install django
-   ```
+
+```bash
+pip install django
+```
+
 4. Create the Django project, ensuring you include the trailing dot to create it in the current directory:
-   ```bash
-   django-admin startproject (Project name) .
-   ```
+
+```bash
+django-admin startproject (Project name) .
+```
+
 5. Create a Django app:
-   ```bash
-   python manage.py startapp (App name)
-   ```
+
+```bash
+python manage.py startapp (App name)
+```
+
 6. Add the app to `settings.py`
 
-   ```Python
-   INSTALLED_APPS = [
-       "django.contrib.admin",
-       ...
-       "django.contrib.staticfiles",
+```Python
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    ...
+    "django.contrib.staticfiles",
 
-       # Page Apps
-       "home",
-   ]
-   ```
+    # Page Apps
+    "home",
+]
+```
 
 7. In the apps template folder, create a folder with the app name, and create a html file to be rendered.
 8. Create a simple view to render a template in the app's `views.py`
 
-   ```Python
-   from django.views.generic import TemplateView
+```Python
+from django.views.generic import TemplateView
 
-   class HomeView(TemplateView):
-       template_name = "home/home.html"
-   ```
+class HomeView(TemplateView):
+    template_name = "home/home.html"
+```
 
 9. Create a `urls.py` file within the app folder, and connect to `views.py`.
 
-   ```Python
-   from django.urls import path
-   from .views import HomeView
+```Python
+from django.urls import path
+from .views import HomeView
 
-   urlpatterns = [
-       path("", HomeView.as_view(), name="home"),
-   ]
-   ```
+urlpatterns = [
+    path("", HomeView.as_view(), name="home"),
+]
+```
 
 10. In the project's `urls.py`, we need to include the app's `urls.py`.
 
-    ```Python
-    from django.contrib import admin
-    from django.urls import path, include
+```Python
+from django.contrib import admin
+from django.urls import path, include
 
-    urlpatterns = [
-    	path('admin/', admin.site.urls),
-    	path('', include('home.urls')),
-    ]
-    ```
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('home.urls')),
+]
+```
 
 11. Create a database.
 12. Install `psycopg2`, the PostgreSQL adapter:
-    ```bash
-    pip install psycopg2
-    ```
-13. Install `dj-database-url` for parsing database URLs:
-    ```bash
-    pip install dj-database_url
-    ```
-14. In `settings.py` add the `dj-database_url to the top`
-    ```Python
-    import dj_database_url
-    ```
+
+```bash
+pip install psycopg2
+```
+
+13. Install `dj-database-url` for parsing database URLs.
+
+```bash
+pip install dj-database_url
+```
+
+14. In `settings.py` add the `dj-database_url` to the top.
+
+```Python
+import dj_database_url
+```
+
 15. Create a `env.py` in the root dir. And add it to `.gitignore`.
 16. In the `env.py` create the keys that are not meant to be committed.
 
-    ```Python
-    import os
+```Python
+import os
 
-    # Django Settings
+# Django Settings
 
-    # Secret key
-    os.environ["SECRET_KEY"] = (
-        "Get the secret key from settings.py"
-    )
+# Secret key
+os.environ["SECRET_KEY"] = (
+    "Get the secret key from settings.py"
+)
 
-    # Debug mode
-    os.environ["DJANGO_DEBUG"] = "True"
+# Debug mode
+os.environ["DJANGO_DEBUG"] = "True"
 
 
-    # Allowed hosts
-    os.environ["DJANGO_ALLOWED_HOSTS"] = "127.0.0.1,localhost,.herokuapp.com"
+# Allowed hosts
+os.environ["DJANGO_ALLOWED_HOSTS"] = "127.0.0.1,localhost,.herokuapp.com"
 
-    # Database
+# Database
 
-    # SQLite (Django default)
-    # os.environ["DATABASE_URL"] = "sqlite:///db.sqlite3"
+# SQLite (Django default)
+# os.environ["DATABASE_URL"] = "sqlite:///db.sqlite3"
 
-    # Postgres (Created)
-    os.environ["DATABASE_URL"] = (
-    	"This will be the database URL"
-    )
-    ```
+# Postgres (Created)
+os.environ["DATABASE_URL"] = (
+    "This will be the database URL"
+)
+```
 
 17. In `settings.py` add this to the top.
-    ```Python
-    import os
-    if os.path.isfile("env.py"):
-    	import env  # noqa
-    ```
+
+```Python
+import os
+
+if os.path.isfile("env.py"):
+    import env  # noqa
+```
+
 18. Still in `settings.py`, set the variables values for the `env.py`.
-    ```Python
-    SECRET_KEY = os.environ.get("SECRET_KEY")
-    DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
-    ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-    ```
+
+```Python
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+```
+
 19. Connect the Postgres database in `settings.py`
 
-    ```Python
-    # Use dj-database-url to parse the database URL from environment variable
-    DATABASE_URL = os.environ.get("DATABASE_URL")
+```Python
+# Use dj-database-url to parse the database URL from environment variable
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-    if DATABASE_URL and DATABASE_URL.startswith("postgres"):
-        # Use Postgres
-        import dj_database_url
-        DATABASES = {
-            "default": dj_database_url.parse(DATABASE_URL)
-    	}
-    else:
-        # Use SQLite (Django Default)
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": BASE_DIR / "db.sqlite3",
-            }
+if DATABASE_URL and DATABASE_URL.startswith("postgres"):
+    # Use Postgres
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    # Use SQLite (Django Default)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
-    ```
+    }
+```
 
 20. Run your first database migration:
-    ```bash
-    python manage.py migrate
-    ```
+
+```bash
+python manage.py migrate
+```
+
 21. Create a superuser:
-    ```bash
-    python manage.py createsuperuser
-    ```
+
+```bash
+python manage.py createsuperuser
+```
+
 22. Install Gunicorn to handle web requests.
-    ```bash
-    pip install gunicorn
-    ```
+
+```bash
+pip install gunicorn
+```
+
 23. Create a `Procfile` in the root of your project with the following command:
-    ```bash
-    web: gunicorn (Project name).wsgi
-    ```
+
+```bash
+web: gunicorn (Project name).wsgi
+```
+
 24. In your `settings.py` ensure `WSGI_APPLICATION` is set correctly:
-    ```python
-    WSGI_APPLICATION = '(Project name).wsgi.application'
-    ```
+
+```python
+WSGI_APPLICATION = '(Project name).wsgi.application'
+```
+
 25. Specify the Python version for your development environment using a `.python-version` file.
 26. Install `whitenoise` for serving static files in production:
-    ```bash
-    pip install whitenoise
-    ```
+
+```bash
+pip install whitenoise
+```
+
 27. Edit your `settings.py` file and add `WhiteNoise` to the `MIDDLEWARE` list, placing it just below `SecurityMiddleware`:
-    ```python
-    MIDDLEWARE = [
-    # ...
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    # ...
-    ]
-    ```
+
+```python
+MIDDLEWARE = [
+# ...
+"django.middleware.security.SecurityMiddleware",
+"whitenoise.middleware.WhiteNoiseMiddleware",
+# ...
+]
+```
+
 28. Add the following to the bottom of your `settings.py` file to configure static file collection:
 
-    ```python
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/5.2/howto/static-files/
-    STATIC_URL = "static/"
+```python
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
+STATIC_URL = "static/"
 
-    # Additional locations to look for static files (optional)
-    STATICFILES_DIRS = [BASE_DIR / "static"]
+# Additional locations to look for static files (optional)
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-    # This is where Django will collect all static files for production
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-    ```
+# This is where Django will collect all static files for production
+STATIC_ROOT = BASE_DIR / "staticfiles"
+```
 
 29. Run `collectstatic` to gather all static files into the `staticfiles` directory:
-    ```bash
-    python manage.py collectstatic
-    ```
+
+```bash
+python manage.py collectstatic
+```
+
 30. Add the `staticfiles` folder to the `.gitignore`.
 31. Create a `requirements.txt` file with all installed dependencies:
-    ```bash
-    pip freeze > requirements.txt
-    ```
+
+```bash
+pip freeze > requirements.txt
+```
+
 32. Commit all changes and push your code to your GitHub repository.
 
 ### Heroku Deployment
@@ -424,7 +460,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 [Back to the top](#table-of-contents)
 
-## Existing Features
+<h2 id="existing-features">✨ Existing Features</h2>
 
 **Navigation Bar:** A dynamic and responsive navigation bar that adapts based on user authentication and screen size.
 
@@ -497,32 +533,32 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 ![Contact Page for Staff](readme/existing_features/contact-page-staff.png)
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Future Features
+<h2 id="future-features">🔮 Future Features</h2>
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Testing
+<h2 id="testing">🧪 Testing</h2>
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Bugs
+<h2 id="bugs">🐞 Bugs</h2>
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
 
-## Credits
+<h2 id="credits">📜 Credits</h2>
 
-### Code
+<h3 id="code">💡 Code</h3>
 
 - [AWS S3 Tutorial](https://www.youtube.com/watch?v=JQVQcNN0cXE&t=404s)
 - [HTMX Tutorial](https://www.youtube.com/watch?v=O0_ZyUsG7wo) - For the pagination and search functionality.
 - [SCSS Tutorial](https://www.youtube.com/watch?v=_kqN4hl9bGc&list=PL4cUxeGkcC9jxJX7vojNVK-o8ubDZEcNb) - To edit Bootstrap.
 
-### Images
+<h3 id="images">🖼️ Images</h3>
 
 - [Hero Image](https://www.pexels.com/photo/a-close-up-shot-of-a-nintendo-switch-6993182/)
 - Store picture on about section was generated by Gemini.
 - The products images were taken by me.
 
-[Back to the top](#table-of-contents)
+[🔝 Back to top](#table-of-contents)
