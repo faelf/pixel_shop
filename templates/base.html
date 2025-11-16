@@ -1,64 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <!-- Page Metadata -->
-            <title>Pixel Shop
-                  {% block page_title %}
-                  {% endblock page_title %}
-            </title>
-            <meta name="description"
-                  content="Pixel Shop - a fictional online store for gaming merchandise, created as part of a Code Institute project.">
-            <meta name="keywords" content="gaming, consoles, accessories">
-            <!-- Page Theme Colour -->
-            <meta name="theme-color" content="#2E333C">
-            <!-- Favicons -->
-            <link rel="icon"
-                  type="image/png"
-                  href="{% static 'favicon/favicon-96x96.png' %}"
-                  sizes="96x96" />
-            <link rel="icon"
-                  type="image/svg+xml"
-                  href="{% static 'favicon/favicon.svg' %}" />
-            <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
-            <link rel="apple-touch-icon"
-                  sizes="180x180"
-                  href="{% static 'favicon/apple-touch-icon.png' %}" />
-            <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
-            <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet"
-                  href="{% static 'css/bootstrap-overrides.min.css' %}">
-            <!-- HTMX -->
-            <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"
-                    integrity="sha384-ZBXiYtYQ6hJ2Y0ZNoYuI+Nq5MqWBr+chMrS/RkXpNzQCApHEhOt2aY8EJgqwHLkJ"
-                    crossorigin="anonymous"></script>
-            <!-- Bootstrap JS Bundle with Popper -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-                    crossorigin="anonymous"></script>
-            <!-- Font Awesome -->
-            <script src="https://kit.fontawesome.com/8fd7781574.js"
-                    crossorigin="anonymous"></script>
-            <!-- Stripe.js -->
-            <script src="https://js.stripe.com/v3/"></script>
-            <!-- jQuery -->
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <!-- Custom JavaScript -->
-            {% block extra_javascript %}
-            {% endblock extra_javascript %}
-            {% block extra_css %}
-            {% endblock extra_css %}
-      </head>
-      <body class="d-flex flex-column min-vh-100 bg-light">
-            {% include "navigationbar.html" %}
-            {% include "messages.html" %}
-            {% block content %}
-            {% endblock content %}
-            {% include "footer.html" %}
-            {% block postloadjs %}
-            {% endblock postloadjs %}
-      </body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Page Metadata -->
+    <title>Pixel Shop
+      {% block page_title %}
+      {% endblock page_title %}
+    </title>
+    <meta name="description"
+          content="Pixel Shop - a fictional online store for gaming merchandise, created as part of a Code Institute project.">
+    <meta name="keywords" content="gaming, consoles, accessories">
+    <!-- Page Theme Colour -->
+    <meta name="theme-color" content="#2E333C">
+    <!-- Favicons -->
+    <link rel="icon"
+          type="image/png"
+          href="{% static 'favicon/favicon-96x96.png' %}"
+          sizes="96x96" />
+    <link rel="icon"
+          type="image/svg+xml"
+          href="{% static 'favicon/favicon.svg' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="{% static 'favicon/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+    <meta name="apple-mobile-web-app-title" content="MyWebSite">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="{% static 'css/bootstrap-overrides.min.css' %}">
+    <!-- HTMX -->
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"
+            integrity="sha384-ZBXiYtYQ6hJ2Y0ZNoYuI+Nq5MqWBr+chMrS/RkXpNzQCApHEhOt2aY8EJgqwHLkJ"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+            crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/8fd7781574.js"
+            crossorigin="anonymous"></script>
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JavaScript -->
+    {% block extra_javascript %}
+    {% endblock extra_javascript %}
+    {% block extra_css %}
+    {% endblock extra_css %}
+  </head>
+  <body class="d-flex flex-column min-vh-100 bg-light">
+    {% include "navigationbar.html" %}
+    <main>
+      {% include "messages.html" %}
+      {% block content %}
+      {% endblock content %}
+    </main>
+    {% include "footer.html" %}
+    {% block postloadjs %}
+    {% endblock postloadjs %}
+  </body>
 </html>
