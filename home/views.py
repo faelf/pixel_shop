@@ -51,6 +51,8 @@ def delete_message(request, message_id):
     if request.method == "POST":
         message = get_object_or_404(ContactMessage, pk=message_id)
         message.delete()
-        messages.success(request, f"Message from {message.name} successfully deleted.")
+        messages.success(
+            request, f"Message from {message.name} successfully deleted."
+        )
         return redirect("contact")
     return redirect("contact")
