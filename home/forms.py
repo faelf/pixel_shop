@@ -96,14 +96,6 @@ class CustomSignupForm(SignupForm):
             ),
         )
 
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get("email")
-        email2 = cleaned_data.get("email2")
-        if email and email2 and email != email2:
-            raise forms.ValidationError("Email addresses do not match.")
-        return cleaned_data
-
     def save(self, request):
         user = super().save(request)
         user.first_name = self.cleaned_data["first_name"]
