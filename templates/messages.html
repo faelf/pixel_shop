@@ -1,28 +1,60 @@
 {% load static %}
 <div class="container position-relative">
-  {% if messages %}
+  {% if messages or form.non_field_errors|default:False %}
     <div class="toast-container position-absolute top-0 end-0 p-3"
          style="z-index: 9999">
-      {% for message in messages %}
-        <div role="alert"
-             aria-live="assertive"
-             aria-atomic="true"
-             class="toast"
-             data-bs-autohide="true"
-             data-bs-delay="5000">
-          <div class="toast-header bg-dark text-white">
-            <i class="fa-solid fa-circle-check me-2"></i>
-            <strong class="me-auto">Notification</strong>
-            <button type="button"
-                    class="btn btn-primary btn-sm ms-2"
-                    data-bs-dismiss="toast"
-                    aria-label="Close">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+      <!-- Django messages -->
+      {% if messages %}
+        {% for message in messages %}
+          <div role="alert"
+               aria-live="assertive"
+               aria-atomic="true"
+               class="toast"
+               data-bs-autohide="true"
+               data-bs-delay="5000">
+            <div class="toast-header {% if message.tags == 'error' or message.tags == 'danger' %}bg-danger{% else %}bg-dark{% endif %} text-white">
+              <i class="{% if message.tags == 'error' or message.tags == 'danger' %}fa-solid fa-exclamation-circle{% else %}fa-solid fa-circle-check{% endif %} me-2"></i>
+              <strong class="me-auto">
+                {% if message.tags == 'error' or message.tags == 'danger' %}
+                  Error
+                {% else %}
+                  Notification
+                {% endif %}
+              </strong>
+              <button type="button"
+                      class="btn btn-primary btn-sm ms-2"
+                      data-bs-dismiss="toast"
+                      aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="toast-body">{{ message }}</div>
           </div>
-          <div class="toast-body">{{ message }}</div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {% endif %}
+      <!-- Form non-field errors (only if form exists) -->
+      {% if form and form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+          <div role="alert"
+               aria-live="assertive"
+               aria-atomic="true"
+               class="toast"
+               data-bs-autohide="true"
+               data-bs-delay="5000">
+            <div class="toast-header bg-danger text-white">
+              <i class="fa-solid fa-exclamation-circle me-2"></i>
+              <strong class="me-auto">Error</strong>
+              <button type="button"
+                      class="btn btn-secondary btn-sm ms-2"
+                      data-bs-dismiss="toast"
+                      aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+            <div class="toast-body">{{ error }}</div>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
     <script>
       (function() {
