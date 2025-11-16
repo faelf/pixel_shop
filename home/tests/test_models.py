@@ -37,10 +37,10 @@ class ContactMessageModelTest(TestCase):
         messages = ContactMessage.objects.all()
 
         # Rafael should be first as it is the oldest.
-        print(messages[0])
+        # print(messages[0])
         self.assertEqual(messages[0], self.message)
         # Gustavo should be second as it is the newest.
-        print(messages[1])
+        # print(messages[1])
         self.assertEqual(messages[1], self.message_2)
 
     def test_contact_message_verbose_name(self):

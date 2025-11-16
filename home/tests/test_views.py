@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.messages import get_messages
+from django.contrib.auth import get_user_model
 from home.models import ContactMessage
 from home.forms import ContactMessageForm
 
@@ -71,7 +72,6 @@ class ContactPageViewTest(TestCase):
         # Check message was saved (2 + 1)
         self.assertEqual(ContactMessage.objects.count(), 3)
         message = ContactMessage.objects.last()
-        print(message)
         self.assertEqual(message.name, "Cristiana")
         self.assertEqual(message.email, "cristiana@example.com")
         self.assertEqual(message.message, "This is a test message.")
@@ -117,3 +117,76 @@ class ContactPageViewTest(TestCase):
         """Test that context includes user_messages"""
         response = self.client.get(reverse("contact"))
         self.assertIn("user_messages", response.context)
+
+
+User = get_user_model()
+
+
+class DeleteMessageViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.staff_user = User.objects.create_user(
+            username="rafael", password="testpass123", is_staff=True
+        )
+        cls.regular_user = User.objects.create_user(
+            username="gustavo", password="testpass123", is_staff=False
+        )
+        cls.message = ContactMessage.objects.create(
+            name="Cristiana",
+            email="cristiana@example.com",
+            message="Test message to delete",
+        )
+
+    def test_delete_message_requires_login(self):
+        """Test that delete view requires authentication"""
+        response = self.client.post(
+            reverse("delete_message", args=[self.message.id])
+        )
+        # Should redirect to login
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/accounts/login/", response.url)
+
+    def test_delete_message_requires_staff(self):
+        """Test that delete view requires staff permissions"""
+        # Login as regular user
+        self.client.login(username="gustavo", password="testpass123")
+
+        # print(self.message)
+        response = self.client.post(
+            reverse("delete_message", args=[self.message.id])
+        )
+
+        # Should be denied (302 redirect or 403 forbidden)
+        self.assertIn(response.status_code, [302, 403])
+
+        # Message should NOT be deleted
+        self.assertTrue(
+            ContactMessage.objects.filter(id=self.message.id).exists()
+        )
+
+    def test_delete_message_as_staff(self):
+        """Test that staff can delete message"""
+        # Login as staff
+        self.client.login(username="rafael", password="testpass123")
+
+        messages_count = ContactMessage.objects.count()
+        # print(messages_count)
+        response = self.client.post(
+            reverse("delete_message", args=[self.message.id])
+        )
+
+        # Should redirect to contact page
+        self.assertRedirects(response, reverse("contact"))
+
+        # Message should be deleted
+        messages_count = ContactMessage.objects.count()
+        # print(messages_count)
+        self.assertEqual(messages_count, 0)
+        self.assertFalse(
+            ContactMessage.objects.filter(id=self.message.id).exists()
+        )
+
+        # Should show success message
+        messages_list = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages_list), 1)
+        self.assertIn("successfully deleted", str(messages_list[0]))
