@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block page_title %}
+  - Contact
+{% endblock page_title %}
+{% block content %}
+  <div class="container">
+    <div class="card my-2">
+      <div class="card-body">
+        {% if user.is_staff %}
+          {% include "home/includes/message_is_staff.html" %}
+        {% else %}
+          {% include "home/includes/message_is_not_staff.html" %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

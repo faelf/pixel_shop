@@ -45,7 +45,7 @@ def products_list(request):
     }
 
     if request.htmx:
-        return render(request, "products/product_card.html", context)
+        return render(request, "products/includes/product_card.html", context)
 
     return render(request, "products/products_list.html", context)
 

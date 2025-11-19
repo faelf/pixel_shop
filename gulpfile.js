@@ -5,7 +5,10 @@ const rename = require("gulp-rename");
 const { deleteAsync } = require("del");
 
 function clean() {
-  return deleteAsync(["static/css/*"]);
+  return deleteAsync([
+    "static/css/bootstrap-overrides.css",
+    "static/css/bootstrap-overrides.min.css",
+  ]);
 }
 
 function compileSass() {

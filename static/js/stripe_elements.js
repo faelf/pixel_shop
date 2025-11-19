@@ -26,10 +26,12 @@ card.addEventListener("change", function (event) {
   var errorDiv = document.getElementById("card-errors");
   if (event.error) {
     var html = `
-            <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-            </span>
-            <span>${event.error.message}</span>
+            <div class="p-2">
+              <span class="icon" role="alert">
+              <span class="fas fa-times"></span>
+              </span>
+              <span>${result.error.message}</span>
+            </div>
         `;
     $(errorDiv).html(html);
   } else {
@@ -92,11 +94,12 @@ form.addEventListener("submit", function (ev) {
         .then(function (result) {
           if (result.error) {
             var errorDiv = document.getElementById("card-errors");
-            var html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
+            var html = `<div class="p-2">
+                          <span class="icon" role="alert">
+                          <span class="fas fa-times"></span>
+                          </span>
+                          <span>${result.error.message}</span>
+                        </div>`;
             $(errorDiv).html(html);
             $("#payment-form").fadeToggle(100);
             $("#loading-overlay").fadeToggle(100);

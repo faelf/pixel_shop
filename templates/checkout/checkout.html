@@ -4,7 +4,7 @@
   - Checkout
 {% endblock page_title %}
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'checkout/stripe.css' %}">
+  <link rel="stylesheet" href="{% static 'css/stripe.css' %}">
 {% endblock extra_css %}
 {% block content %}
   <div class="container my-2">
@@ -13,7 +13,7 @@
       <div class="col-12 col-lg-8">
         <div class="card">
           <div class="card-body">
-            <p class="h2">Checkout</p>
+            <h2 class="h2">Checkout</h2>
             <form action="{% url "checkout" %}" method="post" id="payment-form">
               {% csrf_token %}
               <!-- Delivery Details -->

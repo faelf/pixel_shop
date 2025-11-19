@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_title %}
+  - Home
+{% endblock page_title %}
+{% block content %}
+  <!-- Hero Section -->
+  <section class="hero d-flex align-items-center text-center">
+    <div class="container text-white">
+      <h2 class="display-3 fw-bold">Welcome to Pixel Shop</h2>
+      <p class="lead mb-4">
+        From consoles to collectibles, discover everything you need to power up your gaming experience, all in one place.
+      </p>
+      <a href="{% url 'products_list' %}"
+         class="btn btn-primary btn-lg fw-bold me-2">
+        <i class="fas fa-store me-2"></i> Shop Now
+      </a>
+      {% if not user.is_authenticated %}
+        <a href="{% url 'account_login' %}"
+           class="btn btn-accent btn-lg fw-bold me-2">
+          <i class="fas fa-sign-in-alt me-2"></i> Login
+        </a>
+      {% endif %}
+    </div>
+  </section>
+  <!-- About -->
+  <section class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 mb-4">
+        <figure>
+          <img src="{% static 'images/about-img.png' %}"
+               alt="About Pixel Shop"
+               class="img-fluid mx-auto d-block rounded-circle"
+               height="300"
+               width="300">
+        </figure>
+      </div>
+      <div class="col-12 col-md-6">
+        <h2 class="display-4 fw-bold mb-3">About Pixel Shop</h2>
+        <p class="lead">
+          At <strong class="fw-bold">Pixel Shop</strong>, we are more than just a gaming store, we are a hub for gamers and creators. Whether you are levelling up your setup or chasing the perfect pixel, we provide top-quality gear designed to keep you ahead of the game.
+        </p>
+        <p>
+          From keyboards that click just right to accessories that spark creativity, our mission is simple: to make your gaming and creative journey smooth, stylish, and unforgettable.
+        </p>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

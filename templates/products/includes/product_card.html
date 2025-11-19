@@ -1,7 +1,7 @@
 {% load static %}
 <div id="product_list">
   {% if page_obj %}
-    {% include "products/pagination.html" %}
+    {% include "products/includes/pagination.html" %}
     {% for product in page_obj %}
       <div class="card mb-2">
         <div class="row g-0">
@@ -125,7 +125,7 @@
         </div>
       </div>
     {% endfor %}
-    {% include "products/pagination.html" %}
+    {% include "products/includes/pagination.html" %}
   {% else %}
     <div class="card mt-2">
       <div class="card-body text-center py-5">
