@@ -545,6 +545,10 @@ pip freeze > requirements.txt
 
 <h2 id="bugs">🐞 Bugs</h2>
 
+- When opening the filters menu in Chrome for MacOS, it is crashing Chrome
+
+![bug_01](readme/bugs/bug-01.png)
+
 [🔝 Back to top](#table-of-contents)
 
 <h2 id="credits">📜 Credits</h2>
