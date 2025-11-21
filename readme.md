@@ -533,6 +533,40 @@ pip freeze > requirements.txt
 
 ![Contact Page for Staff](readme/existing_features/contact-page-staff.png)
 
+**Store Page:**
+
+- Products are displayed in cards, 5 per page.
+
+![Product Card](readme/existing_features/store_product_card.png)
+
+- Staff can see the edit and delete buttons in the card.
+
+![Buttons for Staff](readme/existing_features/product_card_edit.png)
+
+- Staff can see the button to add products at the top right.
+
+![Add Products for Staff](readme/existing_features/product_add_button.png)
+
+- Page to add new product.
+
+![Page to Add a Product](readme/existing_features/product_add_page.png)
+
+- Pagination navigation at the top and bottom of the page for easy access.
+
+![Pagination Nav](readme/existing_features/store_product_pagination.png)
+
+- Filters to locate products quicker.
+
+![Filters](readme/existing_features/store_filters.png)
+
+- Page with products detail, and add to trolley button with quantity.
+
+![Product Page](readme/existing_features/store_product_details.png)
+
+- Staff can see the edit and delete buttons in the product detail page.
+
+![Buttons for Staff in Product Page](readme/existing_features/product_details_edit.png)
+
 [🔝 Back to top](#table-of-contents)
 
 <h2 id="future-features">🔮 Future Features</h2>
