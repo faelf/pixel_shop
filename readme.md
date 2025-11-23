@@ -20,6 +20,8 @@
 - [✨ Existing Features](#existing-features)
 - [🔮 Future Features](#future-features)
 - [🧪 Testing](#testing)
+  - [🤖 Automated Testing](#automated-testing)
+  - [🧍‍♂️ Manual Testing](#manual-testing)
 - [🐞 Bugs](#bugs)
 - [📜 Credits](#credits)
   - [💡 Code](#code)
@@ -203,257 +205,123 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 <h2 id="deployment">🚀 Deployment</h2>
 
-<h4>Create & Clone a Repo via GitHub Desktop</h4>
+<h3>Cloning the Project</h3>
 
-1. Open **GitHub Desktop** and log in.
-2. Click **File → New Repository**.
-3. Enter a **name**, **description** (optional), and choose **local path**.
-4. Click **Create Repository** → the repo is created locally.
-5. Go to **Repository → Publish Repository** to upload it to GitHub.
+1. Open Bash and clone the Project into your PC.
 
-<h4>In VS Code</h4>
-
-1. Open the cloned repository in VS Code.
-2. Create a virtual environment.
-3. Install Django:
-
-```bash
-pip install django
+```Bash
+git clone https://github.com/faelf/pixel_shop.git
 ```
 
-4. Create the Django project, ensuring you include the trailing dot to create it in the current directory:
+2. Remove the existing remote
 
-```bash
-django-admin startproject (Project name) .
+```Bash
+git remote remove origin
 ```
 
-5. Create a Django app:
+3. Add your new GitHub repo as the remote origin
 
-```bash
-python manage.py startapp (App name)
+```Bash
+git remote add origin "your_url"
 ```
 
-6. Add the app to `settings.py`
+4. Push the project to your repo
 
-```Python
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    ...
-    "django.contrib.staticfiles",
-
-    # Page Apps
-    "home",
-]
+```Bash
+git add .
+git commit -m "Initial commit from cloned project"
+git push -u origin main
 ```
 
-7. In the apps template folder, create a folder with the app name, and create a html file to be rendered.
-8. Create a simple view to render a template in the app's `views.py`
+5. Open the folder in VS Code, and open a Terminal.
+6. Create a `.venv`
 
-```Python
-from django.views.generic import TemplateView
-
-class HomeView(TemplateView):
-    template_name = "home/home.html"
+```Bash
+python -m venv .venv
 ```
 
-9. Create a `urls.py` file within the app folder, and connect to `views.py`.
+7. Activate the virtual environment.
 
-```Python
-from django.urls import path
-from .views import HomeView
-
-urlpatterns = [
-    path("", HomeView.as_view(), name="home"),
-]
+```Bash
+.venv\Scripts\activate
 ```
 
-10. In the project's `urls.py`, we need to include the app's `urls.py`.
+8. Install the required dependencies.
 
-```Python
-from django.contrib import admin
-from django.urls import path, include
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('home.urls')),
-]
+```Bash
+pip install -r requirements.txt
 ```
 
-11. Create a database.
-12. Install `psycopg2`, the PostgreSQL adapter:
-
-```bash
-pip install psycopg2
-```
-
-13. Install `dj-database-url` for parsing database URLs.
-
-```bash
-pip install dj-database_url
-```
-
-14. In `settings.py` add the `dj-database_url` to the top.
-
-```Python
-import dj_database_url
-```
-
-15. Create a `env.py` in the root dir. And add it to `.gitignore`.
-16. In the `env.py` create the keys that are not meant to be committed.
+9. Create a `env.py`, and set up your Postgres, AWS S3, Stripe, and Email
 
 ```Python
 import os
 
-# Django Settings
-
-# Secret key
-os.environ["SECRET_KEY"] = (
-    "Get the secret key from settings.py"
-)
+# Secret key for development
+os.environ["SECRET_KEY"] = ("your_secret_key")
 
 # Debug mode
 os.environ["DJANGO_DEBUG"] = "True"
 
-
 # Allowed hosts
-os.environ["DJANGO_ALLOWED_HOSTS"] = "127.0.0.1,localhost,.herokuapp.com"
+os.environ["DJANGO_ALLOWED_HOSTS"] = "127.0.0.1,localhost"
 
-# Database
+# # Database
+USE_POSTGRES = True
 
-# SQLite (Django default)
-# os.environ["DATABASE_URL"] = "sqlite:///db.sqlite3"
-
-# Postgres (Created)
-os.environ["DATABASE_URL"] = (
-    "This will be the database URL"
-)
-```
-
-17. In `settings.py` add this to the top.
-
-```Python
-import os
-
-if os.path.isfile("env.py"):
-    import env  # noqa
-```
-
-18. Still in `settings.py`, set the variables values for the `env.py`.
-
-```Python
-SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-```
-
-19. Connect the Postgres database in `settings.py`
-
-```Python
-# Use dj-database-url to parse the database URL from environment variable
-DATABASE_URL = os.environ.get("DATABASE_URL")
-
-if DATABASE_URL and DATABASE_URL.startswith("postgres"):
-    # Use Postgres
-    import dj_database_url
-    DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL)
-    }
+if USE_POSTGRES:
+    os.environ["DATABASE_URL"] = ("your_url")
 else:
-    # Use SQLite (Django Default)
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+    os.environ["DATABASE_URL"] = "sqlite:///db.sqlite3"
+
+# AWS S3
+os.environ["USE_AWS"] = "True"
+os.environ["AWS_ACCESS_KEY_ID"] = ""
+os.environ["AWS_SECRET_ACCESS_KEY"] = ("")
+os.environ["AWS_STORAGE_BUCKET_NAME"] = ""
+os.environ["AWS_S3_REGION_NAME"] = "eu-west-2"
+os.environ["AWS_STORAGE_FILE_OVERWRITE"] = "False"
+os.environ["AWS_S3_CUSTOM_DOMAIN"] = (
+    f"{os.environ['AWS_STORAGE_BUCKET_NAME']}.s3.amazonaws.com"
+)
+
+# Stripe
+os.environ["STRIPE_PUBLIC_KEY"] = ("")
+
+os.environ["STRIPE_SECRET_KEY"] = ("")
+
+os.environ["STRIPE_WH_SECRET"] = ("")
+
+# Email
+os.environ["EMAIL_HOST_USER"] = ""
+os.environ["EMAIL_HOST_PASSWORD"] = ""
 ```
 
-20. Run your first database migration:
+10. Apply Database Migrations
 
-```bash
+```Bash
 python manage.py migrate
 ```
 
-21. Create a superuser:
+11. Create a Superuser (Admin Account)
 
-```bash
+```Bash
 python manage.py createsuperuser
 ```
 
-22. Install Gunicorn to handle web requests.
+12. Run the Development Server
 
-```bash
-pip install gunicorn
+```Bash
+python manage.py runserver
 ```
 
-23. Create a `Procfile` in the root of your project with the following command:
-
-```bash
-web: gunicorn (Project name).wsgi
-```
-
-24. In your `settings.py` ensure `WSGI_APPLICATION` is set correctly:
-
-```python
-WSGI_APPLICATION = '(Project name).wsgi.application'
-```
-
-25. Specify the Python version for your development environment using a `.python-version` file.
-26. Install `whitenoise` for serving static files in production:
-
-```bash
-pip install whitenoise
-```
-
-27. Edit your `settings.py` file and add `WhiteNoise` to the `MIDDLEWARE` list, placing it just below `SecurityMiddleware`:
-
-```python
-MIDDLEWARE = [
-# ...
-"django.middleware.security.SecurityMiddleware",
-"whitenoise.middleware.WhiteNoiseMiddleware",
-# ...
-]
-```
-
-28. Add the following to the bottom of your `settings.py` file to configure static file collection:
-
-```python
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-STATIC_URL = "static/"
-
-# Additional locations to look for static files (optional)
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-# This is where Django will collect all static files for production
-STATIC_ROOT = BASE_DIR / "staticfiles"
-```
-
-29. Run `collectstatic` to gather all static files into the `staticfiles` directory:
-
-```bash
-python manage.py collectstatic
-```
-
-30. Add the `staticfiles` folder to the `.gitignore`.
-31. Create a `requirements.txt` file with all installed dependencies:
-
-```bash
-pip freeze > requirements.txt
-```
-
-32. Commit all changes and push your code to your GitHub repository.
-
-### Heroku Deployment
+<h3>Heroku Deployment</h3>
 
 1. Log in to the Heroku dashboard.
 2. Click **New** and select **Create new app**.
 3. Enter a unique app name.
 4. Choose the deployment region.
-5. In the **Settings** tab, navigate to **Config Vars** and add all necessary environment variables, including:
-   - `DATABASE_URL`
-   - `SECRET_KEY`
+5. In the **Settings** tab, navigate to **Config Vars** and add all necessary environment variables.
 6. Under the **Deployment method** section, connect the app to your GitHub repository.
 7. Press **Deploy Branch**.
 8. After deployment is complete, test the deployed page.
@@ -571,9 +439,143 @@ pip freeze > requirements.txt
 
 <h2 id="future-features">🔮 Future Features</h2>
 
+- Front end user management for staff.
+- Front end order management for staff.
+- Stock control, if a product is out of stock, it should not appear on the list, and staff can add stock to any product.
+
 [🔝 Back to top](#table-of-contents)
 
 <h2 id="testing">🧪 Testing</h2>
+
+<h3 id="automated-testing">🤖 Automated Testing</h3>
+
+- Automated Testing was done in the home app.
+
+```Bash
+test_fields_are_required (home.tests.test_forms.ContactMessageFormTest.test_fields_are_required)
+Test if fields are required ... ok
+test_fields_have_correct_input_type (home.tests.test_forms.ContactMessageFormTest.test_fields_have_correct_input_type)
+Test if fields have correct input type ... ok
+test_form_has_correct_classes (home.tests.test_forms.ContactMessageFormTest.test_form_has_correct_classes)
+Test that fields have correct classes ... ok
+test_form_has_correct_fields (home.tests.test_forms.ContactMessageFormTest.test_form_has_correct_fields)
+Test that form has the correct fields ... ok
+test_form_has_placeholders (home.tests.test_forms.ContactMessageFormTest.test_form_has_placeholders)
+Test that fields have placeholders ... ok
+test_form_invalid_data (home.tests.test_forms.ContactMessageFormTest.test_form_invalid_data)
+Test form with valid data ... ok
+test_form_saves_correctly (home.tests.test_forms.ContactMessageFormTest.test_form_saves_correctly)
+Test that form saves data to database correctly ... ok
+test_form_uses_correct_model (home.tests.test_forms.ContactMessageFormTest.test_form_uses_correct_model)
+Test that form uses ContactMessage model ... ok
+test_form_valid_data (home.tests.test_forms.ContactMessageFormTest.test_form_valid_data)
+Test form with valid data ... ok
+test_form_has_form_control_class (home.tests.test_forms.CustomLoginFormTest.test_form_has_form_control_class)
+Test that login field has form-control CSS class ... ok
+test_form_inherits_from_login_form (home.tests.test_forms.CustomLoginFormTest.test_form_inherits_from_login_form)
+Test that CustomLoginForm inherits from allauth LoginForm ... ok
+test_login_form_has_correct_fields (home.tests.test_forms.CustomLoginFormTest.test_login_form_has_correct_fields)
+Test that form has login and password fields ... ok
+test_login_form_has_placeholder (home.tests.test_forms.CustomLoginFormTest.test_login_form_has_placeholder)
+Test that login field has placeholder text ... ok
+test_clean_matching_emails (home.tests.test_forms.CustomSignupFormTest.test_clean_matching_emails)
+Test that matching emails pass validation ... ok
+test_clean_non_matching_emails (home.tests.test_forms.CustomSignupFormTest.test_clean_non_matching_emails)
+Test that non-matching emails raise validation error ... ok
+test_fields_are_required (home.tests.test_forms.CustomSignupFormTest.test_fields_are_required)
+Test if fields are required ... ok
+test_fields_have_correct_classes (home.tests.test_forms.CustomSignupFormTest.test_fields_have_correct_classes)
+Test if fields have correct classes ... ok
+test_fields_have_correct_input_type (home.tests.test_forms.CustomSignupFormTest.test_fields_have_correct_input_type)
+Test fields input type ... ok
+test_fields_have_correct_labels (home.tests.test_forms.CustomSignupFormTest.test_fields_have_correct_labels) ... ok
+test_form_has_correct_fields (home.tests.test_forms.CustomSignupFormTest.test_form_has_correct_fields)
+Test that form has the correct fields ... ok
+test_form_inherits_from_signup_form (home.tests.test_forms.CustomSignupFormTest.test_form_inherits_from_signup_form)
+Test that CustomSignupForm inherits from allauth SignupForm ... ok
+test_save_user_can_login (home.tests.test_forms.CustomSignupFormTest.test_save_user_can_login)
+Test that saved user can authenticate ... ok
+test_contact_message_created_at (home.tests.test_models.ContactMessageModelTest.test_contact_message_created_at)
+Test the created_at field ... ok
+test_contact_message_email (home.tests.test_models.ContactMessageModelTest.test_contact_message_email)
+Test the email field ... ok
+test_contact_message_message (home.tests.test_models.ContactMessageModelTest.test_contact_message_message)
+Test the message field ... ok
+test_contact_message_name (home.tests.test_models.ContactMessageModelTest.test_contact_message_name)
+Test the name field ... ok
+test_contact_message_ordering (home.tests.test_models.ContactMessageModelTest.test_contact_message_ordering)
+Test that messages are ordered by created_at descending ... ok
+test_contact_message_str_method (home.tests.test_models.ContactMessageModelTest.test_contact_message_str_method)
+Test string representation of the model ... ok
+test_contact_message_verbose_name (home.tests.test_models.ContactMessageModelTest.test_contact_message_verbose_name)
+Test verbose name is set correctly ... ok
+test_contact_message_verbose_name_plural (home.tests.test_models.ContactMessageModelTest.test_contact_message_verbose_name_plural)
+Test verbose name plural is set correctly ... ok
+test_contact_form_invalid_submission (home.tests.test_views.ContactPageViewTest.test_contact_form_invalid_submission)
+Test submitting an invalid contact form ... ok
+test_contact_form_valid_submission (home.tests.test_views.ContactPageViewTest.test_contact_form_valid_submission)
+Test submitting a valid contact form ... ok
+test_contact_page_contains_form (home.tests.test_views.ContactPageViewTest.test_contact_page_contains_form)
+Test that contact page contains the form ... ok
+test_contact_page_context_contains_user_messages (home.tests.test_views.ContactPageViewTest.test_contact_page_context_contains_user_messages)
+Test that context includes user_messages ... ok
+test_contact_page_displays_messages_oldest_first (home.tests.test_views.ContactPageViewTest.test_contact_page_displays_messages_oldest_first)
+Test that messages are ordered by created_at ascending ... ok
+test_contact_page_status_code (home.tests.test_views.ContactPageViewTest.test_contact_page_status_code)
+Test that contact page returns 200 status code ... ok
+test_contact_page_uses_correct_template (home.tests.test_views.ContactPageViewTest.test_contact_page_uses_correct_template)
+Test that contact view uses the correct template ... ok
+test_delete_message_as_staff (home.tests.test_views.DeleteMessageViewTest.test_delete_message_as_staff)
+Test that staff can delete message ... ok
+test_delete_message_requires_login (home.tests.test_views.DeleteMessageViewTest.test_delete_message_requires_login)
+Test that delete view requires authentication ... ok
+test_delete_message_requires_staff (home.tests.test_views.DeleteMessageViewTest.test_delete_message_requires_staff)
+Test that delete view requires staff permissions ... ok
+test_home_view_accessible_by_url (home.tests.test_views.HomeViewTest.test_home_view_accessible_by_url)
+Test that home page is accessible by its URL ... ok
+test_home_view_status_code (home.tests.test_views.HomeViewTest.test_home_view_status_code)
+Test that home page returns 200 status code ... ok
+test_home_view_uses_base_template (home.tests.test_views.HomeViewTest.test_home_view_uses_base_template)
+Test that home template extends base.html ... ok
+test_home_view_uses_correct_template (home.tests.test_views.HomeViewTest.test_home_view_uses_correct_template)
+Test that home view uses the correct template ... ok
+```
+
+<h3 id="manual-testing">🧍‍♂️ Manual Testing</h3>
+
+| Feature                   | Action                                                                       | Expected Result                                                                                                                                           | Tested | Passed | Comments                                                                                  |
+| ------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------ | ----------------------------------------------------------------------------------------- |
+| Navigation Bar            | Open the webpage on various screen sizes (desktop, tablet, mobile).          | The navigation bar should be fully responsive and collapse into a burger menu on smaller screens.                                                         | Yes    | Yes    |                                                                                           |
+| Navigation Bar            | Log in and observe the navigation bar links.                                 | The Account link should replace the Register and Login links after successful login.                                                                      | Yes    | Yes    |                                                                                           |
+| Navigation Bar            | Click each navigation link.                                                  | Each link should load its corresponding page without errors.                                                                                              | Yes    | Yes    |                                                                                           |
+| Navigation Bar            | Use the search bar to look for specific products.                            | User should be redirected to the Store page, displaying relevant search results.                                                                          | Yes    | Yes    |                                                                                           |
+| Contact Page              | Fill in the contact form with name, email, and message, then click Send.     | The form should validate inputs, send the message successfully, and display a confirmation message.                                                       | Yes    | Yes    |                                                                                           |
+| Contact Page (Staff View) | Log in as a staff member and open the contact page.                          | A list of all submitted messages should be displayed, showing sender name, email, message, and submission date. Each message should have a delete button. | Yes    | Yes    |                                                                                           |
+| Register Page             | Register a new user with valid details.                                      | A confirmation email should be sent to the user, and after verification, login should be possible.                                                        | Yes    | Yes    |                                                                                           |
+| Logout Page               | Click the Signout button.                                                    | The user should be logged out and redirected to the home page, with a confirmation message displayed.                                                     | Yes    | Yes    |                                                                                           |
+| Login Page                | Log in using valid credentials.                                              | User should be successfully authenticated and redirected to the appropriate page.                                                                         | Yes    | Yes    |                                                                                           |
+| Trolley                   | Open the trolley page with no items added.                                   | It should show a message saying there is no items in the trolley, and a button to the store.                                                              | Yes    | Yes    |                                                                                           |
+| Trolley                   | Open the trolley page with items added.                                      | The page should allow updating quantities, removing items, viewing the order summary, and proceeding to checkout.                                         | Yes    | Yes    |                                                                                           |
+| Store Page                | Visit the Store page                                                         | Product cards load, 5 per page.                                                                                                                           | Yes    | Yes    |                                                                                           |
+| Store Page                | Click next/previous page                                                     | Page changes and shows correct set of products.                                                                                                           | Yes    | Yes    |                                                                                           |
+| Store Page                | Apply category filters                                                       | Product list updates to match filters.                                                                                                                    | Yes    | Yes    |                                                                                           |
+| Store Page                | Clear filters                                                                | Full product list reappears.                                                                                                                              | Yes    | Yes    |                                                                                           |
+| Store Page                | Log in as staff                                                              | Edit/Delete buttons appear on each card.                                                                                                                  | Yes    | Yes    |                                                                                           |
+| Store Page                | Staff clicks Edit                                                            | Redirects to Edit Product page.                                                                                                                           | Yes    | Yes    |                                                                                           |
+| Store Page                | Staff clicks Delete                                                          | Confirmation prompt appears, product deletes.                                                                                                             | Yes    | Yes    |                                                                                           |
+| Store Page                | Staff clicks Add Product                                                     | Redirects to Add Product page.                                                                                                                            | Yes    | Yes    |                                                                                           |
+| Add Product Page          | Submit valid product data                                                    | Product is created and appears in store.                                                                                                                  | Yes    | Yes    |                                                                                           |
+| Add Product Page          | Update existing product                                                      | Changes save and appear in store.                                                                                                                         | Yes    | Yes    |                                                                                           |
+| Product Detail Page       | Open a product                                                               | Product details display correctly.                                                                                                                        | Yes    | Yes    |                                                                                           |
+| Product Detail Page       | Choose quantity and click Add to Trolley                                     | Product is added to trolley with correct quantity.                                                                                                        | Yes    | No     | If the user has the product in the trolley, it won't add, it will replace, it should add. |
+| Product Detail Page       | Log in as staff                                                              | Edit/Delete buttons appear on product detail page.                                                                                                        | Yes    | Yes    |                                                                                           |
+| Product Detail Page       | Staff clicks Delete                                                          | Confirmation prompt; product deletes.                                                                                                                     | Yes    | Yes    |                                                                                           |
+| Checkout Page             | Submit the form with empty fields.                                           | It should show a message to fill the field.                                                                                                               | Yes    | Yes    |                                                                                           |
+| Checkout Page             | Submit a valid form.                                                         | It should redirect to the confirmation page, and send an email to the user.                                                                               | Yes    | Yes    |                                                                                           |
+| Checkout Page             | Set address in the Profile Page, and check if it shows on the checkout page. | It should get the information saved by the user, and display in the checkout page.                                                                        | Yes    | Yes    |                                                                                           |
+| Checkout Page             | Check the save this information.                                             | It should update the default address in the profile page.                                                                                                 | Yes    | Yes    |                                                                                           |
+| Confirmation Page         | Click on order details button.                                               | It should redirect to the order details page.                                                                                                             | Yes    | Yes    |                                                                                           |
+| Account Page              | Visit the Account Page                                                       | It should show a form to update delivery address, and order history.                                                                                      | Yes    | Yes    |                                                                                           |
 
 [🔝 Back to top](#table-of-contents)
 
