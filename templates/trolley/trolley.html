@@ -1,143 +1,147 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_javascript %}
-  <script src="{% static 'js/qty-btn.js' %}"></script>
+<script src="{% static 'js/qty-btn.js' %}"></script>
 {% endblock extra_javascript %}
 {% block page_title %}
-  - Your Trolley
+- Your Trolley
 {% endblock page_title %}
 {% block content %}
-  <div class="container my-2">
-    {% if trolley_items %}
-      <div class="row g-2">
-        <div class="col-12 col-md-8 col-lg-9">
-          <div class="card">
-            <div class="card-body">
-              <h2 class="h2">Your Trolley</h2>
-              {% for item in trolley_items %}
-                <div class="row align-items-start py-3">
-                  <div class="col-3 col-md-3 col-lg-2 text-center mb-2">
-                    <!-- Product Image -->
-                    <img src="{{ item.product.image.url }}"
-                         class="img-fluid rounded shadow-sm"
-                         alt="{{ item.product.name }}">
-                  </div>
-                  <div class="col-9 col-md-9 col-lg-10">
-                    <!-- Product Details -->
-                    <h5 class="mb-2 fw-bold">{{ item.product.name }}</h5>
-                    <div class="row align-items-end">
-                      <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                        <!-- Quantity Form -->
-                        <p class="mb-1 small fw-bold">Quantity:</p>
-                        <form action="{% url 'update_trolley' item.item_id %}"
-                              method="post"
-                              class="js-update-form">
-                          {% csrf_token %}
-                          <div class="input-group input-group-sm">
-                            <button class="qty_minus btn btn-primary"
-                                    type="button"
-                                    data-item-id="{{ item.item_id }}">
-                              <i class="fas fa-angle-left"></i>
-                            </button>
-                            <input class="form-control text-center"
-                                   type="number"
-                                   name="quantity"
-                                   value="{{ item.quantity }}"
-                                   min="1"
-                                   max="99"
-                                   data-item-id="{{ item.item_id }}"
-                                   id="id_qty_{{ item.item_id }}">
-                            <button class="qty_plus btn btn-primary"
-                                    type="button"
-                                    data-item-id="{{ item.item_id }}">
-                              <i class="fas fa-angle-right"></i>
-                            </button>
-                          </div>
-                          <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        </form>
-                      </div>
-                      <div class="col-6 col-sm-6 col-md-6  col-lg-3 text-sm-end mt-2 mt-md-0">
-                        <!-- Price -->
-                        <p class="mb-1 small fw-bold">Price:</p>
-                        <p class="mb-0">£{{ item.product.price }}</p>
-                      </div>
-                      <div class="col-6 col-sm-12 col-md-12  col-lg-2 text-end mt-2 mt-md-0">
-                        <!-- Item Total -->
-                        <p class="mb-1 small fw-bold">Item Total:</p>
-                        <p class="mb-0">£{{ item.product_total }}</p>
-                      </div>
-                      <div class="col-12 col-lg-3 text-end mt-2">
-                        <!-- Remove Button -->
-                        <form action="{% url 'remove_from_trolley' item.item_id %}"
-                              method="post"
-                              class="d-inline">
-                          {% csrf_token %}
-                          <button type="submit"
-                                  class="btn btn-danger btn-sm"
-                                  onclick="return confirm('Are you sure you want to remove this item?');">
-                            <i class="fas fa-trash-alt me-1"></i> Remove
-                          </button>
-                        </form>
-                      </div>
+<div class="container my-2">
+  {% if trolley_items %}
+  <div class="row g-2">
+    <div class="col-12 col-md-8 col-lg-9">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="h2">Your Trolley</h2>
+          {% for item in trolley_items %}
+          <div class="row align-items-start py-3">
+            <div class="col-3 col-md-3 col-lg-2 text-center mb-2">
+              <!-- Product Image -->
+              {% if item.product.image %}
+              <img src="{{ item.product.image.url }}"
+                   class="img-fluid rounded shadow-sm"
+                   alt="{{ item.product.name }}">
+              {% else %}
+              <p class="text-muted small mb-0">No image</p>
+              {% endif %}
+            </div>
+            <div class="col-9 col-md-9 col-lg-10">
+              <!-- Product Details -->
+              <h5 class="mb-2 fw-bold">{{ item.product.name }}</h5>
+              <div class="row align-items-end">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                  <!-- Quantity Form -->
+                  <p class="mb-1 small fw-bold">Quantity:</p>
+                  <form action="{% url 'update_trolley' item.item_id %}"
+                        method="post"
+                        class="js-update-form">
+                    {% csrf_token %}
+                    <div class="input-group input-group-sm">
+                      <button class="qty_minus btn btn-primary"
+                              type="button"
+                              data-item-id="{{ item.item_id }}">
+                        <i class="fas fa-angle-left"></i>
+                      </button>
+                      <input class="form-control text-center"
+                             type="number"
+                             name="quantity"
+                             value="{{ item.quantity }}"
+                             min="1"
+                             max="99"
+                             data-item-id="{{ item.item_id }}"
+                             id="id_qty_{{ item.item_id }}">
+                      <button class="qty_plus btn btn-primary"
+                              type="button"
+                              data-item-id="{{ item.item_id }}">
+                        <i class="fas fa-angle-right"></i>
+                      </button>
                     </div>
-                  </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                  </form>
                 </div>
-              {% endfor %}
+                <div class="col-6 col-sm-6 col-md-6  col-lg-3 text-sm-end mt-2 mt-md-0">
+                  <!-- Price -->
+                  <p class="mb-1 small fw-bold">Price:</p>
+                  <p class="mb-0">£{{ item.product.price }}</p>
+                </div>
+                <div class="col-6 col-sm-12 col-md-12  col-lg-2 text-end mt-2 mt-md-0">
+                  <!-- Item Total -->
+                  <p class="mb-1 small fw-bold">Item Total:</p>
+                  <p class="mb-0">£{{ item.product_total }}</p>
+                </div>
+                <div class="col-12 col-lg-3 text-end mt-2">
+                  <!-- Remove Button -->
+                  <form action="{% url 'remove_from_trolley' item.item_id %}"
+                        method="post"
+                        class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Are you sure you want to remove this item?');">
+                      <i class="fas fa-trash-alt me-1"></i> Remove
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        <div class="col-12 col-md-4 col-lg-3">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <p class="h2">Summary</p>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Total items:</h6>
-              </div>
-              <span class="text-body-secondary">
-                {% if product_count %}
-                  {{ product_count }}
-                {% else %}
-                  0
-                {% endif %}
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Delivery:</h6>
-              </div>
-              <span class="text-body-secondary">£{{ delivery|floatformat:2 }}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-              <div>
-                <h6 class="my-0">Total:</h6>
-              </div>
-              <span class="text-body-secondary">
-                {% if grand_total %}
-                  £{{ grand_total|floatformat:2 }}
-                {% else %}
-                  £0.00
-                {% endif %}
-              </span>
-            </li>
-          </ul>
-          <div class="mt-2">
-            <a class="btn btn-primary fw-bold w-100" href="{% url 'checkout' %}"><i class="fas fa-lock me-2"></i>Checkout</a>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 col-lg-3">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <p class="h2">Summary</p>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Total items:</h6>
           </div>
-        </div>
+          <span class="text-body-secondary">
+            {% if product_count %}
+            {{ product_count }}
+            {% else %}
+            0
+            {% endif %}
+          </span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Delivery:</h6>
+          </div>
+          <span class="text-body-secondary">£{{ delivery|floatformat:2 }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+          <div>
+            <h6 class="my-0">Total:</h6>
+          </div>
+          <span class="text-body-secondary">
+            {% if grand_total %}
+            £{{ grand_total|floatformat:2 }}
+            {% else %}
+            £0.00
+            {% endif %}
+          </span>
+        </li>
+      </ul>
+      <div class="mt-2">
+        <a class="btn btn-primary fw-bold w-100" href="{% url 'checkout' %}"><i class="fas fa-lock me-2"></i>Checkout</a>
       </div>
-    {% else %}
-      <div class="card">
-        <div class="card-body text-center py-5">
-          <span class="fas fa-shopping-cart fa-4x text-muted mb-3"></span>
-          <h2 class="mb-2">Your trolley is currently empty</h2>
-          <p class="text-muted">Add some products to get started!</p>
-          <a href="{% url 'products_list' %}" class="btn btn-primary mt-3">
-            <span class="fas fa-shopping-bag me-2"></span>Start Shopping
-          </a>
-        </div>
-      </div>
-    {% endif %}
+    </div>
   </div>
+  {% else %}
+  <div class="card">
+    <div class="card-body text-center py-5">
+      <span class="fas fa-shopping-cart fa-4x text-muted mb-3"></span>
+      <h2 class="mb-2">Your trolley is currently empty</h2>
+      <p class="text-muted">Add some products to get started!</p>
+      <a href="{% url 'products_list' %}" class="btn btn-primary mt-3">
+        <span class="fas fa-shopping-bag me-2"></span>Start Shopping
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
 {% endblock content %}

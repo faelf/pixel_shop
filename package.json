@@ -1,0 +1,42 @@
+{
+  "name": "pixelshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faelf/pixel_shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/faelf/pixel_shop/issues"
+  },
+  "homepage": "https://github.com/faelf/pixel_shop#readme",
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "cssnano": "^8.0.5",
+    "del": "^8.0.1",
+    "gulp": "^5.0.1",
+    "gulp-postcss": "^10.0.0",
+    "gulp-rename": "^2.1.0",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.102.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}

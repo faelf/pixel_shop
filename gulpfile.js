@@ -1,34 +1,41 @@
-const { src, dest, watch, series } = require("gulp");
-const sass = require("gulp-sass")(require("sass"));
-const cleanCSS = require("gulp-clean-css");
-const rename = require("gulp-rename");
-const { deleteAsync } = require("del");
+import gulp from "gulp";
+import gulpSass from "gulp-sass";
+import * as dartSass from "sass";
+import postcss from "gulp-postcss";
+import autoprefixer from "autoprefixer";
+import cssnano from "cssnano";
+import rename from "gulp-rename";
+import { deleteAsync } from "del";
 
-function clean() {
+const { src, dest, watch, series } = gulp;
+const sass = gulpSass(dartSass);
+
+export function clean() {
   return deleteAsync([
     "static/css/bootstrap-overrides.css",
     "static/css/bootstrap-overrides.min.css",
   ]);
 }
 
-function compileSass() {
+export function compileSass() {
   return src("static/scss/bootstrap-overrides.scss")
     .pipe(
       sass({
         includePaths: ["node_modules"],
         quietDeps: true,
         silenceDeprecations: ["import", "color-functions"],
-      }).on("error", sass.logError)
+      }).on("error", sass.logError),
     )
+    .pipe(postcss([autoprefixer()]))
     .pipe(dest("static/css"))
-    .pipe(cleanCSS())
+    .pipe(postcss([cssnano({ preset: ["default", { svgo: false }] })]))
     .pipe(rename({ suffix: ".min" }))
     .pipe(dest("static/css"));
 }
 
-function watchSass() {
+export function watchSass() {
   watch(["static/scss/**/*.scss"], compileSass);
 }
 
-exports.build = series(clean, compileSass);
-exports.default = series(clean, compileSass, watchSass);
+export const build = series(clean, compileSass);
+export default series(clean, compileSass, watchSass);
