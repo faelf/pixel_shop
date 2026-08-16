@@ -1,21 +1,18 @@
 services:
-  pixelshop:
+  django:
     build: .
     container_name: pixelshop
-    hostname: penguinlab
-    working_dir: /app
+    hostname: home
 
     ports:
       - "8006:8000"
-
-    volumes:
-      - .:/app
 
     environment:
       SECRET_KEY: ${SECRET_KEY}
       DJANGO_DEBUG: ${DJANGO_DEBUG}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
       DATABASE_URL: ${DATABASE_URL}
+
       USE_AWS: ${USE_AWS}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -23,9 +20,11 @@ services:
       AWS_S3_REGION_NAME: ${AWS_S3_REGION_NAME}
       AWS_STORAGE_FILE_OVERWRITE: ${AWS_STORAGE_FILE_OVERWRITE}
       AWS_S3_CUSTOM_DOMAIN: ${AWS_S3_CUSTOM_DOMAIN}
+
       EMAIL_HOST_USER: ${EMAIL_HOST_USER}
       EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
       DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
+
       STRIPE_PUBLIC_KEY: ${STRIPE_PUBLIC_KEY}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
       STRIPE_WH_SECRET: ${STRIPE_WH_SECRET}
@@ -33,7 +32,7 @@ services:
     command: >
       sh -c "python manage.py migrate &&
              python manage.py collectstatic --noinput &&
-             python manage.py runserver 0.0.0.0:8000"
+             gunicorn --bind 0.0.0.0:8000 pixelshop.wsgi:application"
 
     restart: unless-stopped
 

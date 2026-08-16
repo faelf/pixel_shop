@@ -1,0 +1,43 @@
+# Git
+.git/
+.github/
+.gitignore
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Database
+*.sqlite3
+
+# Generated files
+staticfiles/
+
+# macOS
+.DS_Store
+._*
+
+# Local development
+.python-version
+.nvmrc
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile
+
+# Documentation
+readme/
+readme.md
+
+# Heroku / deployment
+Procfile

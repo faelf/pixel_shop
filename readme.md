@@ -1,47 +1,14 @@
-<h1 id="title">Pixel Shop</h1>
-
-<h2 id="table-of-contents">📚 Table of Contents</h2>
-
-- [🌍 Overview](#overview)
-- [🧭 User Experience (UX)](#user-experience)
-  - [🎯 Strategy (Site Goals)](#strategy-site-goals)
-  - [🧾 Scope (User Stories)](#scope-user-stories)
-  - [🧠 Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
-  - [🏗️ Structure (Design Choices)](#structure-design-choices)
-  - [🩻 Skeleton (Wireframes)](#skeleton-wireframes)
-  - [🎨 Surface (Visual Design)](#surface-visual-design)
-- [⚙️ Technologies Used](#technologies-used)
-  - [💬 Languages](#languages)
-  - [🧩 Libraries & Frameworks](#libraries-and-frameworks)
-  - [🛠️ Development Tools](#development-tools)
-  - [📐 Design & Resources](#design-and-resources)
-  - [☁️ Infrastructure & Services](#infrastructure-and-services)
-- [🚀 Deployment](#deployment)
-- [✨ Existing Features](#existing-features)
-- [🔮 Future Features](#future-features)
-- [🧪 Testing](#testing)
-  - [🤖 Automated Testing](#automated-testing)
-  - [🧍‍♂️ Manual Testing](#manual-testing)
-- [🐞 Bugs](#bugs)
-- [📜 Credits](#credits)
-  - [💡 Code](#code)
-  - [🖼️ Images](#images)
-
----
-
-<h2 id="overview">🌍 Overview</h2>
+# 🌍 Overview
 
 PixelShop is a fictitious gaming store created for my Code Institute Milestone 4 project. Built to demonstrate the key skills I have learnt including user login and registration, adding, editing and deleting products from the frontend, Stripe payments, and storing images with AWS.
 
 The store isn't real, it is purely educational to show what I have managed to build while learning new technologies.
 
-You can vist the live page [here](https://pixelshop-fdf6b277567f.herokuapp.com/)
+You can vist the live page [here](https://pixelshop.faelf.uk/)
 
-[🔝 Back to top](#table-of-contents)
+# 🧭 User Experience (UX)
 
-<h2 id="user-experience">🧭 User Experience (UX)</h2>
-
-<h3 id="strategy-site-goals">🎯 Strategy (Site Goals)</h3>
+## 🎯 Strategy (Site Goals)
 
 **Primary Goal:** Build an e-commerce Django application that demonstrates full-stack development skills, focusing on user authentication, payment processing, and cloud-based media storage.
 
@@ -56,9 +23,7 @@ You can vist the live page [here](https://pixelshop-fdf6b277567f.herokuapp.com/)
 - Store product images securely using AWS S3.
 - Responsive design across desktop, tablet, and mobile devices.
 
-[🔝 Back to top](#table-of-contents)
-
-<h3 id="scope-user-stories">🧾 Scope (User Stories)</h3>
+## 🧾 Scope (User Stories)
 
 The MoSCoW prioritisation method was used to organise the user stories. You can view the GitHub Project [here](https://github.com/users/faelf/projects/5).
 
@@ -82,9 +47,7 @@ The MoSCoW prioritisation method was used to organise the user stories. You can 
 | View Orders            | As an admin, I want to View orders so that I can manage and process customer purchases.                                                 |
 | Manage Users           | As an admin, I want to Manage users so that I can deactivate or reactivate user accounts if needed.                                     |
 
-[🔝 Back to top](#table-of-contents)
-
-<h3 id="entity-relationship-diagram-erd">🧠 Entity Relationship Diagram (ERD)</h3>
+## 🧠 Entity Relationship Diagram (ERD)
 
 - `User Profile` extends the built-in Django User model to store default delivery information.
 - `Category` and `Product` have a one-to-many relationship.
@@ -93,9 +56,7 @@ The MoSCoW prioritisation method was used to organise the user stories. You can 
 
 ![ERD](readme/erd.png)
 
-[🔝 Back to top](#table-of-contents)
-
-<h3 id="structure-design-choices">🏗️ Structure (Design Choices)</h3>
+## 🏗️ Structure (Design Choices)
 
 - **Navigation bar:** Responsive across different screen sizes, with links to Home, Products, Cart, and Account pages.
 - **Home page:** Highlights featured products and includes a short introduction about the shop.
@@ -107,27 +68,23 @@ The MoSCoW prioritisation method was used to organise the user stories. You can 
 - **Contact Form:** For users to submit inquiries.
 - **Footer:** Visible on all pages with information about contact details and store location.
 
-[🔝 Back to top](#table-of-contents)
-
-<h3 id="skeleton-wireframes">🩻 Skeleton (Wireframes)</h3>
+## 🩻 Skeleton (Wireframes)
 
 The wireframes provide a rough visual outline of how I imagine the webpage to look. They are not final designs, but rather a guide to illustrate the planned layout, structure, and key features of each page. The goal is to give a clear idea of content placement and user flow before moving into the detailed design and development stages.
 
-<h4>Desktop</h4>
+### Desktop
 
 ![desktop](readme/wireframes/desktop.png)
 
-<h4>Tablet</h4>
+### Tablet
 
 ![tablet](readme/wireframes/tablet.png)
 
-<h4>Mobile</h4>
+### Mobile
 
 ![mobile](readme/wireframes/mobile.png)
 
-[Back to the top](#table-of-contents)
-
-<h3 id="surface-visual-design">🎨 Surface (Visual Design)</h3>
+## 🎨 Surface (Visual Design)
 
 - **Colour palette:** A modern, gaming-inspired palette with a dark navbar,
   light background for readability.
@@ -135,7 +92,6 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 ![Colour Palette](readme/pixel_shop_colour_palette.png)
 
 - **Typography:** Google Fonts are used to create hierarchy and readability:
-
   - **Audiowide** for main headings.
   - **Bebas Neue** for subheadings and section titles.
   - **Roboto** for body text and product descriptions.
@@ -148,11 +104,9 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 
 - **Responsiveness:** All pages adapt seamlessly to different screen sizes, ensuring a consistent experience on desktop, tablet, and mobile.
 
-[🔝 Back to top](#table-of-contents)
+# ⚙️ Technologies Used
 
-<h2 id="technologies-used">⚙️ Technologies Used</h2>
-
-<h3 id="languages">💬 Languages</h3>
+## 💬 Languages
 
 - HTML
 - CSS/SCSS
@@ -160,7 +114,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - JavaScript
 - SCSS (Sass)
 
-<h3 id="libraries-and-frameworks">🧩 Libraries & Frameworks</h3>
+## 🧩 Libraries & Frameworks
 
 - **[Django](https://www.djangoproject.com/):** Python web framework
 - **[dj-database-url](https://pypi.org/project/dj-database-url/):** Parses database URLs into Django `DATABASES` settings
@@ -175,7 +129,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[HTMX](https://htmx.org/):** High-power tools for HTML
 - **[Bootstrap 5.3.8](https://getbootstrap.com/):** Frontend CSS framework for responsive design
 
-<h3 id="development-tools">🛠️ Development Tools</h3>
+## 🛠️ Development Tools
 
 - **[Git](https://git-scm.com/):** Version control system
 - **[GitHub](https://github.com/):** Code hosting and collaboration platform
@@ -187,7 +141,7 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[gulp-rename](https://www.npmjs.com/package/gulp-rename):** Renames output files
 - **[del](https://www.npmjs.com/package/del):** Cleans build directories
 
-<h3 id="design-and-resources">📐 Design & Resources</h3>
+## 📐 Design & Resources
 
 - **[Coolors](https://coolors.co/):** Colour palette generator
 - **[Google Fonts](https://fonts.google.com/):** Typography
@@ -195,17 +149,15 @@ The wireframes provide a rough visual outline of how I imagine the webpage to lo
 - **[Balsamiq](https://balsamiq.com/):** Wireframing
 - **[Font Awesome](https://fontawesome.com/):** Icon library
 
-<h3 id="infrastructure-and-services">☁️ Infrastructure & Services</h3>
+## ☁️ Infrastructure & Services
 
 - **[Heroku](https://www.heroku.com/):** Cloud platform for application hosting
 - **[PostgreSQL (Code Institute)](https://codeinstitute.net/):** Relational database
 - **[AWS S3](https://aws.amazon.com/s3/):** Cloud storage for media and static files
 
-[🔝 Back to top](#table-of-contents)
+# 🚀 Deployment
 
-<h2 id="deployment">🚀 Deployment</h2>
-
-<h3>Cloning the Project</h3>
+## Cloning the Project
 
 1. Open Bash and clone the Project into your PC.
 
@@ -315,7 +267,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-<h3>Heroku Deployment</h3>
+## Heroku Deployment
 
 1. Log in to the Heroku dashboard.
 2. Click **New** and select **Create new app**.
@@ -326,9 +278,7 @@ python manage.py runserver
 7. Press **Deploy Branch**.
 8. After deployment is complete, test the deployed page.
 
-[Back to the top](#table-of-contents)
-
-<h2 id="existing-features">✨ Existing Features</h2>
+# ✨ Existing Features
 
 **Navigation Bar:** A dynamic and responsive navigation bar that adapts based on user authentication and screen size.
 
@@ -435,19 +385,15 @@ python manage.py runserver
 
 ![Buttons for Staff in Product Page](readme/existing_features/product_details_edit.png)
 
-[🔝 Back to top](#table-of-contents)
-
-<h2 id="future-features">🔮 Future Features</h2>
+# 🔮 Future Features
 
 - Front end user management for staff.
 - Front end order management for staff.
 - Stock control, if a product is out of stock, it should not appear on the list, and staff can add stock to any product.
 
-[🔝 Back to top](#table-of-contents)
+# 🧪 Testing
 
-<h2 id="testing">🧪 Testing</h2>
-
-<h3 id="automated-testing">🤖 Automated Testing</h3>
+## 🤖 Automated Testing
 
 - Automated Testing was done in the home app.
 
@@ -541,7 +487,7 @@ test_home_view_uses_correct_template (home.tests.test_views.HomeViewTest.test_ho
 Test that home view uses the correct template ... ok
 ```
 
-<h3 id="manual-testing">🧍‍♂️ Manual Testing</h3>
+## 🧍‍♂️ Manual Testing
 
 | Feature                   | Action                                                                       | Expected Result                                                                                                                                           | Tested | Passed | Comments                                                                                  |
 | ------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------ | ----------------------------------------------------------------------------------------- |
@@ -577,28 +523,22 @@ Test that home view uses the correct template ... ok
 | Confirmation Page         | Click on order details button.                                               | It should redirect to the order details page.                                                                                                             | Yes    | Yes    |                                                                                           |
 | Account Page              | Visit the Account Page                                                       | It should show a form to update delivery address, and order history.                                                                                      | Yes    | Yes    |                                                                                           |
 
-[🔝 Back to top](#table-of-contents)
-
-<h2 id="bugs">🐞 Bugs</h2>
+# 🐞 Bugs
 
 - When opening the filters menu in Chrome for MacOS, it is crashing Chrome
 
 ![bug_01](readme/bugs/bug-01.png)
 
-[🔝 Back to top](#table-of-contents)
+# 📜 Credits
 
-<h2 id="credits">📜 Credits</h2>
-
-<h3 id="code">💡 Code</h3>
+## 💡 Code
 
 - [AWS S3 Tutorial](https://www.youtube.com/watch?v=JQVQcNN0cXE&t=404s)
 - [HTMX Tutorial](https://www.youtube.com/watch?v=O0_ZyUsG7wo) - For the pagination and search functionality.
 - [SCSS Tutorial](https://www.youtube.com/watch?v=_kqN4hl9bGc&list=PL4cUxeGkcC9jxJX7vojNVK-o8ubDZEcNb) - To edit Bootstrap.
 
-<h3 id="images">🖼️ Images</h3>
+## 🖼️ Images
 
 - [Hero Image](https://www.pexels.com/photo/a-close-up-shot-of-a-nintendo-switch-6993182/)
 - Store picture on about section was generated by Gemini.
 - The products images were taken by me.
-
-[🔝 Back to top](#table-of-contents)
